@@ -8,4 +8,4 @@ File.readlines(File.dirname(__FILE__) + '/input.txt').each do |line|
 end
 
 puts '#' * 80
-puts "The total sum of the line in the input file is #{value_calculator.sum}"
+puts "The total sum of the lines in the input file is #{value_calculator.sum}"

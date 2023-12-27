@@ -1,6 +1,6 @@
 class String
   def int_array
-    search_pattern = /(one|two|three|four|five|six|seven|eight|nine|\d)/i
+    search_pattern = /(?=(\d|one|two|three|four|five|six|seven|eight|nine))/i
     self.scan(search_pattern).flatten
   end
 

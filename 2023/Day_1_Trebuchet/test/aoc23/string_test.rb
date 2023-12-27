@@ -19,7 +19,7 @@ class StringTest < Minitest::Test
   end
 
   def test_converts_eightwothree
-    assert_equal ['eight', 'three'], 'eightwothree'.int_array
+    assert_equal ['eight', 'two', 'three'], 'eightwothree'.int_array
   end
 
   def test_converts_abcone2threexyz
@@ -27,7 +27,7 @@ class StringTest < Minitest::Test
   end
 
   def test_converts_xtwone3four
-    assert_equal ['two', '3', 'four'], 'xtwone3four'.int_array
+    assert_equal ['two', 'one', '3', 'four'], 'xtwone3four'.int_array
   end
 
   def test_converts_4nineeightseven2
@@ -35,7 +35,7 @@ class StringTest < Minitest::Test
   end
 
   def test_converts_zoneight234
-    assert_equal ['one', '2', '3', '4'], 'zoneight234'.int_array
+    assert_equal ['one', 'eight', '2', '3', '4'], 'zoneight234'.int_array
   end
 
   def test_converts_7pqrstsixteen

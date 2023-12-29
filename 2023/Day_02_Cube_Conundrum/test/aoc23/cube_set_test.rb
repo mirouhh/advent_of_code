@@ -1,11 +1,11 @@
 require 'minitest/autorun'
-require_relative '../../lib/aoc23/cubeset'
+require_relative '../../lib/aoc23/cube_set'
 
 class CubeSetTest < Minitest::Test
 
   def setup
-    @cube_set = Cubeset.new
-    @prefilled_cube_set = Cubeset.new
+    @cube_set = CubeSet.new
+    @prefilled_cube_set = CubeSet.new
     @prefilled_cube_set.add_cubes('blue', 2)
     @prefilled_cube_set.add_cubes('red', 3)
   end
@@ -58,5 +58,15 @@ class CubeSetTest < Minitest::Test
   def test_update_cubes
     @prefilled_cube_set.update_cubes('red', 1)
     assert_equal 1, @prefilled_cube_set.how_many('red')
+  end
+
+  def test_set_min_cubes
+    assert_equal 2, @prefilled_cube_set.how_many('blue')
+    @prefilled_cube_set.min_cubes('blue', 4)
+    assert_equal 4, @prefilled_cube_set.how_many('blue')
+  end
+
+  def test_power
+    assert_equal 6, @prefilled_cube_set.power
   end
 end

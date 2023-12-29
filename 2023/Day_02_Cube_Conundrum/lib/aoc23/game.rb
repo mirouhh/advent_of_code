@@ -1,4 +1,4 @@
-require_relative 'cubeset'
+require_relative 'cube_set'
 
 class Game
   attr_reader :id, :cube_sets
@@ -50,7 +50,7 @@ class Game
     cube_sets = []
     cube_sets_data = import_data.split(':')[1].split(';')
     cube_sets_data.each do |cube_set_data|
-      cube_set = Cubeset.new
+      cube_set = CubeSet.new
       cube_set.import(cube_set_data)
       cube_sets << cube_set
     end

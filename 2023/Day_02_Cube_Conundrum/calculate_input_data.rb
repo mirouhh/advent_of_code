@@ -12,8 +12,18 @@ end
 
 calculator.check(games_to_check, bag)
 
-puts '#' * 120
+puts '### Part I ###' + ('#'* 106)
 puts "Games found: #{games_found}"
 puts "Games possible: #{calculator.possible_games.length}"
 puts "Games impossible: #{calculator.impossible_games.length}"
 puts "The total sum of the possible game ids from the input file is #{calculator.possible_games.sum}"
+
+puts '### Part II ###' + ('#'* 105)
+
+power = 0
+games_to_check.each do |game|
+  power = power + calculator.min_cube_set(game).power
+end
+
+puts "Minimum cubesets found: #{games_to_check.length}"
+puts "The total power of the minimum cubesets from the input file is #{power}"

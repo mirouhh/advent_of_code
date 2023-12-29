@@ -1,4 +1,4 @@
-class Cubeset
+class CubeSet
 
   attr_reader :cubes
   def initialize
@@ -57,4 +57,16 @@ class Cubeset
     @cubes[color] = amount
   end
 
+  def min_cubes(color, amount)
+    color = color.chomp.downcase
+    (@cubes[color] = amount) if (@cubes[color].nil? || @cubes[color] < amount)
+  end
+
+  def power
+    power = 1
+    @cubes.each_value do |amount|
+      power = power * amount
+    end
+    power
+  end
 end

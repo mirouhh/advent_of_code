@@ -48,4 +48,15 @@ class Calculator
     end
   end
 
+  def min_cube_set(game)
+    min_cube_set = CubeSet.new
+    game.cube_sets.each do |cube_set|
+      cube_set.cubes.each_key do |color|
+        amount = cube_set.cubes[color]
+        min_cube_set.min_cubes(color, amount)
+      end
+    end
+    min_cube_set
+  end
+
 end

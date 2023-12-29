@@ -22,7 +22,7 @@ class CubeSet
 
   def how_many(color)
     color = color.downcase
-    @cubes[color]
+    (@cubes.key? color) ? @cubes[color] : 0
   end
 
   def add_cubes(color, amount)

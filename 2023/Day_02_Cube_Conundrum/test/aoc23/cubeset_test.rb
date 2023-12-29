@@ -41,6 +41,8 @@ class CubeSetTest < Minitest::Test
     assert @cube_set.empty?
     @cube_set.add_cubes('blue', 2)
     assert_equal 2, @cube_set.how_many('blue')
+    @cube_set.add_cubes('blue', 1)
+    assert_equal 3, @cube_set.how_many('blue')
   end
 
   def test_import_data_from_string

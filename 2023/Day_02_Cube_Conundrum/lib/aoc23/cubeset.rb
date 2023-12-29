@@ -29,7 +29,7 @@ class Cubeset
 
   def add_cubes(color, amount)
     color = color.downcase
-    @cubes[color] = amount
+    (@cubes.key? color) ? @cubes[color] = @cubes[color] + amount : @cubes[color] = amount
   end
 
   def info

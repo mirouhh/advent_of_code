@@ -1,4 +1,6 @@
 class CubeSet
+
+  attr_reader :cubes
   def initialize
     @cubes = {}
   end

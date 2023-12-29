@@ -1,25 +1,25 @@
 require_relative 'cube_set'
 
 class Game
-  attr_reader :id
+  attr_reader :id, :cube_sets
 
   def initialize(id)
     @id = id
-    @sets = []
+    @cube_sets = []
   end
 
   def empty?
-    @sets.empty?
+    @cube_sets.empty?
   end
 
   def add_cube_set(cubeset)
-    @sets << cubeset
+    @cube_sets << cubeset
   end
 
   def info
     info = "Game #{id}: "
     set_infos = []
-    @sets.each do |set|
+    @cube_sets.each do |set|
       set_infos << set.info
     end
     info + set_infos.join('; ')

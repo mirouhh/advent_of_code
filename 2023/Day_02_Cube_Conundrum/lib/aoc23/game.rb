@@ -1,3 +1,5 @@
+require_relative 'cube_set'
+
 class Game
   attr_reader :id
 

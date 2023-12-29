@@ -38,4 +38,16 @@ class CubeSet
     info.join(', ')
   end
 
+  def import(data)
+    data = data.chomp.downcase
+    amount_search_pattern = /\d/i
+    color_search_pattern = search_pattern = /[a-z]/i
+    partial_data = data.split(',')
+    partial_data.each do | data |
+      color = data.scan(color_search_pattern).join
+      amount = data.scan(amount_search_pattern).join.to_i
+      add_cubes(color, amount)
+    end
+  end
+
 end

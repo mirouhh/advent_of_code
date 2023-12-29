@@ -1,12 +1,12 @@
 require 'minitest/autorun'
 require_relative '../../lib/aoc23/game'
-require_relative '../../lib/aoc23/cube_set'
+require_relative '../../lib/aoc23/cubeset'
 
 class GameTest < Minitest::Test
 
   def setup
     @game = Game.new(1)
-    @set_1 = CubeSet.new
+    @set_1 = Cubeset.new
     @set_1.add_cubes('blue', 3)
     @set_1.add_cubes('red', 4)
   end
@@ -26,12 +26,12 @@ class GameTest < Minitest::Test
   end
 
   def test_has_cube_sets
-    set_2 = CubeSet.new
+    set_2 = Cubeset.new
     set_2.add_cubes('red', 1)
     set_2.add_cubes('green', 2)
     set_2.add_cubes('blue', 6)
 
-    set_3 = CubeSet.new
+    set_3 = Cubeset.new
     set_3.add_cubes('green', 2)
 
     @game.add_cube_set(@set_1)
@@ -43,12 +43,12 @@ class GameTest < Minitest::Test
   end
 
   def test_can_add_multiple_cube_sets
-    set_2 = CubeSet.new
+    set_2 = Cubeset.new
     set_2.add_cubes('red', 1)
     set_2.add_cubes('green', 2)
     set_2.add_cubes('blue', 6)
 
-    set_3 = CubeSet.new
+    set_3 = Cubeset.new
     set_3.add_cubes('green', 2)
 
     cube_sets = []

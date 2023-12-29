@@ -1,4 +1,4 @@
-class CubeSet
+class Cubeset
 
   attr_reader :cubes
   def initialize
@@ -50,6 +50,11 @@ class CubeSet
       amount = data.scan(amount_search_pattern).join.to_i
       add_cubes(color, amount)
     end
+  end
+
+  def update_cubes(color, amount)
+    color = color.chomp.downcase
+    @cubes[color] = amount
   end
 
 end

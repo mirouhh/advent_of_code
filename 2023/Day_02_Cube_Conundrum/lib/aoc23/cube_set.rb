@@ -3,6 +3,28 @@ class CubeSet
     @cubes = {}
   end
 
+  def empty?
+    @cubes.empty?
+  end
+
+  def total
+    total = 0
+    @cubes.each_key do |key|
+      total += @cubes[key]
+    end
+    total
+  end
+
+  def contains?(color)
+    color = color.downcase
+    @cubes.key? color
+  end
+
+  def how_many(color)
+    color = color.downcase
+    @cubes[color]
+  end
+
   def add_cubes(color, amount)
     color = color.downcase
     @cubes[color] = amount

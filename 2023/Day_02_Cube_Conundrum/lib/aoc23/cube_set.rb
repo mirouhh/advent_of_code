@@ -41,7 +41,7 @@ class CubeSet
   def import(data)
     data = data.chomp.downcase
     amount_search_pattern = /\d/i
-    color_search_pattern = search_pattern = /[a-z]/i
+    color_search_pattern = /[a-z]/i
     partial_data = data.split(',')
     partial_data.each do | data |
       color = data.scan(color_search_pattern).join

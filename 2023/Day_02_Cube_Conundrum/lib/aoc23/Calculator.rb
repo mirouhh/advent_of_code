@@ -4,10 +4,12 @@ require_relative 'cube_set'
 
 class Calculator
 
-  attr_reader :error_msgs
+  attr_reader :error_msgs, :possible_games, :impossible_games
 
   def initialize
     @error_msgs = []
+    @possible_games = []
+    @impossible_games = []
   end
 
   def compatible?(game, bag)
@@ -38,6 +40,12 @@ class Calculator
       end
     end
     true
+  end
+
+  def check(games, bag)
+    games.each do |game|
+      (compatible?(game, bag)) ? @possible_games << game.id : @impossible_games << game.id
+    end
   end
 
 end

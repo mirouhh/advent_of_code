@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require_relative '../../lib/aoc23/part_number_detector'
 
 class PartNumberDetectorTest < Minitest::Test
   def test_has_no_valid_part_numbers

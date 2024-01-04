@@ -8,4 +8,11 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert_equal false, part_number_detector.has_valid_part_numbers?
   end
+
+  def test_has_a_symbol
+    part_number_detector = PartNumberDetector.new
+    part_number_detector.import('...*......')
+
+    assert part_number_detector.has_symbols?
+  end
 end

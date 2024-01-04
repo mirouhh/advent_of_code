@@ -17,4 +17,10 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert @part_number_detector.has_symbols?
   end
+
+  def test_has_no_symbol
+    @part_number_detector.import("467..114..")
+
+    assert_equal false, @part_number_detector.has_symbols?
+  end
 end

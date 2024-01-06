@@ -11,4 +11,9 @@ class StringTest < Minitest::Test
     assert '*'.symbols.any?
   end
 
+  def test_has_star_as_a_symbol_when_stars_were_provided
+    test_string = '*'
+    assert test_string.symbols.include? '*'
+  end
+
 end

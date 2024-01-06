@@ -1,7 +1,10 @@
 class String
   def symbols
     search_pattern = /(?=(\*))/i
-    scan(search_pattern).flatten
+    symbols = scan(search_pattern).flatten
+    unless symbols.empty?
+      symbols.uniq!
+    end
+    symbols
   end
-
 end

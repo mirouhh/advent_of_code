@@ -16,4 +16,10 @@ class StringTest < Minitest::Test
     assert test_string.symbols.include? '*'
   end
 
+  def test_has_only_one_symbol_regardless_how_often_a_symbol_is_provided
+    test_string = '******'
+    assert test_string.symbols.include? '*'
+    assert_equal 1, test_string.symbols.length
+  end
+
 end

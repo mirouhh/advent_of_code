@@ -22,4 +22,13 @@ class StringTest < Minitest::Test
     assert_equal 1, test_string.symbols.length
   end
 
+  def test_the_delimiter_is_not_a_symbol
+    test_string = '...*......'
+    delimiter = '.'
+
+    assert test_string.symbols.include? '*'
+    assert test_string.symbols.none? delimiter
+    assert_equal 1, test_string.symbols.length
+  end
+
 end

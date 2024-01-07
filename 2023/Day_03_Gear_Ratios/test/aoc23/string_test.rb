@@ -39,4 +39,10 @@ class StringTest < Minitest::Test
     assert_equal 2, test_string.symbols.length
   end
 
+  def test_plus_is_a_symbol
+    test_string = '.....+.58.'
+    assert test_string.symbols.include? '+'
+    assert_equal 1, test_string.symbols.length
+  end
+
 end

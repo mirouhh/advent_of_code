@@ -51,4 +51,33 @@ class StringTest < Minitest::Test
     assert_equal 1, test_string.symbols.length
   end
 
+  def test_sample_data_is_handled_correctly
+    sample_data_01 = '467..114..'
+    sample_data_02 = '...*......'
+    sample_data_03 = '..35..633.'
+    sample_data_04 = '......#...'
+    sample_data_05 = '617*......'
+    sample_data_06 = '.....+.58.'
+    sample_data_07 = '..592.....'
+    sample_data_08 = '......755.'
+    sample_data_09 = '...$.*....'
+    sample_data_10 = '.664.598..'
+
+    assert sample_data_01.symbols.empty?
+    assert_equal 1, sample_data_02.symbols.length
+    assert sample_data_02.symbols.include? '*'
+    assert sample_data_03.symbols.empty?
+    assert_equal 1, sample_data_04.symbols.length
+    assert sample_data_04.symbols.include? '#'
+    assert_equal 1, sample_data_05.symbols.length
+    assert sample_data_05.symbols.include? '*'
+    assert_equal 1, sample_data_06.symbols.length
+    assert sample_data_06.symbols.include? '+'
+    assert sample_data_07.symbols.empty?
+    assert sample_data_08.symbols.empty?
+    assert_equal 2, sample_data_09.symbols.length
+    assert sample_data_09.symbols.include? '$'
+    assert sample_data_09.symbols.include? '*'
+    assert sample_data_10.symbols.empty?
+  end
 end

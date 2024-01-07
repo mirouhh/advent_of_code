@@ -1,8 +1,9 @@
 class String
   def symbols
-    search_pattern = /(?=(\*|\$|\+|#))/i
+    search_pattern = /(?=(\w|\.))/i
     symbols = scan(search_pattern).flatten
-    symbols.uniq! unless symbols.empty?
+    symbols = delete symbols.join
+    symbols = symbols.chars.uniq unless symbols.empty?
     symbols
   end
 end

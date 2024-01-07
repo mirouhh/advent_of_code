@@ -31,4 +31,12 @@ class StringTest < Minitest::Test
     assert_equal 1, test_string.symbols.length
   end
 
+  def test_has_two_symbols
+    test_string = '...$.*....'
+
+    assert test_string.symbols.include? '*'
+    assert test_string.symbols.include? '$'
+    assert_equal 2, test_string.symbols.length
+  end
+
 end

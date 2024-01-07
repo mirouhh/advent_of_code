@@ -45,4 +45,10 @@ class StringTest < Minitest::Test
     assert_equal 1, test_string.symbols.length
   end
 
+  def test_hash_is_a_symbol
+    test_string = '......#...'
+    assert test_string.symbols.include? '#'
+    assert_equal 1, test_string.symbols.length
+  end
+
 end

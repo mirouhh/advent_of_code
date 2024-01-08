@@ -50,6 +50,12 @@ class StringTest < Minitest::Test
     assert test_string.symbols.include? '#'
     assert_equal 1, test_string.symbols.length
   end
+  def test_has_numbers
+    test_string = '467..114..'
+    assert_equal 2, test_string.numbers.length
+    assert test_string.numbers.includes? '467'
+    assert test_string.numbers.includes? '114'
+  end
 
   def test_sample_data_is_handled_correctly
     sample_data_01 = '467..114..'

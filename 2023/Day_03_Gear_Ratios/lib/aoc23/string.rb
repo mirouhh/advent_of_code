@@ -6,4 +6,9 @@ class String
     symbols = symbols.chars.uniq unless symbols.empty?
     symbols
   end
+
+  def numbers
+    search_pattern = /\d+/i
+    scan(search_pattern).flatten
+  end
 end

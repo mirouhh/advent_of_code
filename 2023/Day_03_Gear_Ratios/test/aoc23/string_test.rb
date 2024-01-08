@@ -57,7 +57,7 @@ class StringTest < Minitest::Test
     assert test_string.numbers.include? '114'
   end
 
-  def test_sample_data_is_handled_correctly
+  def test_sample_data_symbols_are_detected_correctly
     sample_data_01 = '467..114..'
     sample_data_02 = '...*......'
     sample_data_03 = '..35..633.'
@@ -85,5 +85,55 @@ class StringTest < Minitest::Test
     assert sample_data_09.symbols.include? '$'
     assert sample_data_09.symbols.include? '*'
     assert sample_data_10.symbols.empty?
+  end
+
+  def test_sample_data_numbers_are_detected_correctly
+    sample_data_01 = '467..114..'
+    sample_data_02 = '...*......'
+    sample_data_03 = '..35..633.'
+    sample_data_04 = '......#...'
+    sample_data_05 = '617*......'
+    sample_data_06 = '.....+.58.'
+    sample_data_07 = '..592.....'
+    sample_data_08 = '......755.'
+    sample_data_09 = '...$.*....'
+    sample_data_10 = '.664.598..'
+
+    assert sample_data_01.numbers.any?
+    assert_equal 2, sample_data_01.numbers.length
+    assert sample_data_01.numbers.include? '467'
+    assert sample_data_01.numbers.include? '114'
+
+    assert sample_data_02.numbers.empty?
+
+    assert sample_data_03.numbers.any?
+    assert_equal 2, sample_data_03.numbers.length
+    assert sample_data_03.numbers.include? '35'
+    assert sample_data_03.numbers.include? '633'
+
+    assert sample_data_04.numbers.empty?
+
+    assert sample_data_05.numbers.any?
+    assert_equal 1, sample_data_05.numbers.length
+    assert sample_data_05.numbers.include? '617'
+
+    assert sample_data_06.numbers.any?
+    assert_equal 1, sample_data_06.numbers.length
+    assert sample_data_06.numbers.include? '58'
+
+    assert sample_data_07.numbers.any?
+    assert_equal 1, sample_data_07.numbers.length
+    assert sample_data_07.numbers.include? '592'
+
+    assert sample_data_08.numbers.any?
+    assert_equal 1, sample_data_08.numbers.length
+    assert sample_data_08.numbers.include? '755'
+
+    assert sample_data_09.numbers.empty?
+
+    assert sample_data_10.numbers.any?
+    assert_equal 2, sample_data_10.numbers.length
+    assert sample_data_10.numbers.include? '664'
+    assert sample_data_10.numbers.include? '598'
   end
 end

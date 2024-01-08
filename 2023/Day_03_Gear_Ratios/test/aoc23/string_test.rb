@@ -53,8 +53,8 @@ class StringTest < Minitest::Test
   def test_has_numbers
     test_string = '467..114..'
     assert_equal 2, test_string.numbers.length
-    assert test_string.numbers.includes? '467'
-    assert test_string.numbers.includes? '114'
+    assert test_string.numbers.include? '467'
+    assert test_string.numbers.include? '114'
   end
 
   def test_sample_data_is_handled_correctly

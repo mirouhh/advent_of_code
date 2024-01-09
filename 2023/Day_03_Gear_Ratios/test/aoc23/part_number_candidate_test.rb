@@ -1,0 +1,12 @@
+require 'minitest/autorun'
+
+class PartNumberCandidateTest < Minitest::Test
+  def test_has_coordinates
+    part_number_candidate = PartNumberCandidate.new(467, 0, 0)
+
+    assert_equal 467, part_number_candidate.value
+    assert_equal 0, part_number_candidate.x
+    assert_equal 0, part_number_candidate.y
+    assert_equal 3, part_number_candidate.length
+  end
+end

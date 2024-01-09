@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require_relative '../../lib/aoc23/part_number_candidate'
 
 class PartNumberCandidateTest < Minitest::Test
   def test_has_coordinates

@@ -9,6 +9,6 @@ class PartNumberCandidate
   end
 
   def length
-    @value.to_s.chars.length unless @value.nil?
+    @value.to_s.length unless @value.nil?
   end
 end

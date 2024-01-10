@@ -23,4 +23,11 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert_equal false, @part_number_detector.has_symbols?
   end
+
+  def test_has_a_part_number
+    @part_number_detector.import('617*......')
+
+    assert @part_number_detector.has_valid_part_numbers?
+    assert_equal 617, @part_number_detector.part_numbers[0]
+  end
 end

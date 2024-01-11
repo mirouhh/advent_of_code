@@ -20,5 +20,8 @@ class PartNumberDetector
   def has_symbols?
     @symbols.any?
   end
-  
+
+  def adjacent?(number, symbol)
+    true
+  end
 end

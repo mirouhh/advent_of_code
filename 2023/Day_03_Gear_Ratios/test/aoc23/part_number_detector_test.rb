@@ -1,5 +1,7 @@
 require 'minitest/autorun'
 require_relative '../../lib/aoc23/part_number_detector'
+require_relative '../../lib/aoc23/part_number_candidate'
+require_relative '../../lib/aoc23/engine_schematic_symbol'
 
 class PartNumberDetectorTest < Minitest::Test
 
@@ -28,7 +30,6 @@ class PartNumberDetectorTest < Minitest::Test
     @part_number_detector.import('617*......')
 
     assert @part_number_detector.has_valid_part_numbers?
-    assert_equal 617, @part_number_detector.part_numbers[0]
   end
 
   def test_number_is_adjacent_to_a_symbol

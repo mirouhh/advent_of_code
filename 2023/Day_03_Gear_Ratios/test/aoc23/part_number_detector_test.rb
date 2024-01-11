@@ -30,4 +30,11 @@ class PartNumberDetectorTest < Minitest::Test
     assert @part_number_detector.has_valid_part_numbers?
     assert_equal 617, @part_number_detector.part_numbers[0]
   end
+
+  def test_number_is_adjacent_to_a_symbol
+    part_number_candidate = PartNumberCandidate.new(617, 0,0)
+    engine_schematic_symbol = EngineSchematicSymbol.new('$', 4, 0)
+
+    assert @part_number_detector.adjacent? part_number_candidate, engine_schematic_symbol
+  end
 end

@@ -61,4 +61,20 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert @part_number_detector.above? part_number_candidate, engine_schematic_symbol
   end
+
+  def test_number_array_only_contains_numbers
+    @part_number_detector.import(0, '467..114..')
+
+
+    assert @part_number_detector.contains_numbers_only?
+  end
+
+  def test_numbers_are_converted_correctly
+    @part_number_detector.import(0, '467..114..')
+    first_number = PartNumberCandidate.new(467, 0, 0)
+    second_number = PartNumberCandidate.new(114, 5, 0)
+
+    assert @part_number_detector.numbers[0].eql? first_number
+    assert @part_number_detector.numbers[1].eql? second_number
+  end
 end

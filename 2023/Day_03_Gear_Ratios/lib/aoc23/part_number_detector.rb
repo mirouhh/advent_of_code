@@ -2,6 +2,8 @@ require_relative 'string'
 
 class PartNumberDetector
 
+  attr_reader :numbers
+
   def initialize
     @part_numbers = []
     @symbols = []
@@ -9,13 +11,25 @@ class PartNumberDetector
   end
 
   def import(line_number, engine_schematic)
-    @symbols = engine_schematic.symbols unless engine_schematic.symbols.empty?
-    @numbers = engine_schematic.numbers
-    @numbers.each do |number|
-      @symbols.each do | symbol |
-        @part_numbers << number if adjacent? number, symbol
-      end
+    import_numbers(line_number, engine_schematic)
+    #import_symbols(line_number, engine_schematic)
+    #@symbols = engine_schematic.symbols unless engine_schematic.symbols.empty?
+    #@numbers = engine_schematic.numbers
+    #@numbers.each do |number|
+    #  @symbols.each do | symbol |
+    #    @part_numbers << number if adjacent? number, symbol
+    #  end
+    #end
+  end
+
+  def import_numbers(line_number, engine_schematic)
+    engine_schematic.numbers.each do | number |
+      @numbers << PartNumberCandidate.new(number.to_i, engine_schematic.index(number), line_number)
     end
+  end
+
+  def contains_numbers_only?
+    @numbers.all? {|number | number.class == PartNumberCandidate}
   end
 
   def has_valid_part_numbers?

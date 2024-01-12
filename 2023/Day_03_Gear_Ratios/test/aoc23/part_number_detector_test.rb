@@ -45,4 +45,13 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert_equal false, @part_number_detector.adjacent?(part_number_candidate, engine_schematic_symbol)
   end
+
+  def test_is_inline_with_number
+    part_number_candidate = PartNumberCandidate.new(617, 1, 0)
+    right_engine_schematic_symbol = EngineSchematicSymbol.new('$', 4, 0)
+    left_engine_schematic_symbol = EngineSchematicSymbol.new('$', 1, 0)
+
+    assert @part_number_detector.inline? part_number_candidate, left_engine_schematic_symbol
+    assert @part_number_detector.inline? part_number_candidate, right_engine_schematic_symbol
+  end
 end

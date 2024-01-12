@@ -22,6 +22,11 @@ class PartNumberDetector
   end
 
   def adjacent?(number, symbol)
-    true
+    inline?(number, symbol)
+  end
+
+  def inline? (number, symbol)
+    interval = Range.new(number.x - 1, number.x + number.length + 1)
+    interval.include? symbol.x
   end
 end

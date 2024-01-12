@@ -33,9 +33,16 @@ class PartNumberDetectorTest < Minitest::Test
   end
 
   def test_number_is_adjacent_to_a_symbol
-    part_number_candidate = PartNumberCandidate.new(617, 0,0)
+    part_number_candidate = PartNumberCandidate.new(617, 0, 0)
     engine_schematic_symbol = EngineSchematicSymbol.new('$', 4, 0)
 
     assert @part_number_detector.adjacent? part_number_candidate, engine_schematic_symbol
+  end
+
+  def test_number_is_not_adjacent_to_a_symbol
+    part_number_candidate = PartNumberCandidate.new(617, 0, 0)
+    engine_schematic_symbol = EngineSchematicSymbol.new('$', 5, 0)
+
+    assert_equal false, @part_number_detector.adjacent?(part_number_candidate, engine_schematic_symbol)
   end
 end

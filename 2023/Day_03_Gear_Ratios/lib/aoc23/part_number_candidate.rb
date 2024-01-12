@@ -11,4 +11,8 @@ class PartNumberCandidate
   def length
     @value.to_s.length unless @value.nil?
   end
+
+  def eql?(other)
+    @value == other.value && @x == other.x && @y == other.y
+  end
 end

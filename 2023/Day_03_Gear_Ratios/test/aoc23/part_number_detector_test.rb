@@ -9,25 +9,25 @@ class PartNumberDetectorTest < Minitest::Test
     @part_number_detector = PartNumberDetector.new
   end
   def test_import_data_does_not_contain_valid_part_numbers
-    @part_number_detector.import("467..114..")
+    @part_number_detector.import(0, '467..114..')
 
     assert_equal false, @part_number_detector.has_valid_part_numbers?
   end
 
   def test_import_data_does_include_a_symbol
-    @part_number_detector.import('...*......')
+    @part_number_detector.import(0, '...*......')
 
     assert @part_number_detector.has_symbols?
   end
 
   def test_import_data_does_not_include_a_symbol
-    @part_number_detector.import("467..114..")
+    @part_number_detector.import(0, '467..114..')
 
     assert_equal false, @part_number_detector.has_symbols?
   end
 
   def test_import_data_includes_a_part_number
-    @part_number_detector.import('617*......')
+    @part_number_detector.import(0, '617*......')
 
     assert @part_number_detector.has_valid_part_numbers?
   end
@@ -56,8 +56,8 @@ class PartNumberDetectorTest < Minitest::Test
   end
 
   def test_symbol_is_above_number
-    part_number_candidate = PartNumberCandidate.new(617, 1, 0)
-    engine_schematic_symbol = EngineSchematicSymbol.new('$', 4, 0)
+    part_number_candidate = PartNumberCandidate.new(617, 1, 1)
+    engine_schematic_symbol = EngineSchematicSymbol.new('$', 1, 0)
 
     assert @part_number_detector.above? part_number_candidate, engine_schematic_symbol
   end

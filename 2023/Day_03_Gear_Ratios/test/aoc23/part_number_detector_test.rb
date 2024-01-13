@@ -146,4 +146,26 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert_equal 502, @part_number_detector.sum
   end
+
+  def test_sample_data_is_handled_correctly
+    first_line = '467..114..'
+    second_line = '...*......'
+    third_line = '..35..633.'
+    fourth_line = '......#...'
+    fifth_line = '617*......'
+    sixth_line = '.....+.58.'
+    seventh_line = '..592.....'
+    eighth_line = '......755.'
+    ninth_line = '...$.*....'
+    tenth_line = '.664.598..'
+
+    lines = [first_line, second_line, third_line, fourth_line, fifth_line, sixth_line, seventh_line, eighth_line, ninth_line, tenth_line]
+
+    @part_number_detector.import_lines(lines)
+
+    assert_equal 8, @part_number_detector.part_numbers.length
+    assert_equal 4, @part_number_detector.symbols.length
+    assert_equal 2, @part_number_detector.numbers.length
+    assert_equal 4361, @part_number_detector.sum
+  end
 end

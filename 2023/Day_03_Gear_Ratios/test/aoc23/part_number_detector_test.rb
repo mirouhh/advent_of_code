@@ -84,4 +84,41 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert @part_number_detector.symbols[0].eql? symbol
   end
+
+  def test_single_lines_can_be_imported
+    first_line = '467..114..'
+    second_line = '...*......'
+    third_line = '..35..633.'
+    fourth_line = '......#...'
+    fifth_line = '617*......'
+    sixth_line = '.....+.58.'
+    seventh_line = '..592.....'
+    eighth_line = '......755.'
+    ninth_line = '...$.*....'
+    tenth_line = '.664.598..'
+
+    symbol = EngineSchematicSymbol.new('*', 3, 1)
+    first_part_number = PartNumberCandidate.new(467, 0, 0)
+    second_part_number = PartNumberCandidate.new(35, 2, 2)
+    third_part_number = PartNumberCandidate.new(633, 6, 2)
+    non_part_number = PartNumberCandidate.new(114, 5, 0)
+
+    @part_number_detector.import_line(first_line)
+    @part_number_detector.import_line(second_line)
+    @part_number_detector.import_line(third_line)
+
+    assert @part_number_detector.has_valid_part_numbers?
+    assert @part_number_detector.has_symbols?
+
+    assert_equal 1, @part_number_detector.symbols.length
+    assert @part_number_detector[0].eql? symbol
+
+    assert_equal 3, @part_number_detector.part_numbers.length
+    assert @part_number_detector.part_numbers[0].eql? first_part_number
+    assert @part_number_detector.part_numbers[1].eql? second_part_number
+    assert @part_number_detector.part_numbers[2].eql? third_part_number
+
+    assert_equal 1, @part_number_detector.numbers.length
+    assert @part_number_detector.numbers[0].eql? non_part_number
+  end
 end

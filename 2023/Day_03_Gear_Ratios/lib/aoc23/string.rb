@@ -1,9 +1,10 @@
 class String
   def symbols
     search_pattern = /(?=(\w|\.))/i
-    symbols = scan(search_pattern).flatten
-    symbols = delete symbols.join
-    symbols = symbols.chars.uniq unless symbols.empty?
+    non_symbols = scan(search_pattern).flatten
+    symbol_string = delete non_symbols.join
+    symbols = symbol_string.chars
+    symbols = symbols.uniq unless symbols.empty?
     symbols
   end
 

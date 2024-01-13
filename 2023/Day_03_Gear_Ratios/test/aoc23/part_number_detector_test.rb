@@ -77,4 +77,11 @@ class PartNumberDetectorTest < Minitest::Test
     assert @part_number_detector.numbers[0].eql? first_number
     assert @part_number_detector.numbers[1].eql? second_number
   end
+
+  def test_symbols_are_converted_correctly
+    @part_number_detector.import(0, '617*......')
+    symbol = EngineSchematicSymbol.new('*', 3, 0)
+
+    assert @part_number_detector.symbols[0].eql? symbol
+  end
 end

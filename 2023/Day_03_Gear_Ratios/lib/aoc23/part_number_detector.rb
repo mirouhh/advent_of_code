@@ -82,4 +82,12 @@ class PartNumberDetector
     lower_right = symbol.x.eql?(number.x + number.length) && symbol.y.eql?(number.y - 1)
     lower_left || upper_left || upper_right || lower_right
   end
+
+  def sum
+    sum = 0
+    @part_numbers.each do | part_number |
+      sum = sum + part_number.value
+    end
+    sum
+  end
 end

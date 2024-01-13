@@ -2,12 +2,17 @@ require_relative 'string'
 
 class PartNumberDetector
 
-  attr_reader :numbers, :symbols
+  attr_reader :numbers, :symbols, :part_numbers
 
   def initialize
     @part_numbers = []
     @symbols = []
     @numbers = []
+    @lines_read = 0
+  end
+
+  def import_line(line)
+    import(@lines_read, line)
   end
 
   def import(line_number, engine_schematic)
@@ -17,6 +22,14 @@ class PartNumberDetector
       @symbols.each do | symbol |
         @part_numbers << number if adjacent? number, symbol
       end
+    end
+    cleanup_numbers
+    @lines_read = @lines_read + 1
+  end
+
+  def cleanup_numbers
+    @part_numbers.each do | part_number |
+      @numbers.delete part_number
     end
   end
 
@@ -45,7 +58,7 @@ class PartNumberDetector
   end
 
   def adjacent?(number, symbol)
-    inline?(number, symbol) || above?(number, symbol)
+    inline?(number, symbol) || above?(number, symbol) || diagonal?(number, symbol)
   end
 
   def inline? (number, symbol)
@@ -56,5 +69,17 @@ class PartNumberDetector
   def above? (number, symbol)
     interval = Range.new(number.y - 1, number.y)
     (interval.include? symbol.y) && (number.x.eql? symbol.x)
+  end
+
+  def diagonal?(number, symbol)
+    # Is lower left
+    lower_left = symbol.x.eql?(number.x - 1) && symbol.y.eql?(number.y - 1)
+    # Is upper left
+    upper_left = symbol.x.eql?(number.x - 1) && symbol.y.eql?(number.y + 1)
+    # Is upper right
+    upper_right = symbol.x.eql?(number.x + number.length) && symbol.y.eql?(number.y + 1)
+    # Is lower left
+    lower_right = symbol.x.eql?(number.x + number.length) && symbol.y.eql?(number.y - 1)
+    lower_left || upper_left || upper_right || lower_right
   end
 end

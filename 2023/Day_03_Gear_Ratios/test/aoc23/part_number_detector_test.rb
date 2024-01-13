@@ -62,6 +62,19 @@ class PartNumberDetectorTest < Minitest::Test
     assert @part_number_detector.above? part_number_candidate, engine_schematic_symbol
   end
 
+  def test_symbol_is_diagonal_to_a_number
+    part_number_candidate = PartNumberCandidate.new(617, 1, 1)
+    lower_left_symbol = EngineSchematicSymbol.new('$', 0, 0)
+    upper_left_symbol = EngineSchematicSymbol.new('%', 0, 2)
+    lower_right_symbol = EngineSchematicSymbol.new('*', 4, 0)
+    upper_right_symbol = EngineSchematicSymbol.new('+', 4, 2)
+
+    assert @part_number_detector.diagonal? part_number_candidate, lower_left_symbol
+    assert @part_number_detector.diagonal? part_number_candidate, lower_right_symbol
+    assert @part_number_detector.diagonal? part_number_candidate, upper_left_symbol
+    assert @part_number_detector.diagonal? part_number_candidate, upper_right_symbol
+  end
+
   def test_number_array_only_contains_numbers
     @part_number_detector.import(0, '467..114..')
 
@@ -89,19 +102,19 @@ class PartNumberDetectorTest < Minitest::Test
     first_line = '467..114..'
     second_line = '...*......'
     third_line = '..35..633.'
-    fourth_line = '......#...'
-    fifth_line = '617*......'
-    sixth_line = '.....+.58.'
-    seventh_line = '..592.....'
-    eighth_line = '......755.'
-    ninth_line = '...$.*....'
-    tenth_line = '.664.598..'
+    #fourth_line = '......#...'
+    #fifth_line = '617*......'
+    #sixth_line = '.....+.58.'
+    #seventh_line = '..592.....'
+    #eighth_line = '......755.'
+    #ninth_line = '...$.*....'
+    #tenth_line = '.664.598..'
 
     symbol = EngineSchematicSymbol.new('*', 3, 1)
     first_part_number = PartNumberCandidate.new(467, 0, 0)
     second_part_number = PartNumberCandidate.new(35, 2, 2)
-    third_part_number = PartNumberCandidate.new(633, 6, 2)
-    non_part_number = PartNumberCandidate.new(114, 5, 0)
+    first_non_part_number = PartNumberCandidate.new(114, 5, 0)
+    second_non_part_number = PartNumberCandidate.new(633, 6, 2)
 
     @part_number_detector.import_line(first_line)
     @part_number_detector.import_line(second_line)
@@ -111,14 +124,14 @@ class PartNumberDetectorTest < Minitest::Test
     assert @part_number_detector.has_symbols?
 
     assert_equal 1, @part_number_detector.symbols.length
-    assert @part_number_detector[0].eql? symbol
+    assert @part_number_detector.symbols[0].eql? symbol
 
-    assert_equal 3, @part_number_detector.part_numbers.length
+    assert_equal 2, @part_number_detector.part_numbers.length
     assert @part_number_detector.part_numbers[0].eql? first_part_number
     assert @part_number_detector.part_numbers[1].eql? second_part_number
-    assert @part_number_detector.part_numbers[2].eql? third_part_number
 
-    assert_equal 1, @part_number_detector.numbers.length
-    assert @part_number_detector.numbers[0].eql? non_part_number
+    assert_equal 2, @part_number_detector.numbers.length
+    assert @part_number_detector.numbers[0].eql? first_non_part_number
+    assert @part_number_detector.numbers[1].eql? second_non_part_number
   end
 end

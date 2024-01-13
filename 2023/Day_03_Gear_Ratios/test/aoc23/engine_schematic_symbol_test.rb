@@ -9,4 +9,11 @@ class EngineSchematicSymbolTest < Minitest::Test
     assert_equal 1, symbol.x
     assert_equal 5, symbol.y
   end
+
+  def test_can_be_compared
+    first_symbol = EngineSchematicSymbol.new('%', 1, 5)
+    second_symbol = EngineSchematicSymbol.new('%', 1, 5)
+
+    assert first_symbol.eql? second_symbol
+  end
 end

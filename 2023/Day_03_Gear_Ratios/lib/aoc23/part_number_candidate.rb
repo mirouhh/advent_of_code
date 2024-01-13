@@ -13,6 +13,6 @@ class PartNumberCandidate
   end
 
   def eql?(other)
-    @value == other.value && @x == other.x && @y == other.y
+    @value.eql?(other.value) && @x.eql?(other.x) && @y.eql?(other.y)
   end
 end

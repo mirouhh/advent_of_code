@@ -134,4 +134,16 @@ class PartNumberDetectorTest < Minitest::Test
     assert @part_number_detector.numbers[0].eql? first_non_part_number
     assert @part_number_detector.numbers[1].eql? second_non_part_number
   end
+
+  def test_can_sum_up_part_numbers
+    first_line = '467..114..'
+    second_line = '...*......'
+    third_line = '..35..633.'
+
+    @part_number_detector.import_line(first_line)
+    @part_number_detector.import_line(second_line)
+    @part_number_detector.import_line(third_line)
+
+    assert_equal 502, @part_number_detector.sum
+  end
 end

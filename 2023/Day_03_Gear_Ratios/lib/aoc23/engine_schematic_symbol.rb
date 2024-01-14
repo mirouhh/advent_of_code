@@ -13,6 +13,6 @@ class EngineSchematicSymbol
   end
 
   def to_s
-    @value
+    "Value: #{@value}, x: #{@x}, y: #{@y}"
   end
 end

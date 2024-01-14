@@ -11,4 +11,8 @@ class EngineSchematicSymbol
   def eql?(other)
     @value.eql?(other.value) && @x.eql?(other.x) && @y.eql?(other.y)
   end
+
+  def to_s
+    @value
+  end
 end

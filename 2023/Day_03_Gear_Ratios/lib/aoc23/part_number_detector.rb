@@ -12,19 +12,35 @@ class PartNumberDetector
   end
 
   def import_line(line)
-    import(@lines_read, line)
+    import(line)
   end
 
-  def import(line_number, engine_schematic)
-    import_numbers(line_number, engine_schematic)
-    import_symbols(line_number, engine_schematic)
+  def import_lines(lines)
+    lines.each do | line |
+      import_line line
+    end
+  end
+
+  def import(engine_schematic)
+    import_numbers(@lines_read, engine_schematic)
+    import_symbols(@lines_read, engine_schematic)
+    @lines_read = @lines_read + 1
+  end
+
+  def process_data
     @numbers.each do |number|
+      #puts "\nValidating Part Number Candidate: #{number.to_s}"
+      is_adjacent = false
       @symbols.each do | symbol |
-        @part_numbers << number if adjacent? number, symbol
+        is_this_symbol_adjacent = adjacent? number, symbol
+        # puts "Is it adjacent to #{symbol.to_s}? #{is_this_symbol_adjacent}"
+        is_adjacent |= is_this_symbol_adjacent
       end
+      #puts "Is #{number.to_s} a vaild part number? #{is_adjacent}"
+      #puts "-----------------------------------------------------\n"
+      @part_numbers << number if is_adjacent
     end
     cleanup_numbers
-    @lines_read = @lines_read + 1
   end
 
   def cleanup_numbers
@@ -58,17 +74,22 @@ class PartNumberDetector
   end
 
   def adjacent?(number, symbol)
-    inline?(number, symbol) || above?(number, symbol) || diagonal?(number, symbol)
+    inline?(number, symbol) || above?(number, symbol) || below?(number, symbol) || diagonal?(number, symbol)
   end
 
   def inline? (number, symbol)
     interval = Range.new(number.x - 1, number.x + number.length + 1)
-    interval.include? symbol.x
+    number.y.eql?(symbol.y) && interval.include?(symbol.x)
   end
 
-  def above? (number, symbol)
-    interval = Range.new(number.y - 1, number.y)
-    (interval.include? symbol.y) && (number.x.eql? symbol.x)
+  def above?(number, symbol)
+    interval = Range.new(number.x, number.x + number.length - 1)
+    (interval.include? symbol.x) && (number.y.eql?(symbol.y + 1))
+  end
+
+  def below?(number, symbol)
+    interval = Range.new(number.x, number.x + number.length + 1)
+    (interval.include? symbol.x) && (number.y.eql?(symbol.y - 1))
   end
 
   def diagonal?(number, symbol)

@@ -9,25 +9,26 @@ class PartNumberDetectorTest < Minitest::Test
     @part_number_detector = PartNumberDetector.new
   end
   def test_import_data_does_not_contain_valid_part_numbers
-    @part_number_detector.import(0, '467..114..')
+    @part_number_detector.import_line('467..114..')
 
     assert_equal false, @part_number_detector.has_valid_part_numbers?
   end
 
   def test_import_data_does_include_a_symbol
-    @part_number_detector.import(0, '...*......')
+    @part_number_detector.import_line('...*......')
 
     assert @part_number_detector.has_symbols?
   end
 
   def test_import_data_does_not_include_a_symbol
-    @part_number_detector.import(0, '467..114..')
+    @part_number_detector.import_line('467..114..')
 
     assert_equal false, @part_number_detector.has_symbols?
   end
 
   def test_import_data_includes_a_part_number
-    @part_number_detector.import(0, '617*......')
+    @part_number_detector.import_line('617*......')
+    @part_number_detector.process_data
 
     assert @part_number_detector.has_valid_part_numbers?
   end
@@ -76,14 +77,14 @@ class PartNumberDetectorTest < Minitest::Test
   end
 
   def test_number_array_only_contains_numbers
-    @part_number_detector.import(0, '467..114..')
+    @part_number_detector.import_line('467..114..')
 
 
     assert @part_number_detector.contains_numbers_only?
   end
 
   def test_numbers_are_converted_correctly
-    @part_number_detector.import(0, '467..114..')
+    @part_number_detector.import_line('467..114..')
     first_number = PartNumberCandidate.new(467, 0, 0)
     second_number = PartNumberCandidate.new(114, 5, 0)
 
@@ -92,7 +93,7 @@ class PartNumberDetectorTest < Minitest::Test
   end
 
   def test_symbols_are_converted_correctly
-    @part_number_detector.import(0, '617*......')
+    @part_number_detector.import_line('617*......')
     symbol = EngineSchematicSymbol.new('*', 3, 0)
 
     assert @part_number_detector.symbols[0].eql? symbol
@@ -119,6 +120,7 @@ class PartNumberDetectorTest < Minitest::Test
     @part_number_detector.import_line(first_line)
     @part_number_detector.import_line(second_line)
     @part_number_detector.import_line(third_line)
+    @part_number_detector.process_data
 
     assert @part_number_detector.has_valid_part_numbers?
     assert @part_number_detector.has_symbols?
@@ -143,11 +145,12 @@ class PartNumberDetectorTest < Minitest::Test
     @part_number_detector.import_line(first_line)
     @part_number_detector.import_line(second_line)
     @part_number_detector.import_line(third_line)
+    @part_number_detector.process_data
 
     assert_equal 502, @part_number_detector.sum
   end
 
-  def test_sample_data_is_handled_correctly
+  def test_sample_data_is_processed_correctly
     first_line = '467..114..'
     second_line = '...*......'
     third_line = '..35..633.'
@@ -162,9 +165,10 @@ class PartNumberDetectorTest < Minitest::Test
     lines = [first_line, second_line, third_line, fourth_line, fifth_line, sixth_line, seventh_line, eighth_line, ninth_line, tenth_line]
 
     @part_number_detector.import_lines(lines)
+    @part_number_detector.process_data
 
     assert_equal 8, @part_number_detector.part_numbers.length
-    assert_equal 4, @part_number_detector.symbols.length
+    assert_equal 6, @part_number_detector.symbols.length
     assert_equal 2, @part_number_detector.numbers.length
     assert_equal 4361, @part_number_detector.sum
   end

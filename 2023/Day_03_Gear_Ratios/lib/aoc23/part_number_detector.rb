@@ -2,7 +2,7 @@ require_relative 'string'
 
 class PartNumberDetector
 
-  attr_reader :numbers, :symbols, :part_numbers
+  attr_reader :numbers, :symbols, :part_numbers, :lines_read
 
   def initialize
     @part_numbers = []

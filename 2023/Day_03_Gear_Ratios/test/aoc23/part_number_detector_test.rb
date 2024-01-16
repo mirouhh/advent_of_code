@@ -103,13 +103,6 @@ class PartNumberDetectorTest < Minitest::Test
     first_line = '467..114..'
     second_line = '...*......'
     third_line = '..35..633.'
-    #fourth_line = '......#...'
-    #fifth_line = '617*......'
-    #sixth_line = '.....+.58.'
-    #seventh_line = '..592.....'
-    #eighth_line = '......755.'
-    #ninth_line = '...$.*....'
-    #tenth_line = '.664.598..'
 
     symbol = EngineSchematicSymbol.new('*', 3, 1)
     first_part_number = PartNumberCandidate.new(467, 0, 0)

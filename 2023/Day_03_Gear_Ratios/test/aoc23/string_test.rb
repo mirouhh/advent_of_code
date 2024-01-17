@@ -32,6 +32,14 @@ class StringTest < Minitest::Test
     assert_equal 2, test_string.symbols.length
   end
 
+  def test_has_all_indexes_of_a_character
+    test_string = '...*...*..'
+
+    assert_equal 2, test_string.indexes('*').length
+    assert_equal 3, test_string.indexes('*')[0]
+    assert_equal 7, test_string.indexes('*')[1]
+  end
+
   def test_has_two_symbols
     test_string = '...$.*....'
 

@@ -10,4 +10,12 @@ class String
     search_pattern = /\d+/i
     scan(search_pattern).flatten
   end
+
+  def indexes(character)
+    indexes = []
+    chars.each_index do |index|
+      indexes << index if character.eql?(chars[index])
+    end
+    indexes
+  end
 end

@@ -3,9 +3,7 @@ class String
     search_pattern = /(?=(\w|\.))/i
     non_symbols = scan(search_pattern).flatten
     symbol_string = delete non_symbols.join
-    symbols = symbol_string.chars
-    symbols = symbols.uniq unless symbols.empty?
-    symbols
+    symbol_string.chars
   end
 
   def numbers

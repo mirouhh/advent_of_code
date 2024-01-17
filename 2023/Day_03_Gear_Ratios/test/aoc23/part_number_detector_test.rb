@@ -21,17 +21,18 @@ class PartNumberDetectorTest < Minitest::Test
   end
 
   def test_equal_symbols_have_different_coordinates
-    @part_number_detector.import_line('............*....-........*.............*..$......=............')
-    first_symbol = EngineSchematicSymbol.new('*', 12, 0)
-    second_symbol = EngineSchematicSymbol.new('-', 17, 0)
-    third_symbol = EngineSchematicSymbol.new('*', 26, 0)
-    fourth_symbol = EngineSchematicSymbol.new('*', 40, 0)
-    fifth_symbol = EngineSchematicSymbol.new('$', 43, 0)
-    sixth_symbol = EngineSchematicSymbol.new('=', 50, 0)
+    @part_number_detector.import_line('...$........*....-........*.............*..$......=............')
+    first_symbol = EngineSchematicSymbol.new('$', 3, 0)
+    third_symbol = EngineSchematicSymbol.new('*', 12, 0)
+    sixth_symbol = EngineSchematicSymbol.new('-', 17, 0)
+    fourth_symbol = EngineSchematicSymbol.new('*', 26, 0)
+    fifth_symbol = EngineSchematicSymbol.new('*', 40, 0)
+    second_symbol = EngineSchematicSymbol.new('$', 43, 0)
+    seventh_symbol = EngineSchematicSymbol.new('=', 50, 0)
 
     assert @part_number_detector.has_symbols?
 
-    assert_equal 6, @part_number_detector.symbols.length
+    assert_equal 7, @part_number_detector.symbols.length
 
     assert first_symbol.eql? @part_number_detector.symbols[0]
     assert second_symbol.eql? @part_number_detector.symbols[1]
@@ -39,6 +40,7 @@ class PartNumberDetectorTest < Minitest::Test
     assert fourth_symbol.eql? @part_number_detector.symbols[3]
     assert fifth_symbol.eql? @part_number_detector.symbols[4]
     assert sixth_symbol.eql? @part_number_detector.symbols[5]
+    assert seventh_symbol.eql? @part_number_detector.symbols[6]
 
   end
 

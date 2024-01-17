@@ -50,8 +50,12 @@ class PartNumberDetector
   end
 
   def import_symbols(line_number, engine_schematic)
-    engine_schematic.symbols.each do | symbol |
-      @symbols << EngineSchematicSymbol.new(symbol, engine_schematic.index(symbol), line_number)
+    symbols = engine_schematic.symbols.uniq
+    symbols.each do | symbol |
+      indexes = engine_schematic.indexes symbol
+      indexes.each do |index|
+        @symbols << EngineSchematicSymbol.new(symbol, index, line_number)
+      end
     end
   end
 

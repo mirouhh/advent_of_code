@@ -91,6 +91,16 @@ class PartNumberDetectorTest < Minitest::Test
     assert PartNumberCandidate.new(617, 1, 1).eql? @part_number_detector.part_numbers[0]
   end
 
+  def test_same_numbers_have_different_coordinates
+    @part_number_detector.import_line('............*....-..811..........846..855......*.............*..$........230.92@............................=.....................92........')
+    @part_number_detector.process_data
+
+    #assert_equal 7, @part_number_detector.symbols.length
+    #assert_equal 5, @part_number_detector.numbers.length
+    #assert_equal 1, @part_number_detector.part_numbers.length
+    assert_equal false, @part_number_detector.numbers[4].eql?(@part_number_detector.part_numbers[0])
+  end
+
   def test_symbol_is_above_number
     part_number_candidate = PartNumberCandidate.new(617, 1, 1)
     engine_schematic_symbol = EngineSchematicSymbol.new('$', 1, 0)

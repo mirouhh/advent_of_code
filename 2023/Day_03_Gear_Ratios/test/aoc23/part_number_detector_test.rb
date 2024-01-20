@@ -80,6 +80,17 @@ class PartNumberDetectorTest < Minitest::Test
     assert @part_number_detector.inline? part_number_candidate, right_engine_schematic_symbol
   end
 
+  def test_import_data_includes_only_one_part_number
+    @part_number_detector.import_line('..&.%......')
+    @part_number_detector.import_line('#617*......')
+    @part_number_detector.import_line('@..........')
+    @part_number_detector.process_data
+
+    assert @part_number_detector.has_valid_part_numbers?
+    assert_equal 1, @part_number_detector.part_numbers.length
+    assert PartNumberCandidate.new(617, 1, 1).eql? @part_number_detector.part_numbers[0]
+  end
+
   def test_symbol_is_above_number
     part_number_candidate = PartNumberCandidate.new(617, 1, 1)
     engine_schematic_symbol = EngineSchematicSymbol.new('$', 1, 0)

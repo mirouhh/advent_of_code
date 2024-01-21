@@ -95,9 +95,9 @@ class PartNumberDetectorTest < Minitest::Test
     @part_number_detector.import_line('............*....-..811..........846..855......*.............*..$........230.92@............................=.....................92........')
     @part_number_detector.process_data
 
-    #assert_equal 7, @part_number_detector.symbols.length
-    #assert_equal 5, @part_number_detector.numbers.length
-    #assert_equal 1, @part_number_detector.part_numbers.length
+    assert_equal 7, @part_number_detector.symbols.length
+    assert_equal 5, @part_number_detector.numbers.length
+    assert_equal 1, @part_number_detector.part_numbers.length
     assert_equal false, @part_number_detector.numbers[4].eql?(@part_number_detector.part_numbers[0])
   end
 

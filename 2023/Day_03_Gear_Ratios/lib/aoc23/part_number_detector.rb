@@ -60,8 +60,11 @@ class PartNumberDetector
   end
 
   def import_numbers(line_number, engine_schematic)
-    engine_schematic.numbers.each do | number |
-      @numbers << PartNumberCandidate.new(number.to_i, engine_schematic.index(number), line_number)
+    engine_schematic.numbers.uniq.each do | number |
+      indexes = engine_schematic.indexes number
+      indexes.each do |index|
+        @numbers << PartNumberCandidate.new(number.to_i, index, line_number)
+      end
     end
   end
 

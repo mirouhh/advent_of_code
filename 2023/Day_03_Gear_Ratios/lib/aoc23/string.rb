@@ -1,9 +1,7 @@
 class String
   def symbols
-    search_pattern = /(?=(\w|\.))/i
-    non_symbols = scan(search_pattern).flatten
-    symbol_string = delete non_symbols.join
-    symbol_string.chars
+    search_pattern = /[^0-9a-z.]/i
+    scan(search_pattern)
   end
 
   def numbers
@@ -11,10 +9,14 @@ class String
     scan(search_pattern).flatten
   end
 
-  def indexes(character)
+  def indexes(substring)
     indexes = []
-    chars.each_index do |index|
-      indexes << index if character.eql?(chars[index])
+    start_index = 0
+
+    while start_index = index(substring, start_index)
+      end_index = start_index + substring.length
+      indexes << start_index
+      start_index = end_index
     end
     indexes
   end

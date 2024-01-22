@@ -85,7 +85,7 @@ class PartNumberDetector
   end
 
   def inline? (number, symbol)
-    interval = Range.new(number.x - 1, number.x + number.length + 1)
+    interval = Range.new(number.x - 1, number.x + number.length)
     number.y.eql?(symbol.y) && interval.include?(symbol.x)
   end
 

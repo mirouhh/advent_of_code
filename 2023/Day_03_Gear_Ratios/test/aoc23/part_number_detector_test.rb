@@ -59,7 +59,7 @@ class PartNumberDetectorTest < Minitest::Test
 
   def test_number_is_adjacent_to_a_symbol
     part_number_candidate = PartNumberCandidate.new(617, 0, 0)
-    engine_schematic_symbol = EngineSchematicSymbol.new('$', 4, 0)
+    engine_schematic_symbol = EngineSchematicSymbol.new('$', 3, 0)
 
     assert @part_number_detector.adjacent? part_number_candidate, engine_schematic_symbol
   end
@@ -99,6 +99,15 @@ class PartNumberDetectorTest < Minitest::Test
     assert_equal 5, @part_number_detector.numbers.length
     assert_equal 1, @part_number_detector.part_numbers.length
     assert_equal false, @part_number_detector.numbers[4].eql?(@part_number_detector.part_numbers[0])
+  end
+
+  def test_number_followed_by_symbol_is_detected_correctly
+    @part_number_detector.import_line('..........360..........#....664.....=.*...881...677...934.780.......426.*..........8......654.....*959.....539..........21.........*........')
+    @part_number_detector.process_data
+
+    assert_equal 6, @part_number_detector.symbols.length
+    assert_equal 11, @part_number_detector.numbers.length
+    assert_equal 1, @part_number_detector.part_numbers.length
   end
 
   def test_symbol_is_above_number

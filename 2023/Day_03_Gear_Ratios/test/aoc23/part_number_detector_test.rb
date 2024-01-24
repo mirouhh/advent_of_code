@@ -110,6 +110,14 @@ class PartNumberDetectorTest < Minitest::Test
     assert_equal 1, @part_number_detector.part_numbers.length
   end
 
+  def test_some_specific_cases_are_handled_correctly
+    @part_number_detector.import_line('..................873*....819..........165....*..928*345........................*..........77......478..*...440...743...................*...')
+    @part_number_detector.import_line('964...........417.....802..*......230..-....509..................573...........219...675....-.865.......13............25.62*4...980..145....')
+    @part_number_detector.import_line('....*556........&.............278*.................957.....85#.....*................*............=....#.....442........$.......*............')
+
+    assert_equal false, @part_number_detector.part_number?(964)
+  end
+
   def test_symbol_is_above_number
     part_number_candidate = PartNumberCandidate.new(617, 1, 1)
     engine_schematic_symbol = EngineSchematicSymbol.new('$', 1, 0)

@@ -32,8 +32,9 @@ class StringTest < Minitest::Test
     assert_equal 2, test_string.symbols.length
   end
 
-  def test_has_all_indexes_of_a_character
+  def test_has_all_indexes_of_a_substring
     test_string = '...*...*..'
+    # Indexes = 3, 7
 
     assert_equal 2, test_string.indexes('*').length
     assert_equal 3, test_string.indexes('*')[0]

@@ -70,7 +70,7 @@ class PartNumberDetectorTest < Minitest::Test
 
   def test_number_is_adjacent_to_a_symbol
     part_number_candidate = PartNumberCandidate.new(617, 0, 0)
-    engine_schematic_symbol = EngineSchematicSymbol.new('$', 4, 0)
+    engine_schematic_symbol = EngineSchematicSymbol.new('$', 3, 0)
 
     assert @part_number_detector.adjacent? part_number_candidate, engine_schematic_symbol
   end
@@ -89,6 +89,44 @@ class PartNumberDetectorTest < Minitest::Test
 
     assert @part_number_detector.inline? part_number_candidate, left_engine_schematic_symbol
     assert @part_number_detector.inline? part_number_candidate, right_engine_schematic_symbol
+  end
+
+  def test_import_data_includes_only_one_part_number
+    @part_number_detector.import_line('..&.%......')
+    @part_number_detector.import_line('#617*......')
+    @part_number_detector.import_line('@..........')
+    @part_number_detector.process_data
+
+    assert @part_number_detector.has_valid_part_numbers?
+    assert_equal 1, @part_number_detector.part_numbers.length
+    assert PartNumberCandidate.new(617, 1, 1).eql? @part_number_detector.part_numbers[0]
+  end
+
+  def test_same_numbers_have_different_coordinates
+    @part_number_detector.import_line('............*....-..811..........846..855......*.............*..$........230.92@............................=.....................92........')
+    @part_number_detector.process_data
+
+    assert_equal 7, @part_number_detector.symbols.length
+    assert_equal 5, @part_number_detector.numbers.length
+    assert_equal 1, @part_number_detector.part_numbers.length
+    assert_equal false, @part_number_detector.numbers[4].eql?(@part_number_detector.part_numbers[0])
+  end
+
+  def test_number_followed_by_symbol_is_detected_correctly
+    @part_number_detector.import_line('..........360..........#....664.....=.*...881...677...934.780.......426.*..........8......654.....*959.....539..........21.........*........')
+    @part_number_detector.process_data
+
+    assert_equal 6, @part_number_detector.symbols.length
+    assert_equal 11, @part_number_detector.numbers.length
+    assert_equal 1, @part_number_detector.part_numbers.length
+  end
+
+  def test_some_specific_cases_are_handled_correctly
+    @part_number_detector.import_line('..................873*....819..........165....*..928*345........................*..........77......478..*...440...743...................*...')
+    @part_number_detector.import_line('964...........417.....802..*......230..-....509..................573...........219...675....-.865.......13............25.62*4...980..145....')
+    @part_number_detector.import_line('....*556........&.............278*.................957.....85#.....*................*............=....#.....442........$.......*............')
+
+    assert_equal false, @part_number_detector.part_number?(964)
   end
 
   def test_symbol_is_above_number

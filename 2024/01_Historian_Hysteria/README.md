@@ -42,7 +42,7 @@ Your actual left and right lists contain many location IDs.
 
 **What is the total distance between your lists?**
 
-1579939
+**1579939**
 
 ## Part Two ##
 Your analysis only confirmed what everyone feared: the two lists of location IDs are indeed very different.
@@ -76,3 +76,5 @@ So, for these example lists, the similarity score at the end of this process is 
 Once again consider your left and right lists.
 
 **What is their similarity score?**
+
+**20351745**

@@ -1,4 +1,4 @@
-require 'minitest/autorun'# frozen_string_literal: true
+require 'minitest/autorun'
 require_relative '../lib/report'
 
 class ReportTest < Minitest::Test

@@ -1,5 +1,7 @@
 class Report
 
+  attr_accessor :content
+
   def initialize(string)
     @content = string.split(' ')
     @content.each_index { |index| @content[index] = @content[index].to_i }

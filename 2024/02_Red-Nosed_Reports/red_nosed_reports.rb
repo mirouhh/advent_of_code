@@ -4,7 +4,7 @@ require_relative 'lib/problem_dampener'
 safe_reports = 0
 reports = Array.new()
 
-File.readlines("#{File.dirname(__FILE__)}/test_input.txt", chomp: true).each do |line|
+File.readlines("#{File.dirname(__FILE__)}/input.txt", chomp: true).each do |line|
   reports << line.split(' ')
   report = Report.new(line)
   if report.safe?

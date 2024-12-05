@@ -3,39 +3,32 @@ class Report
   attr_reader :content, :issues
 
   def initialize(string)
-    @content = string.split(' ')
-    @content.each_index { |index| @content[index] = @content[index].to_i }
+    @content = string.split(' ').map(&:to_i)
     @issues = []
   end
 
   def decreasing?
-    decreasing = true
-    number = @content[0]
-    1.upto(@content.size - 1) do |index|
-      decreasing &&= number >= @content[index]
-      number = @content[index]
+    @content.each_cons(2).all? do |a, b|
+      is_decreasing = a > b
+      @issues << b if !is_decreasing
+      is_decreasing
     end
-    decreasing
   end
 
   def increasing?
-    increasing = true
-    number = @content[0]
-    1.upto(@content.size - 1) do |index|
-      increasing &&= number <= @content[index]
-      number = @content[index]
+    @content.each_cons(2).all? do |a, b|
+      is_increasing = a < b
+      @issues << b if !is_increasing
+      is_increasing
     end
-    increasing
   end
 
   def correct_distances?
-    correct_distance = true
-    number = @content[0]
-    1.upto(@content.size - 1) do |index|
-      correct_distance &&= (number - @content[index]).abs <= 3 && (number - @content[index]).abs >= 1
-      number = @content[index]
+    @content.each_cons(2).all? do |a, b|
+      has_correct_distance = (a - b).abs.between?(1, 3)
+      @issues << b if !has_correct_distance
+      has_correct_distance
     end
-    correct_distance
   end
 
   def safe?

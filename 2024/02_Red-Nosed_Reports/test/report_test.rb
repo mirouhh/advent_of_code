@@ -47,5 +47,36 @@ class ReportTest < Minitest::Test
     report = Report.new('7 6 4 2 1')
     assert report.issues.empty?
   end
-  
+
+  def test_has_decreasing_issues
+    report = Report.new('5 4 3 1 2')
+    assert !report.decreasing?
+    assert !report.issues.empty?
+    assert_equal [2], report.issues
+  end
+
+  def test_min_distance_is_1
+    report = Report.new('7 6 4 2 2 1')
+    assert !report.correct_distances?
+  end
+
+  def test_max_distance_is_3
+    report = Report.new('7 6 5 1 0')
+    assert !report.correct_distances?
+  end
+
+  def test_has_increasing_issues
+    report = Report.new('1 2 4 3 5')
+    assert !report.increasing?
+    assert !report.issues.empty?
+    assert_equal [3], report.issues
+  end
+
+  def test_has_distance_issues
+    report = Report.new('7 6 5 1 0')
+    assert !report.correct_distances?
+    assert !report.issues.empty?
+    assert_equal [1], report.issues
+  end
+
 end

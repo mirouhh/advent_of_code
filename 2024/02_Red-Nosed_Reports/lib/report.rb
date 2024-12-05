@@ -1,10 +1,11 @@
 class Report
 
-  attr_accessor :content
+  attr_reader :content, :issues
 
   def initialize(string)
     @content = string.split(' ')
     @content.each_index { |index| @content[index] = @content[index].to_i }
+    @issues = []
   end
 
   def decreasing?

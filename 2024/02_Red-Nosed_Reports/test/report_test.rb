@@ -42,4 +42,10 @@ class ReportTest < Minitest::Test
     report = Report.new('1 2 7 8 9')
     assert !report.safe?
   end
+
+  def test_has_no_issues
+    report = Report.new('7 6 4 2 1')
+    assert report.issues.empty?
+  end
+  
 end

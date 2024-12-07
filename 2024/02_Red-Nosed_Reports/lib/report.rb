@@ -18,7 +18,7 @@ class Report
   def increasing?
     @content.each_cons(2).all? do |a, b|
       is_increasing = a < b
-      @issues << b if !is_increasing
+      @issues << a if !is_increasing
       is_increasing
     end
   end
@@ -32,6 +32,6 @@ class Report
   end
 
   def safe?
-    increasing? && correct_distances? || decreasing? && correct_distances?
+    correct_distances? && (increasing? ^ decreasing?)
   end
 end

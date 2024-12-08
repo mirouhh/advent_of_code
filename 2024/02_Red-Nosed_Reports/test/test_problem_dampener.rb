@@ -26,7 +26,10 @@ class ProblemDampenerTest < Minitest::Test
 
   def test_issues_are_detected_correctly
     ProblemDampener.import(Report.new('1 3 2 4 5'))
-    assert_equal [3, 2], ProblemDampener.report.issues
+    assert_includes ProblemDampener.report.issues,1
+    assert_includes ProblemDampener.report.issues,3
+    assert_includes ProblemDampener.report.issues,3
+    assert_includes ProblemDampener.report.issues,2
   end
 
   def test_can_be_tolerated

@@ -15,7 +15,8 @@ class ProblemDampener
     tolerable = false
     @report.issues.each do | element |
       tmpContent = @report.content.dup
-      tmpContent.delete_at(tmpContent.index(element))
+      element_index = tmpContent.index(element)
+      tmpContent.delete_at(element_index)
       tmpReport = Report.new(tmpContent.join(" "))
       tolerable ||= tmpReport.safe?
     end

@@ -1,27 +1,29 @@
 require_relative 'lib/report'
 require_relative 'lib/problem_dampener'
 
-safe_reports = []
 reports = []
+safe_reports = []
+tolerable_reports = []
+defect_reports = []
 
-File.readlines("#{File.dirname(__FILE__)}/input.txt", chomp: true).each do |line|
-  reports << line.split(' ')
+File.readlines("#{File.dirname(__FILE__)}/safe.txt", chomp: true).each do |line|
   report = Report.new(line)
+  reports << report
+  #puts "Is report #{report.content} safe? #{report.safe?}"
   if report.safe?
-    safe_reports << report.content
+    safe_reports << report
   else
     ProblemDampener.import(report)
-    safe_reports << report.content if ProblemDampener.tolerable?
+    #  puts "Is #{report.content} tolerable? #{ProblemDampener.tolerable?}"
+    ProblemDampener.tolerable? ? tolerable_reports << report : defect_reports << report
   end
 end
 
+puts "Reports checked in total: #{reports.count}"
 puts "Safe reports: #{safe_reports.count}"
+puts "Tolerable reports: #{tolerable_reports.count}"
+puts "Defect reports: #{defect_reports.count}"
 
-File.readlines("#{File.dirname(__FILE__)}/safe.txt", chomp: true).each do |line|
-  safe_report = Report.new(line)
-  safe_reports.include?(safe_report.content) ? safe_reports.delete(safe_report.content) : safe_reports << safe_report.content
+defect_reports.each do |defect_report|
+  puts "#{defect_report.content}"
 end
-
-puts "Missing reports: #{safe_reports.count}"
-
-safe_reports.each { | safe_report | puts safe_report.join(' ') }

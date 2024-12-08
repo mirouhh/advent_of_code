@@ -10,7 +10,7 @@ class Report
   def decreasing?
     @content.each_cons(2).all? do |a, b|
       is_decreasing = a > b
-      @issues << b if !is_decreasing
+      @issues.concat([a, b]) if !is_decreasing
       is_decreasing
     end
   end
@@ -18,7 +18,7 @@ class Report
   def increasing?
     @content.each_cons(2).all? do |a, b|
       is_increasing = a < b
-      @issues << a if !is_increasing
+      @issues.concat([a, b]) if !is_increasing
       is_increasing
     end
   end
@@ -26,7 +26,7 @@ class Report
   def correct_distances?
     @content.each_cons(2).all? do |a, b|
       has_correct_distance = (a - b).abs.between?(1, 3)
-      @issues << b if !has_correct_distance
+      @issues.concat([a, b]) if !has_correct_distance
       has_correct_distance
     end
   end

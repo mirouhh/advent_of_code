@@ -89,27 +89,27 @@ class TestReport < Minitest::Test
   def test_correct_decreasing_issues
     report = Report.new('54 58 61 64 66 69 71 74')
     report.correct_distances?
-    assert !report.issues.empty?
-    assert_includes report.issues, 54
-    assert_includes report.issues, 58
+    assert !report.decreasing_issues.empty?
+    assert_includes report.decreasing_issues, Issue.new(0, 54, 58)
+    assert_includes report.decreasing_issues, Issue.new(1, 58, 61)
   end
 
   def test_correct_increasing_issues
     report = Report.new('88 87 91 93 94')
     report.increasing?
-    assert !report.issues.empty?
-    assert_includes report.issues, 88
-    assert_includes report.issues, 87
+    assert !report.increasing_issues.empty?
+    assert_equal 1, report.increasing_issues.count
+    assert_includes report.increasing_issues, Issue.new(0, 88, 87)
   end
 
   def test_correct_decreasing_issues
     report = Report.new('88 87 91 93 94')
     report.decreasing?
-    assert !report.issues.empty?
-    assert_includes report.issues, 87
-    assert_includes report.issues, 91
-    assert_includes report.issues, 93
-    assert_includes report.issues, 94
+    assert !report.decreasing_issues.empty?
+    assert_equal 3, report.decreasing_issues.count
+    assert_includes report.decreasing_issues, Issue.new(1, 87, 91)
+    assert_includes report.decreasing_issues, Issue.new(2, 91, 93)
+    assert_includes report.decreasing_issues, Issue.new(3, 93, 94)
   end
 
 end

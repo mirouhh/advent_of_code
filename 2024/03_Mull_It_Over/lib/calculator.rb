@@ -4,4 +4,10 @@ class Calculator
     a * b
   end
 
+  def self.sum(a, *rest)
+    result = a
+    rest.each { |i| result += i }
+    result
+  end
+
 end

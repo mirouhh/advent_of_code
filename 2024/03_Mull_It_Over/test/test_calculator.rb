@@ -11,5 +11,5 @@ class TestCalculator < Minitest::Test
     assert_equal 161, Calculator.sum(Calculator.mul(2,4), Calculator.mul(5,5), Calculator.mul(11,8), Calculator.mul(8,5))
   end
 
-end# frozen_string_literal: true
+end
 

@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require_relative '../lib/calculator'
 
 class TestCalculator < Minitest::Test
 

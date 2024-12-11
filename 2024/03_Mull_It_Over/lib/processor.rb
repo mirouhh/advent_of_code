@@ -1,3 +1,5 @@
+require_relative 'calculator'
+
 class Processor
 
   attr_reader :instructions
@@ -12,6 +14,11 @@ class Processor
   end
 
   def self.process
-    161
+    result = 0
+    @instructions.each do |instruction|
+      factors = instruction.scan(/(?<!\d)(\d{1,3})(?=\D.*?(\d{1,3}))/).flatten
+      result += Calculator.mul(factors[0].to_i, factors[1].to_i)
+    end
+    result
   end
 end

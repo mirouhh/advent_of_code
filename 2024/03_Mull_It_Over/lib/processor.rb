@@ -40,9 +40,9 @@ class Processor
   end
 
   def self.clean_up_instructions(last_do_not, last_do)
-    #left_values = @instructions.values_at(0..(last_do_not - 1))
-    #right_values = @instructions.values_at((last_do + 1)..(@instructions.size - 1))
-    #@instructions = left_values.concat(right_values)
+    left_values = @instructions.values_at(0..(last_do_not - 1))
+    right_values = @instructions.values_at((last_do + 1)..(@instructions.size - 1))
+    @instructions = left_values.concat(right_values)
     puts "#{@instructions}"
   end
 end

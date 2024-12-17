@@ -16,4 +16,10 @@ class TestProcessor < Minitest::Test
     assert_equal ["..X...."], Processor.data
   end
 
+  def test_clean_up
+    Processor.read("E%X+GSL")
+    Processor.clean_up
+    assert_empty Processor.data
+  end
+
 end

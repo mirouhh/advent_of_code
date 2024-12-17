@@ -1,16 +1,25 @@
 class Processor
 
-  @data = []
+  attr_reader :data
 
-  class << self
-    attr_reader :data
-  end
-  def self.read(input)
-
-  end
-
-  def self.clean_up
+  def initialize
     @data = []
+  end
+
+  def read(input)
+    @data << input.chars
+  end
+
+  def clean_up
+    @data = []
+  end
+
+  def clean_up_data
+    @data.each do |line|
+      line.each_with_index do |char, index|
+        line[index] = '.' if !['X', 'M', 'A', 'S'].include? char
+      end
+    end
   end
 
 end

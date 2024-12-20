@@ -34,7 +34,8 @@ class Processor
     2
   end
 
-  def get_position(element)
-    Position.new(1,1)
+  def get_positions(element)
+    positions = []
+    positions << Position.new(2,0)
   end
 end

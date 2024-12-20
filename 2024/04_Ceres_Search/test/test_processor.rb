@@ -95,6 +95,19 @@ class TestProcessor < Minitest::Test
     processor = Processor.new()
     processor.read(line)
     processor.clean_up_data
-    assert_equal Position.new(1, 1), processor.get_position('X')
+    positions = processor.get_positions('X')
+    assert_equal 1, positions.count
+    assert_includes positions, Position.new(2, 0)
+  end
+
+  def test_get_multiple_positions_in_a_single_line
+    line = 'IAJFAD'
+    processor = Processor.new()
+    processor.read(line)
+    processor.clean_up_data
+    positions = processor.get_positions('A')
+    assert_equal 2, positions.count
+    assert_includes positions, Position.new(1, 0)
+    assert_includes positions, Position.new(4, 0)
   end
 end

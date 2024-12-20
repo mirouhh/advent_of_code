@@ -4,6 +4,7 @@ class Processor
 
   def initialize
     @data = []
+    @count = 0
   end
 
   def read(input)
@@ -20,6 +21,13 @@ class Processor
         line[index] = '.' if !['X', 'M', 'A', 'S'].include? char
       end
     end
+  end
+
+  def count(element)
+    data.each do |line|
+      @count += line.count(element)
+    end
+    @count
   end
 
 end

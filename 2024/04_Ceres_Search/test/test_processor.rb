@@ -56,4 +56,20 @@ class TestProcessor < Minitest::Test
     processor.clean_up_data
     assert_equal ['..X...'.chars, '.SAMX.'.chars, '.A..A.'.chars, 'XMAS.S'.chars, '.X....'.chars], processor.data
   end
+
+  def test_count_x
+    line_1 = 'NWX&/1'
+    line_2 = 'OSAMXT'
+    line_3 = 'IAJFAD'
+    line_4 = 'XMASVS'
+    line_5 = 'YXCWRL'
+    processor = Processor.new()
+    processor.read(line_1)
+    processor.read(line_2)
+    processor.read(line_3)
+    processor.read(line_4)
+    processor.read(line_5)
+    processor.clean_up_data
+    assert_equal 4, processor.count('X')
+  end
 end

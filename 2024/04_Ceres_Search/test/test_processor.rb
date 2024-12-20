@@ -1,5 +1,6 @@
 require 'minitest/autorun'
 require_relative '../lib/processor'
+require_relative '../lib/position'
 
 class TestProcessor < Minitest::Test
 
@@ -87,5 +88,13 @@ class TestProcessor < Minitest::Test
     processor.read(line_5)
     processor.clean_up_data
     assert_equal 2, processor.find('xmas')
+  end
+
+  def test_get_position
+    line = 'NWX&/1'
+    processor = Processor.new()
+    processor.read(line)
+    processor.clean_up_data
+    assert_equal Position.new(1, 1), processor.get_position('X')
   end
 end

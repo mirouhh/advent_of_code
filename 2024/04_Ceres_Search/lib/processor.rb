@@ -33,4 +33,8 @@ class Processor
   def find(word)
     2
   end
+
+  def get_position(element)
+    Position.new(1,1)
+  end
 end

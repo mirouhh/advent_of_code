@@ -110,4 +110,25 @@ class TestProcessor < Minitest::Test
     assert_includes positions, Position.new(1, 0)
     assert_includes positions, Position.new(4, 0)
   end
+
+  def test_get_multiple_positions_in_multiples_lines
+    line_0 = 'NWX&/1'
+    line_1 = 'OSAMXT'
+    line_2 = 'IAJFAD'
+    line_3 = 'XMASVS'
+    line_4 = 'YXCWRL'
+    processor = Processor.new()
+    processor.read(line_0)
+    processor.read(line_1)
+    processor.read(line_2)
+    processor.read(line_3)
+    processor.read(line_4)
+    processor.clean_up_data
+    positions = processor.get_positions('X')
+    assert_equal 4, positions.count
+    assert_includes positions, Position.new(2, 0)
+    assert_includes positions, Position.new(4, 1)
+    assert_includes positions, Position.new(0, 3)
+    assert_includes positions, Position.new(1, 4)
+  end
 end

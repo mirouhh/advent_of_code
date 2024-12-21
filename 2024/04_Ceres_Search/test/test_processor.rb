@@ -74,7 +74,7 @@ class TestProcessor < Minitest::Test
     assert_equal 4, processor.count('X')
   end
 
-  def test_count_x
+  def test_count_xmas
     line_1 = 'NWX&/1'
     line_2 = 'OSAMXT'
     line_3 = 'IAJFAD'
@@ -87,7 +87,7 @@ class TestProcessor < Minitest::Test
     processor.read(line_4)
     processor.read(line_5)
     processor.clean_up_data
-    assert_equal 2, processor.find('xmas')
+    assert_equal 4, processor.find('xmas')
   end
 
   def test_get_position

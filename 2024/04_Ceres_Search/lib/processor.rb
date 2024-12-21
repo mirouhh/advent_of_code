@@ -1,3 +1,4 @@
+require_relative 'array'
 class Processor
 
   attr_reader :data
@@ -36,6 +37,12 @@ class Processor
 
   def get_positions(element)
     positions = []
-    positions << Position.new(2,0)
+    @data.each_with_index do |line, line_number|
+      indices = line.indices(element)
+      indices.each do |index|
+        positions << Position.new(index, line_number)
+      end
+    end
+    positions
   end
 end

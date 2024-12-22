@@ -74,7 +74,7 @@ class TestProcessor < Minitest::Test
     assert_equal 4, processor.count('X')
   end
 
-  def test_count_xmas
+  def test_find_all_xmas
     line_1 = 'NWX&/1'
     line_2 = 'OSAMXT'
     line_3 = 'IAJFAD'
@@ -95,7 +95,7 @@ class TestProcessor < Minitest::Test
     processor = Processor.new()
     processor.read(line)
     processor.clean_up_data
-    positions = processor.get_positions('X')
+    positions = processor.positions('X')
     assert_equal 1, positions.count
     assert_includes positions, Position.new(2, 0)
   end
@@ -105,7 +105,7 @@ class TestProcessor < Minitest::Test
     processor = Processor.new()
     processor.read(line)
     processor.clean_up_data
-    positions = processor.get_positions('A')
+    positions = processor.positions('A')
     assert_equal 2, positions.count
     assert_includes positions, Position.new(1, 0)
     assert_includes positions, Position.new(4, 0)
@@ -124,11 +124,36 @@ class TestProcessor < Minitest::Test
     processor.read(line_3)
     processor.read(line_4)
     processor.clean_up_data
-    positions = processor.get_positions('X')
+    positions = processor.positions('X')
     assert_equal 4, positions.count
     assert_includes positions, Position.new(2, 0)
     assert_includes positions, Position.new(4, 1)
     assert_includes positions, Position.new(0, 3)
     assert_includes positions, Position.new(1, 4)
+  end
+
+  def test_find_vertical_non_reverse_xmas
+    line_0 = 'NWX&/1'
+    line_1 = 'OSAMXT'
+    line_2 = 'IAJFAD'
+    line_3 = 'XMASVS'
+    line_4 = 'YXCWRL'
+    processor = Processor.new()
+    processor.read(line_0)
+    processor.read(line_1)
+    processor.read(line_2)
+    processor.read(line_3)
+    processor.read(line_4)
+    processor.clean_up_data
+    findings = processor.find('XMAS')
+    assert_equal 1, findings
+  end
+
+  def test_find_valid_character
+    line = 'XMASVS'
+    processor = Processor.new()
+    processor.read(line)
+    processor.clean_up_data
+    assert processor.valid?('X',Position.new(0, 0))
   end
 end

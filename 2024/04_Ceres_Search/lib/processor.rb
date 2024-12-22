@@ -35,7 +35,11 @@ class Processor
     2
   end
 
-  def get_positions(element)
+  def valid?(character, position)
+    @data[position.x][position.y] == character
+  end
+
+  def positions(element)
     positions = []
     @data.each_with_index do |line, line_number|
       indices = line.indices(element)

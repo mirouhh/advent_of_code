@@ -15,7 +15,7 @@ class TestProcessor < Minitest::Test
     input = 'E%X+GSL'
     processor = Processor.new()
     processor.read(input)
-    processor.clean_up_data
+    processor.clean_up_data('XMAS')
     assert_equal '..X..S.', processor.data[0].join
   end
 
@@ -54,7 +54,7 @@ class TestProcessor < Minitest::Test
     processor.read(line_3)
     processor.read(line_4)
     processor.read(line_5)
-    processor.clean_up_data
+    processor.clean_up_data('XMAS')
     assert_equal ['..X...'.chars, '.SAMX.'.chars, '.A..A.'.chars, 'XMAS.S'.chars, '.X....'.chars], processor.data
   end
 
@@ -70,7 +70,7 @@ class TestProcessor < Minitest::Test
     processor.read(line_3)
     processor.read(line_4)
     processor.read(line_5)
-    processor.clean_up_data
+    processor.clean_up_data('XMAS')
     assert_equal 4, processor.count('X')
   end
 
@@ -86,7 +86,6 @@ class TestProcessor < Minitest::Test
     processor.read(line_3)
     processor.read(line_4)
     processor.read(line_5)
-    processor.clean_up_data
     assert_equal 4, processor.find('XMAS')
   end
 
@@ -94,7 +93,7 @@ class TestProcessor < Minitest::Test
     line = 'NWX&/1'
     processor = Processor.new()
     processor.read(line)
-    processor.clean_up_data
+    processor.clean_up_data('XMAS')
     positions = processor.positions('X')
     assert_equal 1, positions.count
     assert_includes positions, Position.new(2, 0)
@@ -104,7 +103,7 @@ class TestProcessor < Minitest::Test
     line = 'IAJFAD'
     processor = Processor.new()
     processor.read(line)
-    processor.clean_up_data
+    processor.clean_up_data('XMAS')
     positions = processor.positions('A')
     assert_equal 2, positions.count
     assert_includes positions, Position.new(1, 0)
@@ -123,7 +122,7 @@ class TestProcessor < Minitest::Test
     processor.read(line_2)
     processor.read(line_3)
     processor.read(line_4)
-    processor.clean_up_data
+    processor.clean_up_data('XMAS')
     positions = processor.positions('X')
     assert_equal 4, positions.count
     assert_includes positions, Position.new(2, 0)
@@ -144,7 +143,6 @@ class TestProcessor < Minitest::Test
     processor.read(line_2)
     processor.read(line_3)
     processor.read(line_4)
-    processor.clean_up_data
     processor.find('XMAS')
     assert_equal 1, processor.word_count
   end
@@ -153,7 +151,7 @@ class TestProcessor < Minitest::Test
     line = 'XMASVS'
     processor = Processor.new()
     processor.read(line)
-    processor.clean_up_data
+    processor.clean_up_data('XMAS')
     assert processor.valid?('S',Position.new(5, 0))
   end
 end

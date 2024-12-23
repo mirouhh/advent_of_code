@@ -16,10 +16,10 @@ class Processor
     @data = []
   end
 
-  def clean_up_data
+  def clean_up_data(word)
     @data.each do |line|
       line.each_with_index do |char, index|
-        line[index] = '.' if !['X', 'M', 'A', 'S'].include? char
+        line[index] = '.' if !word.chars.include? char
       end
     end
   end
@@ -33,6 +33,7 @@ class Processor
   end
 
   def find(word)
+    clean_up_data(word)
     puts "Word to find: #{word}"
     # Das Wort beginnt mit:
     start_character = word[0]

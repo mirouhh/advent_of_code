@@ -13,4 +13,8 @@ class Position
   def eql?(other)
     self == other
   end
+
+  def to_s
+    "#{@x},#{@y}"
+  end
 end

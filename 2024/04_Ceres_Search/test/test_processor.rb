@@ -87,7 +87,7 @@ class TestProcessor < Minitest::Test
     processor.read(line_4)
     processor.read(line_5)
     processor.clean_up_data
-    assert_equal 4, processor.find('xmas')
+    assert_equal 4, processor.find('XMAS')
   end
 
   def test_get_position
@@ -145,8 +145,8 @@ class TestProcessor < Minitest::Test
     processor.read(line_3)
     processor.read(line_4)
     processor.clean_up_data
-    findings = processor.find('XMAS')
-    assert_equal 1, findings
+    processor.find('XMAS')
+    assert_equal 1, processor.word_count
   end
 
   def test_find_valid_character
@@ -154,6 +154,6 @@ class TestProcessor < Minitest::Test
     processor = Processor.new()
     processor.read(line)
     processor.clean_up_data
-    assert processor.valid?('X',Position.new(0, 0))
+    assert processor.valid?('S',Position.new(5, 0))
   end
 end

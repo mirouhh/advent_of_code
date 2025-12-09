@@ -5,6 +5,10 @@ def rotate_left(distance)
   @current_position -= distance
 end
 
+def rotate_right(distance)
+  @current_position += distance
+end
+
 puts start_position == 50 ? "✓ Test 1 passed" : "✗ Test 1 FAILED: expected 50, was #{start_position}"
 puts @current_position == 50 ? "✓ Test 2 passed" : "✗ Test 2 FAILED: expected 50, was #{@current_position}"
 
@@ -12,6 +16,6 @@ rotate_left(1)
 
 puts @current_position == 49 ? "✓ Test 3 passed" : "✗ Test 3 FAILED: expected 49, was #{@current_position}"
 
-@current_position += 1
+rotate_right(1)
 
 puts @current_position == 50 ? "✓ Test 4 passed" : "✗ Test 4 FAILED: expected 50, was #{@current_position}"

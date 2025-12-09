@@ -37,4 +37,5 @@ rotate("R", 40)
 puts @current_position == 77 ? "✓ Test 6 passed" : "✗ Test 6 FAILED: expected 77, was #{@current_position}"
 
 ## Test that an instruction like L45 is executed correctly
+dial("L50")
 puts @current_position == 27 ? "✓ Test 7 passed" : "✗ Test 7 FAILED: expected 27, was #{@current_position}"

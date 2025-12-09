@@ -8,4 +8,6 @@ current_position -= 1
 
 puts current_position == 49 ? "✓ Test 3 passed" : "✗ Test 3 FAILED: expected 49, was #{start_position}"
 
+current_position += 1
+
 puts current_position == 50 ? "✓ Test 4 passed" : "✗ Test 4 FAILED: expected 50, was #{start_position}"

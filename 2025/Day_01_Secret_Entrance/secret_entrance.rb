@@ -31,4 +31,5 @@ rotate_left(13)
 puts @current_position == 37 ? "✓ Test 5 passed" : "✗ Test 5 FAILED: expected 37, was #{@current_position}"
 
 ## Test that current position equals is updated correctly when rotating 40 steps to the right
+rotate_right(40)
 puts @current_position == 77 ? "✓ Test 6 passed" : "✗ Test 6 FAILED: expected 77, was #{@current_position}"

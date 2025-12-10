@@ -60,4 +60,10 @@ class SafedialTest < Minitest::Test
     @self_dial.dial
     assert_equal(3, @self_dial.zero_count)
   end
+
+  def test_safe_detects_total_amount_of_zeros_during_multiple_rotations
+    @self_dial.instructions = ["L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"]
+    @self_dial.dial
+    assert_equal(6, @self_dial.zeros)
+  end
 end

@@ -1,31 +1,39 @@
-require_relative '../secret_entrance'
+require 'minitest/autorun'
+require_relative '../lib/safe_dial'
 
-## Test correct start position
-puts @start_position == 50 ? "✓ Test 1 passed" : "✗ Test 1 FAILED: expected 50, was #{@start_position}"
+class SafedialTest < Minitest::Test
 
-## Test that current position equals start position in the very beginning
-puts @current_position == 50 ? "✓ Test 2 passed" : "✗ Test 2 FAILED: expected 50, was #{@current_position}"
+  def setup
+    @self_dial = SafeDial.new(50)
+  end
 
-## Test that current position equals is updated correctly when rotating 1 step to the left
-rotate("L", 1)
+  def test_start_position_is_correct
+    assert_equal(50, @self_dial.start_position)
+  end
 
-puts @current_position == 49 ? "✓ Test 3 passed" : "✗ Test 3 FAILED: expected 49, was #{@current_position}"
+  def test_current_position_equals_start_initially
+    assert_equal(@self_dial.start_position, @self_dial.current_position)
+  end
 
-## Test that current position equals is updated correctly when rotating 1 step to the right
-rotate("R", 1)
+  def test_safe_dial_rotates_left_one_step_correctly
+    assert_equal(49, @self_dial.rotate("L", 1))
+  end
 
-puts @current_position == 50 ? "✓ Test 4 passed" : "✗ Test 4 FAILED: expected 50, was #{@current_position}"
+  def test_safe_dial_rotates_right_one_step_correctly
+    assert_equal(51, @self_dial.rotate("R", 1))
+  end
 
-## Test that current position equals is updated correctly when rotating 13 steps to the left
-rotate("L", 13)
+  def test_safe_dial_rotates_left_multiple_step_correctly
+    assert_equal(37, @self_dial.rotate("L", 13))
+  end
 
-puts @current_position == 37 ? "✓ Test 5 passed" : "✗ Test 5 FAILED: expected 37, was #{@current_position}"
+  def test_safe_dial_rotates_right_multiple_step_correctly
+    assert_equal(90, @self_dial.rotate("R", 40))
+  end
 
-## Test that current position equals is updated correctly when rotating 40 steps to the right
-rotate("R", 40)
-
-puts @current_position == 77 ? "✓ Test 6 passed" : "✗ Test 6 FAILED: expected 77, was #{@current_position}"
-
-## Test that an instruction like L45 is executed correctly
-dial("L50")
-puts @current_position == 27 ? "✓ Test 7 passed" : "✗ Test 7 FAILED: expected 27, was #{@current_position}"
+  def test_safe_dial_rotates_both_directions_correctly
+    @self_dial.rotate("L", 37)
+    @self_dial.rotate("R", 40)
+    assert_equal(53, @self_dial.current_position)
+  end
+end

@@ -29,6 +29,12 @@ class SafeDial
     end
   end
 
+  def zeros
+    @zero_count + @zeros_passed
+  end
+
+  private
+
   def count_zeros_during_rotation(direction, steps)
     return 0 if steps == 0
 
@@ -39,12 +45,10 @@ class SafeDial
       first_zero = @dial_size if first_zero == 0
     end
 
-    return 0 if first_zero > steps
+    passable_steps = steps - 1
 
-    (steps - first_zero) / @dial_size + 1
-  end
+    return 0 if first_zero > passable_steps
 
-  def zeros
-    @zero_count + @zeros_passed
+    (passable_steps - first_zero) / @dial_size + 1
   end
 end

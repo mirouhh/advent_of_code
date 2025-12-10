@@ -47,4 +47,10 @@ class SafedialTest < Minitest::Test
     @self_dial.rotate("L", 13)
     assert_equal(2, @self_dial.zero_count)
   end
+
+  def test_safe_dial_can_rotate_multiple_times
+    @self_dial.instructions = ["L68", "L30", "R48", "L5", "R60", "L55", "L1", "L99", "R14", "L82"]
+    @self_dial.dial
+    assert_equal(3, @self_dial.zero_count)
+  end
 end

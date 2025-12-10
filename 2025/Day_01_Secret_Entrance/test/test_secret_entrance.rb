@@ -16,19 +16,23 @@ class SafedialTest < Minitest::Test
   end
 
   def test_safe_dial_rotates_left_one_step_correctly
-    assert_equal(49, @self_dial.rotate("L", 1))
+    @self_dial.rotate("L", 1)
+    assert_equal(49, @self_dial.current_position)
   end
 
   def test_safe_dial_rotates_right_one_step_correctly
-    assert_equal(51, @self_dial.rotate("R", 1))
+    @self_dial.rotate("R", 1)
+    assert_equal(51, @self_dial.current_position)
   end
 
   def test_safe_dial_rotates_left_multiple_step_correctly
-    assert_equal(37, @self_dial.rotate("L", 13))
+    @self_dial.rotate("L", 13)
+    assert_equal(37, @self_dial.current_position)
   end
 
   def test_safe_dial_rotates_right_multiple_step_correctly
-    assert_equal(90, @self_dial.rotate("R", 40))
+    @self_dial.rotate("R", 40)
+    assert_equal(90, @self_dial.current_position)
   end
 
   def test_safe_dial_rotates_both_directions_correctly
@@ -37,9 +41,10 @@ class SafedialTest < Minitest::Test
     assert_equal(53, @self_dial.current_position)
   end
 
-  def test_safe_dial_counts_zeros
-    @self_dial.rotate("L", 13)
+  def test_safe_dial_counts_zeros_correctly
+    @self_dial.rotate("L", 50)
     @self_dial.rotate("R", 13)
-    assert_equal(1, @self_dial.zero_count)
+    @self_dial.rotate("L", 13)
+    assert_equal(2, @self_dial.zero_count)
   end
 end

@@ -53,6 +53,6 @@ class SafedialTest < Minitest::Test
   def test_safe_dial_detects_zero_during_rotation
     @self_dial.instructions = ["L68"]
     @self_dial.dial
-    assert_equal(1, @self_dial.zero_count)
+    assert_equal(1, @self_dial.zeros)
   end
 end

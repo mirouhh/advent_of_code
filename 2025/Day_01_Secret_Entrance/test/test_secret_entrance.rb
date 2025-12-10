@@ -36,4 +36,10 @@ class SafedialTest < Minitest::Test
     @self_dial.rotate("R", 40)
     assert_equal(53, @self_dial.current_position)
   end
+
+  def test_safe_dial_counts_zeros
+    @self_dial.rotate("L", 13)
+    @self_dial.rotate("R", 13)
+    assert_equal(1, @self_dial.zero_count)
+  end
 end

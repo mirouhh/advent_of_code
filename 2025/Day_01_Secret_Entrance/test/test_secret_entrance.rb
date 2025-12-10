@@ -4,7 +4,7 @@ require_relative '../lib/safe_dial'
 class SafedialTest < Minitest::Test
 
   def setup
-    @self_dial = SafeDial.new(50)
+    @self_dial = SafeDial.new
   end
 
   def test_start_position_is_correct

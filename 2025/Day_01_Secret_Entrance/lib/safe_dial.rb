@@ -3,7 +3,7 @@ class SafeDial
   attr_reader :position, :zero_count
   attr_writer :instructions
 
-  def initialize(start_position)
+  def initialize(start_position = 50)
     @position = start_position
     @dial_size = 100
     @zero_count = 0

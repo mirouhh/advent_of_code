@@ -14,4 +14,8 @@ class IDValidatorTest < Minitest::Test
     assert_equal "11", IDValidator.first_id
     assert_equal "22", IDValidator.last_id
   end
+
+  def test_invalid_range_detection
+    assert_equal false, IDValidator.validate("11-22")
+  end
 end

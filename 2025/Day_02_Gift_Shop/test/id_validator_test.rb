@@ -23,4 +23,10 @@ class IDValidatorTest < Minitest::Test
   def test_valid_range_detection
     assert IDValidator.validate("12-21")
   end
+
+  def test_detact_invalid_ids
+    IDValidator.validate("11-22")
+    invalid_ids = ["11", "22"]
+    assert_equal invalid_ids, IDValidator.invalid_ids
+  end
 end

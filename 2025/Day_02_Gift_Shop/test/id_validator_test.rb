@@ -24,7 +24,7 @@ class IDValidatorTest < Minitest::Test
     assert IDValidator.validate("12-21")
   end
 
-  def test_detact_invalid_ids
+  def test_detect_invalid_ids
     IDValidator.validate("11-22")
     invalid_ids = ["11", "22"]
     assert_equal invalid_ids, IDValidator.invalid_ids
@@ -33,5 +33,14 @@ class IDValidatorTest < Minitest::Test
   def test_sum_of_invalid_ids
     IDValidator.validate("11-22")
     assert_equal 33, IDValidator.sum
+  end
+
+  def test_detect_invalid_ids_in_sample_data
+    IDValidator.validate("11-22")
+    invalid_ids = ["11", "22"]
+    assert_equal invalid_ids, IDValidator.invalid_ids
+    IDValidator.validate("95-115")
+    invalid_ids = ["99"]
+    assert_equal invalid_ids, IDValidator.invalid_ids
   end
 end

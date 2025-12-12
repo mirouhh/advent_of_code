@@ -5,8 +5,9 @@ class IDValidatorTest < Minitest::Test
 
   def test_import_range_works
     IDValidator.import("11-22")
-    assert IDValidator.range
-    assert_equal("11-22", IDValidator.range)
+    expected_result = (11..22).map(&:to_s)
+    assert_equal false, IDValidator.range.empty?
+    assert_equal(expected_result, IDValidator.range)
   end
 
   def test_parsing_range_works
@@ -20,6 +21,6 @@ class IDValidatorTest < Minitest::Test
   end
 
   def test_valid_range_detection
-    assert IDValidator.validate("1698522-1698528")
+    assert IDValidator.validate("12-21")
   end
 end

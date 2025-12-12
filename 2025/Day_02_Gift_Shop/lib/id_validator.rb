@@ -1,22 +1,36 @@
 class IDValidator
 
   def self.import(range)
-    @ids = range
+    ids = range.split("-").map(&:to_i)
+    @first_id = ids[0]
+    @last_id = ids[1]
+    @range = (first_id..last_id).map(&:to_s)
   end
 
   def self.range
-    @ids
+    @range
   end
 
   def self.first_id
-    @ids.split("-")[0]
+    @first_id.to_s
   end
 
   def self.last_id
-    @ids.split("-")[1]
+    @last_id.to_s
   end
 
   def self.validate(range)
-    false
+    valid = true
+    import(range)
+    @range.each do |id|
+      valid &= self.valid?(id)
+    end
+    valid
+  end
+
+  def self.valid?(id)
+    half = id.length / 2
+
+    id.length.even? && id[0, half] != id[half, id.length-1]
   end
 end

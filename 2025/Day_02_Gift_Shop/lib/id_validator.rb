@@ -30,8 +30,9 @@ class IDValidator
   end
 
   def self.valid?(id)
+    return false if (id[0] == "0")
     half = id.length / 2
-    valid = id.length.even? && id[0, half] != id[half, id.length-1]
+    valid = id[0, half] != id[half, id.length]
     @invalid_ids << id unless valid
     valid
   end

@@ -37,3 +37,6 @@ Adding up all the invalid IDs in this example produces **`1227775554`**.
 
 What do you get if you add up all of the invalid IDs?
 
+My puzzle answer was `53420042388`.
+
+**<code style="color : gold">The first half of this puzzle is complete! It provides one gold star: \*</code>**

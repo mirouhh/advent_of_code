@@ -18,4 +18,8 @@ class IDValidatorTest < Minitest::Test
   def test_invalid_range_detection
     assert_equal false, IDValidator.validate("11-22")
   end
+
+  def test_valid_range_detection
+    assert IDValidator.validate("1698522-1698528")
+  end
 end

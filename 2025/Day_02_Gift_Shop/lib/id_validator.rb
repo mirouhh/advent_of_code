@@ -5,6 +5,7 @@ class IDValidator
     @first_id = ids[0]
     @last_id = ids[1]
     @range = (first_id..last_id).map(&:to_s)
+    @invalid_ids = []
   end
 
   def self.range
@@ -30,7 +31,12 @@ class IDValidator
 
   def self.valid?(id)
     half = id.length / 2
+    valid = id.length.even? && id[0, half] != id[half, id.length-1]
+    @invalid_ids << id unless valid
+    valid
+  end
 
-    id.length.even? && id[0, half] != id[half, id.length-1]
+  def self.invalid_ids
+    @invalid_ids
   end
 end

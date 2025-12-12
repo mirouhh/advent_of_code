@@ -7,4 +7,12 @@ class IDValidator
   def self.range
     @ids
   end
+
+  def self.first_id
+    @ids.split("-")[0]
+  end
+
+  def self.last_id
+    @ids.split("-")[1]
+  end
 end

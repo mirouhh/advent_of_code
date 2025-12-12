@@ -93,6 +93,6 @@ Using password method 0x434C49434B, **what is the password to open the door?**
 
 My puzzle answer was 6689 which was correct!
 
-**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \**</code>**
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
 
 At this point, you should [return to your Advent calendar](https://adventofcode.com/) and try another puzzle.

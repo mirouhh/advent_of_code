@@ -8,4 +8,10 @@ class IDValidatorTest < Minitest::Test
     assert IDValidator.range
     assert_equal("11-22", IDValidator.range)
   end
+
+  def test_parsing_range_works
+    IDValidator.import("11-22")
+    assert_equal "11", IDValidator.first_id
+    assert_equal "22", IDValidator.last_id
+  end
 end

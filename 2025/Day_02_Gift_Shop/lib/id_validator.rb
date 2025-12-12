@@ -15,4 +15,8 @@ class IDValidator
   def self.last_id
     @ids.split("-")[1]
   end
+
+  def self.validate(range)
+    false
+  end
 end

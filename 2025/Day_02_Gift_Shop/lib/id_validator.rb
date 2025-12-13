@@ -6,6 +6,7 @@ class IDValidator
     @last_id = ids[1]
     @range = (first_id..last_id).map(&:to_s)
     @invalid_ids = []
+    @invalid_ids_part_two = []
   end
 
   def self.range
@@ -43,5 +44,15 @@ class IDValidator
 
   def self.sum
     @invalid_ids.map(&:to_i).sum
+  end
+
+  def self.validate_part_two(range)
+    import(range)
+    @invalid_ids_part_two = (@first_id..@last_id).map(&:to_s).select { |id| id =~ /^(.+)\1+$/  }
+    @invalid_ids_part_two.empty?
+  end
+
+  def self.invalid_ids_part_two
+    @invalid_ids_part_two
   end
 end

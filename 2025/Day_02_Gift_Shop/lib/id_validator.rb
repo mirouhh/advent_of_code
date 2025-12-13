@@ -55,4 +55,8 @@ class IDValidator
   def self.invalid_ids_part_two
     @invalid_ids_part_two
   end
+
+  def self.sum_part_two
+    @invalid_ids_part_two.map(&:to_i).sum
+  end
 end

@@ -63,3 +63,9 @@ From the same example as before:
 Adding up all the invalid IDs in this example produces `4174379265`.
 
 **What do you get if you add up all of the invalid IDs using these new rules?**
+
+My puzzle answer was `69553832684`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/) and try another puzzle.

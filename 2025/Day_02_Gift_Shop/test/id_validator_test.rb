@@ -43,4 +43,10 @@ class IDValidatorTest < Minitest::Test
     invalid_ids = ["99"]
     assert_equal invalid_ids, IDValidator.invalid_ids
   end
+
+  def test_detect_invalid_ids_for_part_two
+    IDValidator.validate_part_two("95-115")
+    invalid_ids = ["99", "111"]
+    assert_equal invalid_ids, IDValidator.invalid_ids_part_two
+  end
 end

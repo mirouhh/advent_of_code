@@ -31,3 +31,13 @@ ranges.each do |range|
   sum += IDValidator.sum_part_two unless IDValidator.invalid_ids_part_two.empty?
 end
 puts "All invalid IDs are summed up to: #{sum}\n\n"
+
+sum = 0
+puts "#### Validating and calculating sample data ####"
+ranges = File.readlines("#{File.dirname(__FILE__)}/input.txt", chomp: true)[0].split(",")
+ranges.each do |range|
+  IDValidator.validate_part_two(range)
+  puts "Invalid IDs in range #{range}: #{IDValidator.invalid_ids_part_two}" unless IDValidator.invalid_ids_part_two.empty?
+  sum += IDValidator.sum_part_two unless IDValidator.invalid_ids_part_two.empty?
+end
+puts "All invalid IDs are summed up to: #{sum}\n\n"

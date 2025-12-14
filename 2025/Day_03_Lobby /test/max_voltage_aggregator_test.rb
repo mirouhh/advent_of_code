@@ -9,4 +9,11 @@ class MaxVoltageAggregatorTest < Minitest::Test
     assert_equal false, MaxVoltageAggregator.battery_banks.empty?
   end
 
+  def test_reset_battery_banks
+    battery_bank = "12345"
+    MaxVoltageAggregator.import_battery(battery_bank)
+    MaxVoltageAggregator.reset
+    assert MaxVoltageAggregator.battery_banks.empty?
+  end
+
 end

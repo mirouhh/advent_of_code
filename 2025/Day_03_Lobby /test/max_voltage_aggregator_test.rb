@@ -40,9 +40,9 @@ class MaxVoltageAggregatorTest < Minitest::Test
 
   def test_aggregating_max_voltage
     sample_battery_bank_01 = BatteryBank.new("987654321111111")
-    sample_battery_bank_01.locate_max
+    sample_battery_bank_01.locate_max(2)
     sample_battery_bank_02 = BatteryBank.new("811111111111119")
-    sample_battery_bank_02.locate_max
+    sample_battery_bank_02.locate_max(2)
 
     MaxVoltageAggregator.import_battery_bank(sample_battery_bank_01)
     MaxVoltageAggregator.import_battery_bank(sample_battery_bank_02)

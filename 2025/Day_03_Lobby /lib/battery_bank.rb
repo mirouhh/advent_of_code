@@ -1,8 +1,10 @@
 class BatteryBank
 
-  attr_reader :batteries
+  attr_reader :batteries, :max_voltage, :selected_batteries
   def initialize(batteries="")
     @batteries = batteries.chars
+    @selected_batteries = []
+    @max_voltage = 0
   end
 
   def empty?
@@ -10,21 +12,27 @@ class BatteryBank
   end
 
   def max_index(amount=1)
-    return @batteries.index(@batteries.max) if amount == 1
+    first_max_index = @batteries.index(@batteries.max)
+    return first_max_index if amount == 1
 
     lower_part = @batteries[0..(@batteries.length - 2)]
-    first_max = lower_part.max
-    first_max_index = lower_part.index(first_max)
+    first_max_index = lower_part.index(lower_part.max)
 
     higher_part = @batteries[(first_max_index + 1)..-1]
-    second_max = higher_part.max
-    second_max_index = first_max_index + 1 + higher_part.index(second_max)
+    second_max_index = first_max_index + 1 + higher_part.index(higher_part.max)
 
-    [first_max_index, second_max_index]
+    @selected_batteries << first_max_index
+    @selected_batteries << second_max_index
+
   end
 
-  def max_voltage
-    @batteries.max.to_i
+  def locate_max(amount=1)
+    max_index(amount)
+    calculate_max_voltage
+  end
+
+  def calculate_max_voltage
+    @selected_batteries.length == 0 ? @max_voltage += @batteries.max.to_i : @max_voltage += (@batteries[@selected_batteries[0]] + @batteries[@selected_batteries[1]]).to_i
   end
 
   def to_s

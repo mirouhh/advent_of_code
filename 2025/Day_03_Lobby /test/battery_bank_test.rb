@@ -21,17 +21,20 @@ class BatteryBankTest < Minitest::Test
 
   def test_max_voltage
     battery_bank = BatteryBank.new("12345")
+    battery_bank.locate_max
     assert_equal 5, battery_bank.max_voltage
   end
 
   def test_max_two_batteries
     battery_bank = BatteryBank.new("12345")
-    assert_equal [3, 4], battery_bank.max_index(2)
+    battery_bank.locate_max(2)
+    assert_equal [3, 4], battery_bank.selected_batteries
   end
 
   def test_max_voltage_for_two_batteries
     battery_bank = BatteryBank.new("12345")
-    assert_equal 45, battery_bank.max_voltage(2)
+    battery_bank.locate_max(2)
+    assert_equal 45, battery_bank.max_voltage
   end
 
 end

@@ -17,7 +17,7 @@ class MaxVoltageAggregator
   end
 
   def self.max_battery_index(battery_bank)
-    battery_bank.chars.index(battery_bank.chars.max)
+    battery_bank.chars.index(max_battery_voltage(battery_bank))
   end
 
   def self.max_battery_voltage(battery_bank)

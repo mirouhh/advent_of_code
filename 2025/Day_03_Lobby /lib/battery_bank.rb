@@ -1,6 +1,11 @@
 class BatteryBank
 
+  attr_reader :batteries
+  def initialize(batteries="")
+    @batteries = batteries
+  end
+
   def empty?
-    true
+    @batteries.empty?
   end
 end

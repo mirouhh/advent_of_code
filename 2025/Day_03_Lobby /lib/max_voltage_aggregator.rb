@@ -4,8 +4,8 @@ class MaxVoltageAggregator
 
   @@battery_banks = []
 
-  def self.import_battery(battery)
-    @@battery_banks << battery
+  def self.import_battery_bank(battery_bank)
+    @@battery_banks << battery_bank
   end
 
   def self.battery_banks

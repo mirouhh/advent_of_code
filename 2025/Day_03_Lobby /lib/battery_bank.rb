@@ -11,14 +11,16 @@ class BatteryBank
 
   def max_index(amount=1)
     return @batteries.index(@batteries.max) if amount == 1
-    indices = []
-    max = @batteries[0..(@batteries.length-2)].max
-    max_index = @batteries.index(max)
-    indices << max_index
-    second_part_of_batteries = @batteries[(max_index+1)..-1]
-    second_max = second_part_of_batteries.max
-    second_max_index = max_index + 1 + second_part_of_batteries.index(second_max)
-    indices << second_max_index
+
+    lower_part = @batteries[0..(@batteries.length - 2)]
+    first_max = lower_part.max
+    first_max_index = lower_part.index(first_max)
+
+    higher_part = @batteries[(first_max_index + 1)..-1]
+    second_max = higher_part.max
+    second_max_index = first_max_index + 1 + higher_part.index(second_max)
+
+    [first_max_index, second_max_index]
   end
 
   def max_voltage

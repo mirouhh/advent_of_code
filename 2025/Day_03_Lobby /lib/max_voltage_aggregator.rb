@@ -23,4 +23,8 @@ class MaxVoltageAggregator
   def self.max_battery_voltage(battery_bank)
     battery_bank.chars.max
   end
+
+  def self.sum
+    @@battery_banks.sum { |battery_bank| battery_bank.max_voltage }
+  end
 end

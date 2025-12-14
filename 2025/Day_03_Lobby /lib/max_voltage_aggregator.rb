@@ -12,4 +12,8 @@ class MaxVoltageAggregator
     return @@battery_banks
   end
 
+  def self.reset
+    @@battery_banks.clear
+  end
+
 end

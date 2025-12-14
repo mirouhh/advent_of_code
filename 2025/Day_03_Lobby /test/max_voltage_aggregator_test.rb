@@ -16,4 +16,10 @@ class MaxVoltageAggregatorTest < Minitest::Test
     assert MaxVoltageAggregator.battery_banks.empty?
   end
 
+  def test_max_battery_index
+    battery_bank = "12345"
+    max_battery_index = MaxVoltageAggregator.max_battery_index(battery_bank)
+    assert_equal 4, max_battery_index
+  end
+
 end

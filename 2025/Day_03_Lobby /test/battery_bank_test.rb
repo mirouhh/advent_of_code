@@ -11,7 +11,7 @@ class BatteryBankTest < Minitest::Test
   def test_battery_bank_with_batteries
     battery_bank = BatteryBank.new("12345")
     assert_equal false, battery_bank.empty?
-    assert_equal "12345", battery_bank.batteries
+    assert_equal "12345", battery_bank.to_s
   end
 
   def test_max_battery_index

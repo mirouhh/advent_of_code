@@ -13,6 +13,10 @@ class BatteryBank
     @batteries.index(@batteries.max)
   end
 
+  def max_voltage
+    @batteries.max.to_i
+  end
+
   def to_s
     @batteries.join
   end

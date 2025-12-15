@@ -29,3 +29,7 @@ You'll need to find the largest possible joltage each bank can produce. In the a
 The total output joltage is the sum of the maximum joltage from each bank, so in this example, the total output joltage is `98` + `89` + `78` + `92` = `357`.
 
 There are many batteries in front of you. Find the maximum joltage possible from each bank; **what is the total output joltage?**
+
+My puzzle answer was `17408`.
+
+**<code style="color : gold">The first half of this puzzle is complete! It provides one gold star: \*</code>**

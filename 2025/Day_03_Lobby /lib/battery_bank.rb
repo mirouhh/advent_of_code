@@ -38,8 +38,32 @@ class BatteryBank
     when 2
       return @max_voltage += (@batteries[@selected_batteries[0]] + @batteries[@selected_batteries[1]]).to_i
     when 12
-      return @max_voltage = 987654321111
+      calculate_max_voltage_for_twelve_batteries
     end
+  end
+
+  def calculate_max_voltage_for_twelve_batteries
+    amount = 12
+    current_pos = 0
+    @selected_batteries = []
+    @selected_batteries_values = []
+
+    (0..(amount - 1)).each do |pos|
+      remaining = amount - pos
+      available = @batteries.length - current_pos
+      search_area = available - remaining + 1
+
+      slice = @batteries[current_pos..(current_pos + search_area - 1)]
+
+      max_battery = slice.max
+      max_position = current_pos + slice.index(max_battery)
+      @selected_batteries << max_position
+      @selected_batteries_values << max_battery
+      current_pos += max_position + 1
+    end
+
+    @max_voltage = @selected_batteries_values.join.to_i
+    
   end
 
   def to_s

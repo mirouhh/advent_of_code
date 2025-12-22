@@ -60,3 +60,9 @@ Now, the joltages are much larger:
 The total output joltage is now much larger: `987654321111` + `811111111119` + `434234234278` + `888911112111` = `3121910778619`.
 
 **What is the new total output joltage?**
+
+My puzzle answer was `172740584266849`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/2025) and try another puzzle.

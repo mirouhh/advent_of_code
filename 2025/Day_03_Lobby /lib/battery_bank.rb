@@ -34,9 +34,9 @@ class BatteryBank
   def calculate_max_voltage(amount=1)
     case amount
     when 1
-      return @max_voltage += @batteries.max.to_i
+      @max_voltage += @batteries.max.to_i
     when 2
-      return @max_voltage += (@batteries[@selected_batteries[0]] + @batteries[@selected_batteries[1]]).to_i
+      @max_voltage += (@batteries[@selected_batteries[0]] + @batteries[@selected_batteries[1]]).to_i
     when 12
       calculate_max_voltage_for_twelve_batteries
     end
@@ -59,7 +59,7 @@ class BatteryBank
       max_position = current_pos + slice.index(max_battery)
       @selected_batteries << max_position
       @selected_batteries_values << max_battery
-      current_pos += max_position + 1
+      current_pos = max_position + 1
     end
 
     @max_voltage = @selected_batteries_values.join.to_i

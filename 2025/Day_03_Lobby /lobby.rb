@@ -39,3 +39,16 @@ File.readlines("#{File.dirname(__FILE__)}/sample_input.txt", chomp: true).each d
 end
 
 puts "The total maximum voltage produced by the sample data is #{MaxVoltageAggregator.sum}"
+
+puts "\n\n"
+puts "####### PART TWO    ###############################"
+puts "####### Puzzle Data ###############################"
+MaxVoltageAggregator.reset
+File.readlines("#{File.dirname(__FILE__)}/input.txt", chomp: true).each do |line|
+  puts "Importing #{line}"
+  battery_bank = BatteryBank.new(line)
+  battery_bank.locate_max(12)
+  MaxVoltageAggregator.import_battery_bank(battery_bank)
+end
+
+puts "The total maximum voltage produced by the sample data is #{MaxVoltageAggregator.sum}"

@@ -32,9 +32,14 @@ class GridTest < Minitest::Test
     assert @grid.empty?
   end
 
-  def test_paper_positions_are_correct
+  def test_one_paper_position_is_correct
     @grid.add('..@.......')
     assert_equal ['2'], @grid.paper_rolls(0)
+  end
+
+  def test_two_paper_positions_are_correct
+    @grid.add('..@.....@.')
+    assert_equal ['2', '8'], @grid.paper_rolls(0)
   end
 
 end

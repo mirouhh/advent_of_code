@@ -23,7 +23,7 @@ class Grid
   end
 
   def paper_rolls(shelf)
-    ['2']
+    @shelfs[shelf].chars.each_with_index.select { |char, index| char == '@' }.map(&:last)
   end
 
 end

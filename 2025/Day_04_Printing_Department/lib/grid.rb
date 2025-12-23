@@ -22,4 +22,8 @@ class Grid
     @shelfs.clear
   end
 
+  def paper_rolls(shelf)
+    ['2']
+  end
+
 end

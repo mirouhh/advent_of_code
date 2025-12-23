@@ -2,8 +2,16 @@
 
 class Grid
 
+  def initialize
+    @shelfs = []
+  end
+
   def empty?
-    true
+    @shelfs.empty?
+  end
+
+  def add(shelf)
+    @shelfs << shelf
   end
 
 end

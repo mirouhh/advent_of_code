@@ -14,4 +14,8 @@ class Grid
     @shelfs << shelf
   end
 
+  def paper_roll?(shelf)
+    @shelfs[shelf].chars.any?('@')
+  end
+
 end

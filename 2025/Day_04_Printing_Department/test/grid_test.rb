@@ -8,4 +8,10 @@ class GridTest < Minitest::Test
     assert grid.empty?
   end
 
+  def test_grid_can_add_shelf
+    grid = Grid.new
+    grid.add('..@@.@@@@.')
+    assert_equal false, grid.empty?
+  end
+
 end

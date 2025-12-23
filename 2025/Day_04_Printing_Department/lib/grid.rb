@@ -18,4 +18,8 @@ class Grid
     @shelfs[shelf].chars.any?('@')
   end
 
+  def clear
+    @shelfs.clear
+  end
+
 end

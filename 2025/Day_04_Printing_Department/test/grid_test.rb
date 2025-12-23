@@ -20,4 +20,10 @@ class GridTest < Minitest::Test
     assert grid.paper_roll?(0)
   end
 
+  def test_shelf_includes_no_paper_roll
+    grid = Grid.new
+    grid.add('..........')
+    assert_equal false, grid.paper_roll?(0)
+  end
+
 end

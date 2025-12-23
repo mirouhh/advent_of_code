@@ -42,4 +42,10 @@ class GridTest < Minitest::Test
     assert_equal [2, 8], @grid.paper_rolls(0)
   end
 
+  def test_paper_has_adjecent_paper_rolls
+    @grid.add('..@@.@@.')
+    paper_roll = [0, 2]
+    assert @grid.adjecent_paper_rolls(paper_roll)
+  end
+
 end

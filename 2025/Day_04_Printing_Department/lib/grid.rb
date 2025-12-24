@@ -26,15 +26,22 @@ class Grid
     @shelfs[shelf].chars.each_with_index.select { |char, index| char == '@' }.map(&:last)
   end
 
-  def adjacent_paper_rolls(paper_roll)
-    shelf_no = paper_roll[0]
-    position = paper_roll[1]
-
+  def adjacent_paper_rolls(paper_roll_position)
     adjacent_paper_rolls = []
-    shelf_content = @shelfs[shelf_no].chars[position - 1]
-    adjacent_paper_rolls << shelf_content if shelf_content == '@'
 
-    shelf_content = @shelfs[shelf_no].chars[position + 1]
-    adjacent_paper_rolls << shelf_content if shelf_content == '@'
+    positions_to_check(paper_roll_position).each do | paper_roll |
+      shelf_no = paper_roll[0]
+      position = paper_roll[1]
+      adjacent_paper_rolls << paper_roll if @shelfs[shelf_no].chars[position] == '@'
+    end
+  end
+
+  def positions_to_check(paper_roll_position)
+    positions_to_check = []
+
+    left = [paper_roll_position[0], paper_roll_position[1] - 1]
+    right = [paper_roll_position[0], paper_roll_position[1] + 1]
+
+    positions_to_check = [left, right]
   end
 end

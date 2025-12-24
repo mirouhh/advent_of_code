@@ -48,4 +48,11 @@ class GridTest < Minitest::Test
     assert @grid.adjacent_paper_rolls(paper_roll)
   end
 
+  def test_find_correct_amount_of_adjacent_paper_rolls
+    @grid.add('..@@.@@.')
+    paper_roll = [0, 2]
+    adjacent_paper_rolls = @grid.adjacent_paper_rolls(paper_roll)
+    assert_equal 1, adjacent_paper_rolls.size
+  end
+
 end

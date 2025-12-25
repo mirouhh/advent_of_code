@@ -32,8 +32,11 @@ class Grid
     positions_to_check(paper_roll_position).each do | paper_roll |
       shelf_no = paper_roll[0]
       position = paper_roll[1]
+
       adjacent_paper_rolls << paper_roll if @shelfs[shelf_no].chars[position] == '@'
     end
+
+    return adjacent_paper_rolls
   end
 
   def positions_to_check(paper_roll_position)

@@ -27,20 +27,21 @@ class Grid
   end
 
   def adjacent_paper_rolls(paper_roll_position)
-    adjacent_paper_rolls = []
-
-    positions_to_check(paper_roll_position).each do | paper_roll |
-      shelf_no = paper_roll[0]
-      position = paper_roll[1]
-
-      next if shelf_no < 0 || shelf_no >= @shelfs.size
-      next if position < 0 || position >= @shelfs[shelf_no].length
-
-      adjacent_paper_rolls << paper_roll if @shelfs[shelf_no].chars[position] == '@'
+    positions_to_check(paper_roll_position).select do | position |
+      valid_position?(position) && paper_roll_at?(position)
     end
-
-    return adjacent_paper_rolls
   end
+
+  def valid_position?(pos)
+    shelf, position = pos
+    shelf.between?(0, @shelfs.size - 1) && position.between?(0, @shelfs[shelf].length - 1)
+  end
+
+  def paper_roll_at?(pos)
+    shelf, position = pos
+    @shelfs[shelf][position] == '@'
+  end
+
 
   def positions_to_check(paper_roll_position)
     shelf, position = paper_roll_position
@@ -63,16 +64,14 @@ class Grid
     adjacent_paper_rolls(paper_roll).length < 4
   end
 
-  def accessable_paper_rolls
-    accessable_paper_rolls = []
-    @shelfs.each_with_index do |shelf, shelf_index|
-      paper_rolls(shelf_index).each do |paper_roll_position|
-        paper_roll = [shelf_index, paper_roll_position]
-        accessable = accessable?(paper_roll)
-        accessable_paper_rolls << paper_roll if accessable
-      end
+  def all_paper_roll_positions
+    @shelfs.each_with_index.flat_map do |_, shelf_index|
+      paper_rolls(shelf_index).map { |position| [shelf_index, position] }
     end
-    accessable_paper_rolls
+  end
+
+  def accessable_paper_rolls
+    all_paper_roll_positions.select { |paper_roll| accessable?(paper_roll) }
   end
 
 end

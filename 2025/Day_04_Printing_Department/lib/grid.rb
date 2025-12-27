@@ -33,6 +33,8 @@ class Grid
       shelf_no = paper_roll[0]
       position = paper_roll[1]
 
+      next if shelf_no < 0 || shelf_no >= @shelfs.size
+
       adjacent_paper_rolls << paper_roll if @shelfs[shelf_no].chars[position] == '@'
     end
 
@@ -45,6 +47,8 @@ class Grid
     left = [paper_roll_position[0], paper_roll_position[1] - 1]
     right = [paper_roll_position[0], paper_roll_position[1] + 1]
 
-    positions_to_check = [left, right]
+    upper_left = [paper_roll_position[0] - 1, paper_roll_position[1] - 1]
+
+    positions_to_check = [left, right, upper_left]
   end
 end

@@ -124,8 +124,7 @@ class GridTest < Minitest::Test
     @grid.add('..@@@...')
     @grid.add('..@@@...')
     paper_roll = [0, 3]
-    adjacent_paper_rolls = @grid.accessable?(paper_roll)
-    assert_equal false, adjacent_paper_rolls.size
+    assert_equal false, @grid.accessable?(paper_roll)
   end
 
 end

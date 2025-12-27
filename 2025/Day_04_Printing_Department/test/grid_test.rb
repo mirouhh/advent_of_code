@@ -119,11 +119,11 @@ class GridTest < Minitest::Test
     assert_equal 8, adjacent_paper_rolls.size
   end
 
-  def test_check_accessability
+  def test_check_unaccessability
     @grid.add('..@@@...')
     @grid.add('..@@@...')
     @grid.add('..@@@...')
-    paper_roll = [0, 3]
+    paper_roll = [1,3]
     assert_equal false, @grid.accessable?(paper_roll)
   end
 

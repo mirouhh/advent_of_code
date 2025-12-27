@@ -66,11 +66,9 @@ class Grid
   def accessable_paper_rolls
     accessable_paper_rolls = []
     @shelfs.each_with_index do |shelf, shelf_index|
-      puts "Inspecting shelf #{shelf}"
       paper_rolls(shelf_index).each do |paper_roll_position|
         paper_roll = [shelf_index, paper_roll_position]
         accessable = accessable?(paper_roll)
-        puts "Is paper roll #{paper_roll} accessable? #{accessable}"
         accessable_paper_rolls << paper_roll if accessable
       end
     end

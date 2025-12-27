@@ -34,6 +34,7 @@ class Grid
       position = paper_roll[1]
 
       next if shelf_no < 0 || shelf_no >= @shelfs.size
+      next if position < 0 || position >= @shelfs[shelf_no].length
 
       adjacent_paper_rolls << paper_roll if @shelfs[shelf_no].chars[position] == '@'
     end
@@ -61,4 +62,19 @@ class Grid
   def accessable?(paper_roll)
     adjacent_paper_rolls(paper_roll).length < 4
   end
+
+  def accessable_paper_rolls
+    accessable_paper_rolls = []
+    @shelfs.each_with_index do |shelf, shelf_index|
+      puts "Inspecting shelf #{shelf}"
+      paper_rolls(shelf_index).each do |paper_roll_position|
+        paper_roll = [shelf_index, paper_roll_position]
+        accessable = accessable?(paper_roll)
+        puts "Is paper roll #{paper_roll} accessable? #{accessable}"
+        accessable_paper_rolls << paper_roll if accessable
+      end
+    end
+    accessable_paper_rolls
+  end
+
 end

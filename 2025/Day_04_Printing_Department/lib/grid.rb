@@ -57,4 +57,8 @@ class Grid
 
     [left, right, upper_left, upper, upper_right, lower_left, lower, lower_right]
   end
+
+  def accessable?(paper_roll)
+    adjacent_paper_rolls(paper_roll).length < 4
+  end
 end

@@ -43,7 +43,6 @@ class Grid
 
   def positions_to_check(paper_roll_position)
     shelf, position = paper_roll_position
-    positions_to_check = []
 
     left = [shelf, position - 1]
     right = [shelf, position + 1]
@@ -56,6 +55,6 @@ class Grid
     lower = [shelf + 1, position]
     lower_right = [shelf + 1, position + 1]
 
-    positions_to_check = [left, right, upper_left, upper, upper_right, lower_left, lower, lower_right]
+    [left, right, upper_left, upper, upper_right, lower_left, lower, lower_right]
   end
 end

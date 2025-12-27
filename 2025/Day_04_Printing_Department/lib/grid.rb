@@ -54,7 +54,8 @@ class Grid
 
     lower_left = [shelf + 1, position - 1]
     lower = [shelf + 1, position]
+    lower_right = [shelf + 1, position + 1]
 
-    positions_to_check = [left, right, upper_left, upper, upper_right, lower_left, lower]
+    positions_to_check = [left, right, upper_left, upper, upper_right, lower_left, lower, lower_right]
   end
 end

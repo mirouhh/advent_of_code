@@ -178,3 +178,9 @@ Remove 1 roll of paper:
 Stop once no more rolls of paper are accessible by a forklift. In this example, a total of **`43`** rolls of paper can be removed.
 
 Start with your original diagram. **How many rolls of paper in total can be removed by the Elves and their forklifts?**
+
+My puzzle answer was `9173`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/2025) and try another puzzle.

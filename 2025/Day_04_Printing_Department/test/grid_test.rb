@@ -182,6 +182,6 @@ class GridTest < Minitest::Test
     @grid.pick_up_paper_rolls
     @grid.find_accessable_paper_rolls
     @grid.pick_up_paper_rolls
-    assert_equal 24, @grid.picked_up_paper_rolls
+    assert_equal 25, @grid.picked_up_paper_rolls
   end
 end

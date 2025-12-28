@@ -2,11 +2,12 @@
 
 class Grid
 
-  attr_reader :accessable_paper_rolls
+  attr_reader :accessable_paper_rolls, :picked_up_paper_rolls
 
   def initialize
     @shelfs = []
     @accessable_paper_rolls = []
+    @picked_up_paper_rolls = 0
   end
 
   def empty?
@@ -78,6 +79,7 @@ class Grid
   end
 
   def pick_up_paper_rolls
+    @picked_up_paper_rolls += @accessable_paper_rolls.size
     @accessable_paper_rolls.each { |paper_roll| @shelfs[paper_roll[0]][paper_roll[1]] = '.' }
   end
 

@@ -24,6 +24,8 @@ class Grid
 
   def clear
     @shelfs.clear
+    @accessable_paper_rolls.clear
+    @picked_up_paper_rolls = 0
   end
 
   def paper_rolls(shelf)
@@ -83,4 +85,11 @@ class Grid
     @accessable_paper_rolls.each { |paper_roll| @shelfs[paper_roll[0]][paper_roll[1]] = '.' }
   end
 
+  def pick_up_all_accessable_paper_rolls
+    find_accessable_paper_rolls
+    until @accessable_paper_rolls.empty?
+      pick_up_paper_rolls
+      find_accessable_paper_rolls
+    end
+  end
 end

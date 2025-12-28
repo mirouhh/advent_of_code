@@ -2,8 +2,11 @@
 
 class Grid
 
+  attr_reader :accessable_paper_rolls
+
   def initialize
     @shelfs = []
+    @accessable_paper_rolls = []
   end
 
   def empty?
@@ -70,8 +73,12 @@ class Grid
     end
   end
 
-  def accessable_paper_rolls
-    all_paper_roll_positions.select { |paper_roll| accessable?(paper_roll) }
+  def find_accessable_paper_rolls
+    @accessable_paper_rolls = all_paper_roll_positions.select { |paper_roll| accessable?(paper_roll) }
+  end
+
+  def pick_up_paper_rolls
+    @accessable_paper_rolls.each { |paper_roll| @shelfs[paper_roll[0]][paper_roll[1]] = '.' }
   end
 
 end

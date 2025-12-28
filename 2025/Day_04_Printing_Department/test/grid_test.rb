@@ -167,4 +167,21 @@ class GridTest < Minitest::Test
     assert_equal 12, @grid.accessable_paper_rolls.size
   end
 
+  def test_picked_up_paper_rolls
+    @grid.add('..@@.@@@@.')
+    @grid.add('@@@.@.@.@@')
+    @grid.add('@@@@@.@.@@')
+    @grid.add('@.@@@@..@.')
+    @grid.add('@@.@@@@.@@')
+    @grid.add('.@@@@@@@.@')
+    @grid.add('.@.@.@.@@@')
+    @grid.add('@.@@@.@@@@')
+    @grid.add('.@@@@@@@@.')
+    @grid.add('@.@.@@@.@.')
+    @grid.find_accessable_paper_rolls
+    @grid.pick_up_paper_rolls
+    @grid.find_accessable_paper_rolls
+    @grid.pick_up_paper_rolls
+    assert_equal 24, @grid.picked_up_paper_rolls
+  end
 end

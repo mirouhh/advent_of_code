@@ -49,4 +49,11 @@ puts "####### PART TWO ###############################"
 puts "#### Importing and validating sample data ####"
 
 puts "\n"
-puts "#{sample_ingredient_validator.fresh_ingredient_ids.length} ingredient IDs are considered to be fresh"
+puts "#{sample_ingredient_validator.fresh_ingredient_ids} ingredient IDs are considered to be fresh"
+
+puts "\n"
+puts "####### PART TWO ###############################"
+puts "#### Importing and validating puzzle data ####"
+
+puts "\n"
+puts "#{puzzle_ingredient_validator.fresh_ingredient_ids} ingredient IDs are considered to be fresh"

@@ -60,3 +60,9 @@ Now, the second section of the database (the available ingredient IDs) is irrele
 The ingredient IDs that these ranges consider to be fresh are `3`, `4`, `5`, `10`, `11`, `12`, `13`, `14`, `15`, `16`, `17`, `18`, `19`, and `20`. So, in this example, the fresh ingredient ID ranges consider a total of **`14`** ingredient IDs to be fresh.
 
 Process the database file again. **How many ingredient IDs are considered to be fresh according to the fresh ingredient ID ranges?**
+
+My puzzle answer was `348115621205535`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/2025) and try another puzzle.

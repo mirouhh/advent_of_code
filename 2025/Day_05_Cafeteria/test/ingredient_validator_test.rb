@@ -18,19 +18,19 @@ class IngredientValidatorTest < Minitest::Test
 
   def test_validate_freshness
     @ingredient_validator.add_id_range('1-3')
-    assert @ingredient_validator.fresh?(2)
+    assert @ingredient_validator.fresh?('2')
   end
 
   def test_validate_spoiledness
     @ingredient_validator.add_id_range('1-3')
-    assert_equal false, @ingredient_validator.fresh?(4)
+    assert_equal false, @ingredient_validator.fresh?('4')
   end
 
   def test_validate_freshness_in_multiple_id_ranges
     @ingredient_validator.add_id_range('3-5')
     @ingredient_validator.add_id_range('10-14')
-    assert @ingredient_validator.fresh?(5)
-    assert @ingredient_validator.fresh?(11)
+    assert @ingredient_validator.fresh?('5')
+    assert @ingredient_validator.fresh?('11')
   end
 
 end

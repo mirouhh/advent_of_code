@@ -21,4 +21,9 @@ class IngredientValidatorTest < Minitest::Test
     assert @ingredient_validator.fresh?(2)
   end
 
+  def test_validate_spoiledness
+    @ingredient_validator.add_id_range(1..3)
+    assert_equal false, @ingredient_validator.fresh?(4)
+  end
+
 end

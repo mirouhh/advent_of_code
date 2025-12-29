@@ -10,7 +10,7 @@ class IngredientValidator
   end
 
   def fresh?(*ids)
-    ids.all? {|id| @id_ranges[0].cover?(id)}
+    ids.all? {|id| @id_ranges.any? {|range| range.cover?(id)}}
   end
 
 end

@@ -75,4 +75,9 @@ class IngredientValidatorTest < Minitest::Test
     assert @ingredient_validator.fresh_ingredients.empty?
   end
 
+  def test_all_fresh_ids
+    @ingredient_validator.add_id_range('3-5')
+    assert_equal [3, 4, 5], @ingredient_validator.fresh_ingredient_ids
+  end
+
 end

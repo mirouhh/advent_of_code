@@ -46,7 +46,7 @@ My puzzle answer was `1626`.
 
 **<code style="color : gold">The first half of this puzzle is complete! It provides one gold star: \*</code>**
 
---- Part Two ---
+## Part Two
 Now, the Elves just need help accessing as much of the paper as they can.
 
 Once a roll of paper can be accessed by a forklift, it can be **removed**. Once a roll of paper is removed, the forklifts might be able to access **more** rolls of paper, which they might also be able to remove. How many total rolls of paper could the Elves remove if they keep repeating this process?

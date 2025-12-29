@@ -23,4 +23,8 @@ class IngredientValidator
     @id_ranges.clear
     @fresh_ingredients.clear
   end
+
+  def fresh_ingredient_ids
+    @id_ranges.flat_map(&:to_a).uniq.sort
+  end
 end

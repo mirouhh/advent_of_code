@@ -77,13 +77,13 @@ class IngredientValidatorTest < Minitest::Test
 
   def test_all_fresh_ids_for_a_single_id_range
     @ingredient_validator.add_id_range('3-5')
-    assert_equal [3, 4, 5], @ingredient_validator.fresh_ingredient_ids
+    assert_equal 3, @ingredient_validator.fresh_ingredient_ids
   end
 
   def test_all_fresh_ids_for_multiple_id_ranges
     @ingredient_validator.add_id_range('3-5')
     @ingredient_validator.add_id_range('5-8')
-    assert_equal [3, 4, 5, 6, 7, 8], @ingredient_validator.fresh_ingredient_ids
+    assert_equal 6, @ingredient_validator.fresh_ingredient_ids
   end
 
 end

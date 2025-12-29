@@ -3,7 +3,7 @@ require_relative 'lib/ingredient_validator'
 puts "####### PART ONE ###############################"
 puts "#### Importing and validating sample data ####"
 
-ingredient_validator = IngredientValidator.new
+sample_ingredient_validator = IngredientValidator.new
 File.readlines("#{File.dirname(__FILE__)}/sample_input.txt", chomp: true).each do |line|
   if line.empty?
     puts "\n"
@@ -12,16 +12,16 @@ File.readlines("#{File.dirname(__FILE__)}/sample_input.txt", chomp: true).each d
 
   if line.include?('-')
     puts "Importing range '#{line}'"
-    ingredient_validator.add_id_range(line)
+    sample_ingredient_validator.add_id_range(line)
   else
-    ingredient_validator.fresh?(line) ? puts("#{line} is fresh") : puts("#{line} is not fresh")
+    sample_ingredient_validator.fresh?(line) ? puts("#{line} is fresh") : puts("#{line} is not fresh")
   end
 end
 
 puts "\n"
-puts "#{ingredient_validator.fresh_ingredients_amount} of the available ingredient IDs are fresh"
+puts "#{sample_ingredient_validator.fresh_ingredients_amount} of the available ingredient IDs are fresh"
 
-ingredient_validator.clear
+puzzle_ingredient_validator = IngredientValidator.new
 
 puts "\n\n"
 puts "####### PART ONE ###############################"
@@ -35,11 +35,18 @@ File.readlines("#{File.dirname(__FILE__)}/input.txt", chomp: true).each do |line
 
   if line.include?('-')
     puts "Importing range '#{line}'"
-    ingredient_validator.add_id_range(line)
+    puzzle_ingredient_validator.add_id_range(line)
   else
-    ingredient_validator.fresh?(line) ? puts("#{line} is fresh") : puts("#{line} is not fresh")
+    puzzle_ingredient_validator.fresh?(line) ? puts("#{line} is fresh") : puts("#{line} is not fresh")
   end
 end
 
 puts "\n"
-puts "#{ingredient_validator.fresh_ingredients_amount} of the available ingredient IDs are fresh"
+puts "#{puzzle_ingredient_validator.fresh_ingredients_amount} of the available ingredient IDs are fresh"
+
+puts "\n\n"
+puts "####### PART TWO ###############################"
+puts "#### Importing and validating sample data ####"
+
+puts "\n"
+puts "#{sample_ingredient_validator.fresh_ingredient_ids.length} ingredient IDs are considered to be fresh"

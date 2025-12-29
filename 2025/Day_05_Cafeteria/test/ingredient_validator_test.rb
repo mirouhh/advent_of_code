@@ -8,4 +8,10 @@ class IngredientValidatorTest < Minitest::Test
     assert ingredient_validator.id_ranges.empty?
   end
 
+  def test_stores_an_id_range
+    ingredient_validator = IngredientValidator.new
+    ingredient_validator.add_id_range(1..3)
+    assert_equal 1..3, ingredient_validator.id_ranges[0]
+  end
+
 end

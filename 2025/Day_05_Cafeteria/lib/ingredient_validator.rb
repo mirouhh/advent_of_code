@@ -15,4 +15,7 @@ class IngredientValidator
     @id_ranges.any? { |range| range.cover?(id.to_i) }.tap { |is_fresh | @fresh_ingredients << id.to_i if is_fresh }
   end
 
+  def fresh_ingredients_amount
+    @fresh_ingredients.length
+  end
 end

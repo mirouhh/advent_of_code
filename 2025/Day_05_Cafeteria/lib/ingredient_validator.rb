@@ -9,8 +9,8 @@ class IngredientValidator
     @id_ranges << Range.new(*range.split('-').map(&:to_i))
   end
 
-  def fresh?(*ids)
-    ids.all? {|id| @id_ranges.any? {|range| range.cover?(id)}}
+  def fresh?(id)
+    @id_ranges.any? { |range| range.cover?(id.to_i) }
   end
 
 end

@@ -6,7 +6,7 @@ class IngredientValidator
   end
 
   def add_id_range(range)
-    @id_ranges << range
+    @id_ranges << Range.new(*range.split('-').map(&:to_i))
   end
 
   def fresh?(*ids)

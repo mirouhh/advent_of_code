@@ -18,4 +18,9 @@ class IngredientValidator
   def fresh_ingredients_amount
     @fresh_ingredients.length
   end
+
+  def clear
+    @id_ranges.clear
+    @fresh_ingredients.clear
+  end
 end

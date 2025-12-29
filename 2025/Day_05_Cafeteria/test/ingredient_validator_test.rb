@@ -57,4 +57,22 @@ class IngredientValidatorTest < Minitest::Test
     assert_equal 2, @ingredient_validator.fresh_ingredients_amount
   end
 
+  def test_internal_data_can_be_cleared
+    @ingredient_validator.add_id_range('3-5')
+    @ingredient_validator.add_id_range('10-14')
+    @ingredient_validator.fresh?('1')
+    @ingredient_validator.fresh?('5')
+    @ingredient_validator.fresh?('8')
+    @ingredient_validator.fresh?('11')
+    @ingredient_validator.fresh?('17')
+    @ingredient_validator.fresh?('32')
+    assert_equal 2, @ingredient_validator.fresh_ingredients_amount
+    assert_equal false, @ingredient_validator.id_ranges.empty?
+    assert_equal false, @ingredient_validator.fresh_ingredients.empty?
+    @ingredient_validator.clear
+    assert_equal 0, @ingredient_validator.fresh_ingredients_amount
+    assert @ingredient_validator.id_ranges.empty?
+    assert @ingredient_validator.fresh_ingredients.empty?
+  end
+
 end

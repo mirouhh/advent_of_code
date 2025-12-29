@@ -9,4 +9,8 @@ class IngredientValidator
     @id_ranges << range
   end
 
+  def fresh?(id)
+    @id_ranges[0].cover?(id)
+  end
+
 end

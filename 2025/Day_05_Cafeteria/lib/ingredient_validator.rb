@@ -25,6 +25,27 @@ class IngredientValidator
   end
 
   def fresh_ingredient_ids
-    @id_ranges.flat_map(&:to_a).uniq.sort
+    merge_ranges(@id_ranges).sum(&:size)
+  end
+
+  private
+
+  def merge_ranges(ranges)
+    return 0 if ranges.empty?
+
+    sorted = ranges.sort_by(&:begin)
+    merged = [sorted.first]
+
+    sorted[1..].each do |range|
+      last = merged.last
+
+      if range.begin <= last.end + 1
+        merged[-1] = (last.begin..[last.end, range.end].max)
+      else
+        merged << range
+      end
+    end
+
+    merged
   end
 end

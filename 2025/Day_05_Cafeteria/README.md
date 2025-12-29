@@ -38,3 +38,7 @@ The Elves are trying to determine which of the **available ingredient IDs** are 
 So, in this example, `3` of the available ingredient IDs are `fresh`.
 
 Process the database file from the new inventory management system. **How many of the available ingredient IDs are fresh?**
+
+My puzzle answer was `885`.
+
+**<code style="color : gold">The first half of this puzzle is complete! It provides one gold star: \*</code>**

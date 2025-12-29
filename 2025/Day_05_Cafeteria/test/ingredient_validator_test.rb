@@ -26,15 +26,11 @@ class IngredientValidatorTest < Minitest::Test
     assert_equal false, @ingredient_validator.fresh?(4)
   end
 
-  def test_validate_freshness_of_multiple_ingredients
-    @ingredient_validator.add_id_range('3-5')
-    assert @ingredient_validator.fresh?(3, 4, 5)
-  end
-
-  def test_validate_freshness_of_multiple_ingredients_in_multiple_id_ranges
+  def test_validate_freshness_in_multiple_id_ranges
     @ingredient_validator.add_id_range('3-5')
     @ingredient_validator.add_id_range('10-14')
-    assert @ingredient_validator.fresh?(5, 11)
+    assert @ingredient_validator.fresh?(5)
+    assert @ingredient_validator.fresh?(11)
   end
 
 end

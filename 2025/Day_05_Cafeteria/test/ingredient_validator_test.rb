@@ -33,4 +33,16 @@ class IngredientValidatorTest < Minitest::Test
     assert @ingredient_validator.fresh?('11')
   end
 
+  def test_determines_fresh_ingredients
+    @ingredient_validator.add_id_range('3-5')
+    @ingredient_validator.add_id_range('10-14')
+    @ingredient_validator.fresh?('1')
+    @ingredient_validator.fresh?('5')
+    @ingredient_validator.fresh?('8')
+    @ingredient_validator.fresh?('11')
+    @ingredient_validator.fresh?('17')
+    @ingredient_validator.fresh?('32')
+    assert_equal [5, 11], @ingredient_validator.fresh_ingredients
+  end
+
 end

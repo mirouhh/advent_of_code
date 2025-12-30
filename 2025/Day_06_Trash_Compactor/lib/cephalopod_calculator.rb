@@ -17,4 +17,12 @@ class CephalopodCalculator
   def add_instruction(*instruction)
     @instructions << instruction
   end
+
+  def execute_instructions
+    @instructions.each do | instruction |
+      operands = instruction.flatten[0..-2]
+      operator = instruction.flatten[-1]
+      calculate(*operands, operator)
+    end
+  end
 end

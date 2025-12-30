@@ -23,4 +23,8 @@ class CephalopodCalculatorTest < Minitest::Test
     assert_equal 1, @cephalopodCalculator.calculate('1', '*')
   end
 
+  def test_mul_with_multiple_operands
+    assert_equal 6, @cephalopodCalculator.calculate('1', '2', '3', '*')
+  end
+
 end

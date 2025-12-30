@@ -8,4 +8,9 @@ class CephalopodCalculatorTest < Minitest::Test
     assert_equal 1, cephalopodCalculator.calculate('1', '+')
   end
 
+  def test_sum_with_two_operands
+    cephalopodCalculator = CephalopodCalculator.new
+    assert_equal 2, cephalopodCalculator.calculate('1', '1', '+')
+  end
+
 end

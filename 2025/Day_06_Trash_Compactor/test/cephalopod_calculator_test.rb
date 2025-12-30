@@ -33,4 +33,10 @@ class CephalopodCalculatorTest < Minitest::Test
     assert_equal 16, @cephalopodCalculator.grand_total
   end
 
+  def test_add_instruction
+    @cephalopodCalculator.add_instruction('1', '2', '3', '+')
+    @cephalopodCalculator.add_instruction('1', '2', '3', '*')
+    assert_equal 2, @cephalopodCalculator.instructions.size
+  end
+
 end

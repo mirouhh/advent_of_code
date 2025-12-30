@@ -39,4 +39,8 @@ class CephalopodCalculatorTest < Minitest::Test
     assert_equal 2, @cephalopodCalculator.instructions.size
   end
 
+  def test_exectute_instructions
+    assert_equal 12, @cephalopodCalculator.execute_instructions
+  end
+
 end

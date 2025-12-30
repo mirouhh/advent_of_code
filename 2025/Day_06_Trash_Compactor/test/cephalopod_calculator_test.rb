@@ -19,4 +19,8 @@ class CephalopodCalculatorTest < Minitest::Test
     assert_equal 10, @cephalopodCalculator.calculate('1', '2', '3', '4', '+')
   end
 
+  def test_mul_with_single_operand
+    assert_equal 1, @cephalopodCalculator.calculate('1', '*')
+  end
+
 end

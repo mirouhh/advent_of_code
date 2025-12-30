@@ -27,4 +27,10 @@ class CephalopodCalculatorTest < Minitest::Test
     assert_equal 6, @cephalopodCalculator.calculate('1', '2', '3', '*')
   end
 
+  def test_calculate_grand_total
+    @cephalopodCalculator.calculate('1', '2', '3', '4', '+')
+    @cephalopodCalculator.calculate('1', '2', '3', '*')
+    assert_equal 16, @cephalopodCalculator.grand_total
+  end
+
 end

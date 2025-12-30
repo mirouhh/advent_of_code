@@ -1,6 +1,6 @@
 class CephalopodCalculator
 
-  def calculate(operand, operator)
-    1
+  def calculate(*operands, operator)
+    operands.map(&:to_i).reduce(operator.to_sym)
   end
 end

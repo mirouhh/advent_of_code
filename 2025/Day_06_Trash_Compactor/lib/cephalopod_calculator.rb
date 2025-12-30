@@ -29,4 +29,9 @@ class CephalopodCalculator
       execute_instruction(instruction)
     end
   end
+
+  def reset
+    @totals.clear
+    @instructions.clear
+  end
 end

@@ -9,8 +9,21 @@ lines = File.readlines("#{File.dirname(__FILE__)}/sample_input.txt", chomp: true
 instructions = lines[0..-2].map(&:split).transpose.zip(lines[-1].split).map(&:flatten)
 
 instructions.each do |instruction |
-  cephalopodCalculator.add_instruction
   puts "#{instruction[0..-2].join(' ' + instruction[-1] + ' ')} = #{cephalopodCalculator.execute_instruction(instruction)}"
 end
 
 puts "The grand total of the sample data is #{cephalopodCalculator.grand_total}."
+
+cephalopodCalculator.reset
+
+puts "\n\n"
+puts "#### Importing and validating puzzle data ####"
+
+lines = File.readlines("#{File.dirname(__FILE__)}/input.txt", chomp: true).reject(&:empty?)
+instructions = lines[0..-2].map(&:split).transpose.zip(lines[-1].split).map(&:flatten)
+
+instructions.each do |instruction |
+  puts "#{instruction[0..-2].join(' ' + instruction[-1] + ' ')} = #{cephalopodCalculator.execute_instruction(instruction)}"
+end
+
+puts "The grand total of the puzzle data is #{cephalopodCalculator.grand_total}."

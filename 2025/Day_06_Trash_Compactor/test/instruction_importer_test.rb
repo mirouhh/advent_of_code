@@ -30,4 +30,8 @@ class InstructionImporterTest < Minitest::Test
     assert_equal ['64', '23', '314', '+'], instructions[3]
   end
 
+  def test_get_instructions_for_part_two
+    assert_equal false, @instruction_importer.instructions_part_two.empty?
+  end
+
 end

@@ -5,7 +5,8 @@ class InstructionImporterTest < Minitest::Test
 
   def test_import_instructions_from_file
     instruction_importer = InstructionImporter.new
-    instruction_importer.import('sample_input.txt')
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    instruction_importer.import(file)
     assert_equal false, instruction_importer.data.empty?
   end
 

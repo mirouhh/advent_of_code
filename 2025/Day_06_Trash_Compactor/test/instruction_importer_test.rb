@@ -34,4 +34,12 @@ class InstructionImporterTest < Minitest::Test
     assert_equal false, @instruction_importer.instructions_part_two.empty?
   end
 
+  def test_instructions_for_part_two_are_correct
+    instructions = @instruction_importer.instructions_part_two
+    assert_equal ['4', '431', '623', '+'], instructions[0]
+    assert_equal ['175', '581', '32', '*'], instructions[1]
+    assert_equal ['8', '248', '369', '+'], instructions[2]
+    assert_equal ['356', '24', '1', '*'], instructions[3]
+  end
+
 end

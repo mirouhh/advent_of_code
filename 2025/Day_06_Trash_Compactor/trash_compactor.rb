@@ -7,7 +7,6 @@ cephalopodCalculator = CephalopodCalculator.new
 sample_file = "#{File.dirname(__FILE__)}/sample_input.txt"
 puzzle_file = "#{File.dirname(__FILE__)}/input.txt"
 
-
 puts "####### PART ONE ###############################"
 puts "#### Importing and validating sample data ####"
 
@@ -32,3 +31,19 @@ instructionImporter.instructions_part_one.each do |instruction |
 end
 
 puts "The grand total of the puzzle data is #{cephalopodCalculator.grand_total}."
+
+puts "\n\n"
+
+puts "####### PART TWO ###############################"
+puts "#### Importing and validating sample data ####"
+
+instructionImporter.reset
+cephalopodCalculator.reset
+
+instructionImporter.import(sample_file)
+
+instructionImporter.instructions_part_two.each do |instruction |
+  puts "#{instruction[0..-2].join(' ' + instruction[-1] + ' ')} = #{cephalopodCalculator.execute_instruction(instruction)}"
+end
+
+puts "The grand total of the sample data is #{cephalopodCalculator.grand_total}."

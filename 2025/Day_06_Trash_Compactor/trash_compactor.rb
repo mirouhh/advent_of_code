@@ -1,28 +1,33 @@
+require_relative 'lib/instruction_importer'
 require_relative 'lib/cephalopod_calculator'
 
+instructionImporter = InstructionImporter.new
 cephalopodCalculator = CephalopodCalculator.new
+
+sample_file = "#{File.dirname(__FILE__)}/sample_input.txt"
+puzzle_file = "#{File.dirname(__FILE__)}/input.txt"
+
 
 puts "####### PART ONE ###############################"
 puts "#### Importing and validating sample data ####"
 
-lines = File.readlines("#{File.dirname(__FILE__)}/sample_input.txt", chomp: true).reject(&:empty?)
-instructions = lines[0..-2].map(&:split).transpose.zip(lines[-1].split).map(&:flatten)
+instructionImporter.import(sample_file)
 
-instructions.each do |instruction |
+instructionImporter.instructions_part_one.each do |instruction |
   puts "#{instruction[0..-2].join(' ' + instruction[-1] + ' ')} = #{cephalopodCalculator.execute_instruction(instruction)}"
 end
 
 puts "The grand total of the sample data is #{cephalopodCalculator.grand_total}."
 
-cephalopodCalculator.reset
-
 puts "\n\n"
 puts "#### Importing and validating puzzle data ####"
 
-lines = File.readlines("#{File.dirname(__FILE__)}/input.txt", chomp: true).reject(&:empty?)
-instructions = lines[0..-2].map(&:split).transpose.zip(lines[-1].split).map(&:flatten)
+instructionImporter.reset
+cephalopodCalculator.reset
 
-instructions.each do |instruction |
+instructionImporter.import(puzzle_file)
+
+instructionImporter.instructions_part_one.each do |instruction |
   puts "#{instruction[0..-2].join(' ' + instruction[-1] + ' ')} = #{cephalopodCalculator.execute_instruction(instruction)}"
 end
 

@@ -18,4 +18,8 @@ class InstructionImporterTest < Minitest::Test
     assert @instruction_importer.data.empty?
   end
 
+  def test_get_instructions_for_part_one
+    assert_equal false, @instruction_importer.instructions_part_one.empty?
+  end
+
 end

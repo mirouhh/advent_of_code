@@ -26,7 +26,28 @@ class InstructionImporter
   end
 
   def extract_instructions_part_two
-    @instructions_part_two = @instructions_part_one
+    operands = @data[0..-2].map { | line | line.split.reverse }.transpose
+    operators = @data[-1].split.reverse
+
+    @instructions_part_two = operands.zip(operators).map.with_index do |(tokens, operator), index|
+      numbers = parse_cephalopod_numbers(tokens, index)
+      numbers + [operator]
+    end
+  end
+
+  def parse_cephalopod_numbers(tokens, index)
+    # Alternate between left-aligned (even) and right-aligned (odd)
+    tokens_to_parse = index.even? ? tokens : tokens.map(&:reverse)
+    max_len = tokens_to_parse.map(&:length).max
+    numbers = []
+
+    (0...max_len).each do |col|
+      digits = tokens_to_parse.map { |t| t.chars[col] }.compact.join
+      numbers << digits unless digits.empty?
+    end
+
+    # Only reverse for even indices (left-aligned)
+    index.even? ? numbers.reverse : numbers
   end
 
 end

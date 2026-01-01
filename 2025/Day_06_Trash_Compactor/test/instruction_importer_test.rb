@@ -50,8 +50,8 @@ class InstructionImporterTest < Minitest::Test
     assert_equal [0..2, 4..6, 8..10, 12..15], @instruction_importer.data_ranges
   end
 
-  def test_operators_are_correct
-    assert_equal ['+', '*', '+', '*'], @instruction_importer.operators
+  def test_operators_part_one_are_correct
+    assert_equal ['*', '+', '*', '+'], @instruction_importer.operators_part_one
   end
 
   def test_numbers_are_correct

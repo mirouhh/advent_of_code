@@ -37,8 +37,8 @@ class InstructionImporter
     operator_positions.each_cons(2).map { |start, next_pos| start..(next_pos - 2) } << (operator_positions.last..max_data_length)
   end
 
-  def operators
-    operator_positions.map { | position | @data[-1][position] }.reverse
+  def operators_part_one
+    operator_positions.map { | position | @data[-1][position] }
   end
 
   def numbers
@@ -49,7 +49,7 @@ class InstructionImporter
 
   private
   def extract_instructions_part_one
-    @instructions_part_one = @data[0..-2].map(&:split).transpose.zip(@data[-1].split).map(&:flatten)
+    @instructions_part_one = numbers.map { |row| row.map(&:strip) }.transpose.zip(operators_part_one).map(&:flatten)
   end
 
   def extract_instructions_part_two

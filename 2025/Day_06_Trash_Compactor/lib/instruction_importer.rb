@@ -9,7 +9,10 @@ class InstructionImporter
   end
 
   def import(file)
-    @data = File.readlines("#{file}", chomp: true).reject(&:empty?)
+    @data = File.readlines("#{file}", chomp: true).reject(&:empty?).then { |lines|
+      max_length = lines.map(&:length).max
+      lines.map { |line| line.ljust(max_length) }
+    }
     extract_instructions_part_one
     extract_instructions_part_two
   end
@@ -26,12 +29,22 @@ class InstructionImporter
     }.map(&:last)
   end
 
+  def max_data_length
+    data.map(&:length).max
+  end
+
   def data_ranges
-    operator_positions.each_cons(2).map { |start, next_pos| start..(next_pos - 2) }
+    operator_positions.each_cons(2).map { |start, next_pos| start..(next_pos - 2) } << (operator_positions.last..max_data_length)
   end
 
   def operators
     operator_positions.map { | position | @data[-1][position] }.reverse
+  end
+
+  def numbers
+    data[0..-2].map { |line|
+      data_ranges.map { |range| line[range] }
+    }
   end
 
   private

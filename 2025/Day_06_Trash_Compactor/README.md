@@ -60,3 +60,9 @@ Reading the problems right-to-left one column at a time, the problems are now qu
 Now, the grand total is `1058` + `3253600` + `625` + `8544` = **`3263827`**.
 
 Solve the problems on the math worksheet again. **What is the grand total found by adding together all of the answers to the individual problems?**
+
+My puzzle answer was `11950004808442`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/2025) and try another puzzle.

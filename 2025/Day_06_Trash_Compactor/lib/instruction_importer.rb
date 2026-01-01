@@ -13,8 +13,8 @@ class InstructionImporter
       max_length = lines.map(&:length).max
       lines.map { |line| line.ljust(max_length) }
     }
-    extract_instructions_part_one
-    extract_instructions_part_two
+    @instructions_part_one = extract_instructions(operands_part_one, operators_part_one)
+    @instructions_part_two = extract_instructions(operands_part_two, operators_part_two)
   end
 
   def reset
@@ -74,33 +74,9 @@ class InstructionImporter
   end
 
   private
-  def extract_instructions_part_one
-    @instructions_part_one = operands_part_one.zip(operators_part_one).map(&:flatten)
-  end
 
-  def extract_instructions_part_two
-    operands = @data[0..-2].map { | line | line.split.reverse }.transpose
-    operators = @data[-1].split.reverse
-
-    @instructions_part_two = operands.zip(operators).map.with_index do |(tokens, operator), index|
-      numbers = parse_cephalopod_numbers(tokens, index)
-      numbers + [operator]
-    end
-  end
-
-  def parse_cephalopod_numbers(tokens, index)
-    # Alternate between left-aligned (even) and right-aligned (odd)
-    tokens_to_parse = index.even? ? tokens : tokens.map(&:reverse)
-    max_len = tokens_to_parse.map(&:length).max
-    numbers = []
-
-    (0...max_len).each do |col|
-      digits = tokens_to_parse.map { |t| t.chars[col] }.compact.join
-      numbers << digits unless digits.empty?
-    end
-
-    # Only reverse for even indices (left-aligned)
-    index.even? ? numbers.reverse : numbers
+  def extract_instructions(operands, operators)
+    operands.zip(operators).map(&:flatten)
   end
 
 end

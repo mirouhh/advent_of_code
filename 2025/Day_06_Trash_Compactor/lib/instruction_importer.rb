@@ -41,6 +41,10 @@ class InstructionImporter
     operator_positions.map { | position | @data[-1][position] }
   end
 
+  def operators_part_two
+    operators_part_one.reverse
+  end
+
   def numbers
     data[0..-2].map { |line|
       data_ranges.map { |range| line[range] }

@@ -63,5 +63,18 @@ class InstructionImporterTest < Minitest::Test
     assert_equal [' 45', '64 ', '387', '23 '], @instruction_importer.numbers[1]
     assert_equal ['  6', '98 ', '215', '314'], @instruction_importer.numbers[2]
   end
+  def test_operands_part_one_are_correct
+    assert_equal ['123', '45', '6'], @instruction_importer.operands_part_one[0]
+    assert_equal ['328', '64', '98'], @instruction_importer.operands_part_one[1]
+    assert_equal ['51', '387', '215'], @instruction_importer.operands_part_one[2]
+    assert_equal ['64', '23', '314'], @instruction_importer.operands_part_one[3]
+  end
+
+  #def test_operands_part_two_are_correct
+  #  assert_equal ['4', '431', '623'], @instruction_importer.operands_part_two[0]
+  #  assert_equal ['175', '581', '32'], @instruction_importer.operands_part_two[1]
+  #  assert_equal ['8', '248', '369'], @instruction_importer.operands_part_two[2]
+  #  assert_equal ['356', '24', '1'], @instruction_importer.operands_part_two[3]
+  #end
 
 end

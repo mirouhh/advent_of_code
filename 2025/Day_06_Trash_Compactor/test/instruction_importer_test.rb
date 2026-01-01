@@ -47,7 +47,7 @@ class InstructionImporterTest < Minitest::Test
   end
 
   def test_data_ranges_are_correct
-    assert_equal [0..2, 4..6, 8..10], @instruction_importer.data_ranges
+    assert_equal [0..2, 4..6, 8..10, 12..15], @instruction_importer.data_ranges
   end
 
   def test_operators_are_correct

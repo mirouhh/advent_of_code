@@ -55,6 +55,24 @@ class InstructionImporter
     numbers.map { |row| row.map(&:strip) }.transpose
   end
 
+  def operands_part_two
+    columns = numbers.transpose.reverse  # Von rechts nach links durch die Spalten
+
+    columns.map do |column|
+      # column ist ein Array von Strings wie ["64 ", "23 ", "314"]
+      # Wir lesen diese spaltenweise (vertikal)
+      max_len = column.map(&:length).max
+
+      result = (0...max_len).map do |i|
+        # Alle Zeichen an Position i aus allen Strings
+        digits = column.map { |str| str[i] }.compact.join.strip
+        digits unless digits.empty?
+      end.compact
+
+      result.reverse
+    end
+  end
+
   private
   def extract_instructions_part_one
     @instructions_part_one = operands_part_one.zip(operators_part_one).map(&:flatten)

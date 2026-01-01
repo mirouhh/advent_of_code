@@ -51,9 +51,13 @@ class InstructionImporter
     }
   end
 
+  def operands_part_one
+    numbers.map { |row| row.map(&:strip) }.transpose
+  end
+
   private
   def extract_instructions_part_one
-    @instructions_part_one = numbers.map { |row| row.map(&:strip) }.transpose.zip(operators_part_one).map(&:flatten)
+    @instructions_part_one = operands_part_one.zip(operators_part_one).map(&:flatten)
   end
 
   def extract_instructions_part_two

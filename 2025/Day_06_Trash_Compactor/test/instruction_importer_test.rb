@@ -54,6 +54,10 @@ class InstructionImporterTest < Minitest::Test
     assert_equal ['*', '+', '*', '+'], @instruction_importer.operators_part_one
   end
 
+  def test_operators_part_two_are_correct
+    assert_equal ['+', '*', '+', '*'], @instruction_importer.operators_part_two
+  end
+
   def test_numbers_are_correct
     assert_equal ['123', '328', ' 51', '64 '], @instruction_importer.numbers[0]
     assert_equal [' 45', '64 ', '387', '23 '], @instruction_importer.numbers[1]

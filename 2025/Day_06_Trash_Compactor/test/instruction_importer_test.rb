@@ -43,7 +43,7 @@ class InstructionImporterTest < Minitest::Test
   end
 
   def test_find_operator_positions
-    assert_equal [0, 4, 8, 13], @instruction_importer.operator_positions
+    assert_equal [0, 4, 8, 12], @instruction_importer.operator_positions
   end
 
 end

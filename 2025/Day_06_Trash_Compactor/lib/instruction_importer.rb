@@ -20,6 +20,12 @@ class InstructionImporter
     @instructions_part_two.clear
   end
 
+  def operator_positions
+    @data[-1].chars.each_with_index.select { |char, idx|
+      char == '+' || char == '*'
+    }.map(&:last)
+  end
+
   private
   def extract_instructions_part_one
     @instructions_part_one = @data[0..-2].map(&:split).transpose.zip(@data[-1].split).map(&:flatten)

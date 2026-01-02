@@ -10,23 +10,23 @@ class TachyonManifold
     @valid_symbols = [start, space, splitter, beam]
   end
 
-  def valid_symbol?(symbol)
+  def valid?(symbol)
     @valid_symbols.include? symbol
   end
 
-  def is_start?(symbol)
+  def start?(symbol)
     symbol == @start
   end
 
-  def is_space?(symbol)
+  def space?(symbol)
     symbol == @space
   end
 
-  def is_splitter?(symbol)
+  def splitter?(symbol)
     symbol == @splitter
   end
 
-  def is_beam?(symbol)
+  def beam?(symbol)
     symbol == @beam
   end
 

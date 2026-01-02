@@ -8,4 +8,8 @@ class TachyonManifoldTest < Minitest::Test
     assert_equal 'S', tachyonManifold.start_symbol
   end
 
+  def test_space_symbol
+    tachyonManifold = TachyonManifold.new
+    assert_equal '.', tachyonManifold.space_symbol
+  end
 end

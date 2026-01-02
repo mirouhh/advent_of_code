@@ -12,4 +12,8 @@ class TachyonManifold
     '^'
   end
 
+  def beam_symbol
+    '|'
+  end
+
 end

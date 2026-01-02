@@ -17,5 +17,10 @@ class TachyonManifoldTest < Minitest::Test
     tachyonManifold = TachyonManifold.new
     assert_equal '^', tachyonManifold.splitter_symbol
   end
-  
+
+  def test_beam_symbol
+    tachyonManifold = TachyonManifold.new
+    assert_equal '|', tachyonManifold.beam_symbol
+  end
+
 end

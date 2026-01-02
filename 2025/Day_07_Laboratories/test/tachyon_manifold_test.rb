@@ -23,4 +23,13 @@ class TachyonManifoldTest < Minitest::Test
     assert_equal '|', tachyonManifold.beam_symbol
   end
 
+  def test_valid_symbols
+    tachyonManifold = TachyonManifold.new
+    assert tachyonManifold.valid_symbol?('S')
+    assert tachyonManifold.valid_symbol?('.')
+    assert tachyonManifold.valid_symbol?('^')
+    assert tachyonManifold.valid_symbol?('|')
+    assert_equal 4, tachyonManifold.valid_symbols.length
+  end
+
 end

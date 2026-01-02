@@ -4,4 +4,8 @@ class TachyonManifold
     'S'
   end
 
+  def space_symbol
+    '.'
+  end
+
 end

@@ -8,4 +8,8 @@ class TachyonManifold
     '.'
   end
 
+  def splitter_symbol
+    '^'
+  end
+
 end

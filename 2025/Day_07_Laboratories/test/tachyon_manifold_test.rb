@@ -12,4 +12,10 @@ class TachyonManifoldTest < Minitest::Test
     tachyonManifold = TachyonManifold.new
     assert_equal '.', tachyonManifold.space_symbol
   end
+
+  def test_splitter_symbol
+    tachyonManifold = TachyonManifold.new
+    assert_equal '^', tachyonManifold.splitter_symbol
+  end
+  
 end

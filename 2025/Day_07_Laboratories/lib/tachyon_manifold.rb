@@ -1,27 +1,33 @@
 class TachyonManifold
 
-  def valid_symbols
-    ['S', '.', '^', '|']
-  end
+  attr_reader :valid_symbols, :start, :space, :splitter, :beam
 
-  def start_symbol
-    'S'
-  end
-
-  def space_symbol
-    '.'
-  end
-
-  def splitter_symbol
-    '^'
-  end
-
-  def beam_symbol
-    '|'
+  def initialize
+    @start = 'S'
+    @space = '.'
+    @beam = '|'
+    @splitter = '^'
+    @valid_symbols = [start, space, splitter, beam]
   end
 
   def valid_symbol?(symbol)
-    valid_symbols.include?(symbol)
+    @valid_symbols.include? symbol
+  end
+
+  def is_start?(symbol)
+    symbol == @start
+  end
+
+  def is_space?(symbol)
+    symbol == @space
+  end
+
+  def is_splitter?(symbol)
+    symbol == @splitter
+  end
+
+  def is_beam?(symbol)
+    symbol == @beam
   end
 
 end

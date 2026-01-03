@@ -87,6 +87,19 @@ class TachyonManifold
     @diagram.join("\n")
   end
 
+  def total_timelines
+    height = @diagram.length
+    width = @diagram[0].length
+    start_row, start_col = start_position
+
+    final_beams = (start_row + 1...height).reduce(Set.new([start_col])) do |beams, row|
+      _, next_beams = process_beam_row(beams, row, width)
+      next_beams
+    end
+
+    final_beams.size
+  end
+
   private
 
   # Verarbeitet eine einzelne Zeile

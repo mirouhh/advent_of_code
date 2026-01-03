@@ -92,13 +92,22 @@ class TachyonManifold
     width = @diagram[0].length
     start_row, start_col = start_position
 
-    final_beams = (start_row + 1...height).reduce(Set.new([start_col])) do |beams, row|
-      _, next_beams = process_beam_row(beams, row, width)
+    # Hash: Position -> Anzahl der Wege zu dieser Position
+    final_beams = (start_row + 1...height).reduce({start_col => 1}) do |beams, row|
+      next_beams = Hash.new(0)
+
+      beams.each do |col, count|
+        next_positions(col, row, width).each do |pos|
+          next_beams[pos] += count  # ANZAHL der Wege addieren!
+        end
+      end
+
       next_beams
     end
 
-    final_beams.size
+    final_beams.values.sum  # Summe aller Wege
   end
+
 
   private
 

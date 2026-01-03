@@ -10,8 +10,8 @@ tachyonManifold.beam = '|'
 sample_diagram = "#{File.dirname(__FILE__)}/sample_input.txt"
 puzzle_diagram = "#{File.dirname(__FILE__)}/input.txt"
 
-puts "####### PART ONE ###############################"
-puts "#### Importing sample diagram ##################"
+puts "####### PART ONE & TWO ###############################"
+puts "#### Importing sample diagram ########################"
 
 tachyonManifold.import(File.readlines("#{sample_diagram}", chomp: true).reject(&:empty?))
 
@@ -19,7 +19,10 @@ puts "\n"
 puts tachyonManifold.to_s
 puts "\n"
 
-puts "The sample diagram contains #{tachyonManifold.total_splits} splits.\n\n"
+puts "The sample diagram contains #{tachyonManifold.total_splits} splits and #{tachyonManifold.total_timelines} timelines.\n\n"
+
+puts "####### PART ONE & TWO ###############################"
+puts "#### Importing puzzle diagram ########################"
 
 tachyonManifold.reset_diagram
 
@@ -29,4 +32,4 @@ puts "\n"
 puts tachyonManifold.to_s
 puts "\n"
 
-puts "The puzzle diagram contains #{tachyonManifold.total_splits} splits.\n\n"
+puts "The sample diagram contains #{tachyonManifold.total_splits} splits and #{tachyonManifold.total_timelines} timelines.\n\n"

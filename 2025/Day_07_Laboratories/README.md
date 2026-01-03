@@ -139,3 +139,7 @@ This process continues until all of the tachyon beams reach a splitter or exit t
 To repair the teleporter, you first need to understand the beam-splitting properties of the tachyon manifold. In this example, a tachyon beam is split a total of **`21`** times.
 
 Analyze your manifold diagram. **How many times will the beam be split?**
+
+My puzzle answer was `1678.
+
+**<code style="color : gold">The first half of this puzzle is complete! It provides one gold star: \*</code>**

@@ -7,9 +7,11 @@ class TachyonManifoldTest < Minitest::Test
     @tachyonManifold = TachyonManifold.new
     @diagram = [
       '.......S.......',
-      '...............',
-      '.......^.......',
-      '...............'
+      '.......|.......',
+      '......|^|......',
+      '......|.|......',
+      '.....|^|^|.....',
+      '.....|.|.|.....',
     ]
   end
 
@@ -39,7 +41,7 @@ class TachyonManifoldTest < Minitest::Test
 
   def test_import_diagram
     @tachyonManifold.import(@diagram)
-    assert_equal 4, @tachyonManifold.diagram.size
+    assert_equal 6, @tachyonManifold.diagram.size
     assert_equal @diagram, @tachyonManifold.diagram
   end
 

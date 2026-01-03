@@ -71,4 +71,12 @@ class TachyonManifoldTest < Minitest::Test
     assert_equal ['S', '.', '^', '|'], @tachyonManifold.symbols
   end
 
+  def test_diagram_reset
+    assert @tachyonManifold.diagram.empty?
+    @tachyonManifold.import(@diagram)
+    assert_equal false, @tachyonManifold.diagram.empty?
+    @tachyonManifold.reset_diagram
+    assert @tachyonManifold.diagram.empty?
+  end
+
 end

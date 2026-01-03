@@ -31,4 +31,9 @@ class TachyonManifoldTest < Minitest::Test
     assert_equal 4, @tachyonManifold.valid_symbols.length
   end
 
+  def test_import
+    assert @tachyonManifold.add('.......S.......')
+    assert_equal [['.', '.', '.', '.', '.', '.', 'S', '.', '.', '.', '.', '.']], @tachyonManifold.diagram
+  end
+
 end

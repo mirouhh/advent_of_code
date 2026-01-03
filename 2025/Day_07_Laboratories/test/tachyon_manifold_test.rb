@@ -101,4 +101,13 @@ class TachyonManifoldTest < Minitest::Test
     assert_equal [[2, 7], [4, 6], [4, 8]], @tachyonManifold.splitter_positions
   end
 
+  def test_total_splits
+    @tachyonManifold.start = @start
+    @tachyonManifold.space = @space
+    @tachyonManifold.splitter = @splitter
+    @tachyonManifold.beam = @beam
+    @tachyonManifold.import(@diagram)
+    assert_equal 21, @tachyonManifold.total_splits
+  end
+
 end

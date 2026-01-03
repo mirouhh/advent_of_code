@@ -36,8 +36,8 @@ class TachyonManifold
   end
 
   def start_position
-    row_index = @diagram.find_index { |row| row.include?('S') }
-    col_index = @diagram[row_index].index('S') if row_index
+    row_index = @diagram.find_index { |row| row.include?(@start) }
+    col_index = @diagram[row_index].index(@start) if row_index
     [row_index, col_index]
   end
 

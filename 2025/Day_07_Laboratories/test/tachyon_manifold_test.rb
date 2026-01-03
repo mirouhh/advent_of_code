@@ -21,22 +21,26 @@ class TachyonManifoldTest < Minitest::Test
 
   def test_start_symbol
     @tachyonManifold.start = @start
-    assert @tachyonManifold.start?('S')
+    assert_equal @start, @tachyonManifold.start
+    assert @tachyonManifold.start?(@start)
   end
 
   def test_space_symbol
     @tachyonManifold.space = @space
-    assert @tachyonManifold.space?('.')
+    assert_equal @space, @tachyonManifold.space
+    assert @tachyonManifold.space?(@space)
   end
 
   def test_splitter_symbol
     @tachyonManifold.splitter = @splitter
-    assert @tachyonManifold.splitter?('^')
+    assert_equal @splitter, @tachyonManifold.splitter
+    assert @tachyonManifold.splitter?(@splitter)
   end
 
   def test_beam_symbol
     @tachyonManifold.beam = @beam
-    assert @tachyonManifold.beam?('|')
+    assert_equal @beam, @tachyonManifold.beam
+    assert @tachyonManifold.beam?(@beam)
   end
 
   def test_valid_symbols

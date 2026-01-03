@@ -1,7 +1,7 @@
 class TachyonManifold
 
   attr_reader :diagram
-  attr_writer :start, :space, :splitter, :beam
+  attr_accessor :start, :space, :splitter, :beam
 
   def initialize
     @symbols = []

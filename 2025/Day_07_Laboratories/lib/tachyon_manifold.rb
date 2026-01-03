@@ -59,4 +59,16 @@ class TachyonManifold
     reset_symbols
   end
 
+  def splitter_positions
+    splitter_positions = []
+
+    @diagram.each_with_index do |row, r|
+      row.chars.each_with_index do |char, c|
+        splitter_positions << [r, c] if splitter? char
+      end
+    end
+
+    splitter_positions
+  end
+
 end

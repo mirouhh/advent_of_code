@@ -64,7 +64,7 @@ class TachyonManifoldTest < Minitest::Test
   def test_start_position
     @tachyonManifold.start = @start
     @tachyonManifold.import(@diagram)
-    assert_equal [0,7], @tachyonManifold.start_position
+    assert_equal [0, 7], @tachyonManifold.start_position
   end
 
   def test_symbols_can_be_set
@@ -93,6 +93,12 @@ class TachyonManifoldTest < Minitest::Test
     @tachyonManifold.reset
     assert @tachyonManifold.symbols.empty?
     assert @tachyonManifold.diagram.empty?
+  end
+
+  def test_splitter_positions
+    @tachyonManifold.splitter = @splitter
+    @tachyonManifold.import(@diagram)
+    assert_equal [[2, 7], [4, 6], [4, 8]], @tachyonManifold.splitter_posistions
   end
 
 end

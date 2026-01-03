@@ -30,11 +30,7 @@ class TachyonManifold
   def beam?(symbol)
     symbol == @beam
   end
-
-  def add(diagram_data)
-    @diagram << diagram_data
-  end
-
+  
   def import(diagram)
     @diagram = diagram
   end

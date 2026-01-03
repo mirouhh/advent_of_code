@@ -32,8 +32,9 @@ class TachyonManifoldTest < Minitest::Test
   end
 
   def test_import
-    assert @tachyonManifold.add('.......S.......')
-    assert_equal [['.', '.', '.', '.', '.', '.', 'S', '.', '.', '.', '.', '.']], @tachyonManifold.diagram
+    @tachyonManifold.add('.......S.......')
+    @tachyonManifold.add('...............')
+    assert_equal ['.......S.......', '...............'], @tachyonManifold.diagram
   end
 
 end

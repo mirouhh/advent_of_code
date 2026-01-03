@@ -5,6 +5,12 @@ class TachyonManifoldTest < Minitest::Test
 
   def setup
     @tachyonManifold = TachyonManifold.new
+    @diagram = [
+      '.......S.......',
+      '...............',
+      '.......^.......',
+      '...............'
+    ]
   end
 
   def test_start_symbol
@@ -32,25 +38,13 @@ class TachyonManifoldTest < Minitest::Test
   end
 
   def test_import_diagram
-    diagram = [
-    '.......S.......',
-    '...............',
-    '.......^.......',
-    '...............'
-    ]
-    @tachyonManifold.import(diagram)
+    @tachyonManifold.import(@diagram)
     assert_equal 4, @tachyonManifold.diagram.size
-    assert_equal diagram, @tachyonManifold.diagram
+    assert_equal @diagram, @tachyonManifold.diagram
   end
 
   def test_start_position
-    diagram = [
-      '.......S.......',
-      '...............',
-      '.......^.......',
-      '...............'
-    ]
-    @tachyonManifold.import(diagram)
+    @tachyonManifold.import(@diagram)
     assert_equal [0,7], @tachyonManifold.start_position
   end
 

@@ -39,11 +39,24 @@ class TachyonManifold
   end
 
   def symbols
-    [@start, @space, @splitter, @beam]
+    [@start, @space, @splitter, @beam].compact
   end
 
   def reset_diagram
     @diagram.clear
+  end
+
+  def reset_symbols
+    @start = nil
+    @space = nil
+    @splitter = nil
+    @beam = nil
+    @symbols.clear
+  end
+
+  def reset
+    reset_diagram
+    reset_symbols
   end
 
 end

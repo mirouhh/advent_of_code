@@ -38,15 +38,15 @@ class TachyonManifoldTest < Minitest::Test
   end
 
   def test_import_diagram
-    diagram = <<-DIAGRAM
-      .......S.......
-      ...............
-      .......^.......
-      ...............
-    DIAGRAM
+    diagram = [
+    '.......S.......',
+    '...............',
+    '.......^.......',
+    '...............'
+    ]
     @tachyonManifold.import(diagram)
     assert_equal 4, @tachyonManifold.diagram.size
-    assert_equal diagram, @tachyonManifold.diagram.to_s
+    assert_equal diagram, @tachyonManifold.diagram
   end
 
 end

@@ -35,4 +35,8 @@ class TachyonManifold
     @diagram << diagram_data
   end
 
+  def import(diagram)
+    @diagram = diagram
+  end
+
 end

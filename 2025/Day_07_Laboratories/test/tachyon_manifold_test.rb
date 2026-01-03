@@ -43,4 +43,15 @@ class TachyonManifoldTest < Minitest::Test
     assert_equal diagram, @tachyonManifold.diagram
   end
 
+  def test_start_position
+    diagram = [
+      '.......S.......',
+      '...............',
+      '.......^.......',
+      '...............'
+    ]
+    @tachyonManifold.import(diagram)
+    assert_equal [0,7], @tachyonManifold.start_position
+  end
+
 end

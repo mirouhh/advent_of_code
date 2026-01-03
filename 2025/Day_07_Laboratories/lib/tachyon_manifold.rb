@@ -42,4 +42,8 @@ class TachyonManifold
     [@start, @space, @splitter, @beam]
   end
 
+  def reset_diagram
+    @diagram.clear
+  end
+
 end

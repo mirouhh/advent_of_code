@@ -219,3 +219,9 @@ Or, there's the timeline where the particle ends up at the same point as the alt
 In this example, in total, the particle ends up on **`40`** different timelines.
 
 Apply the many-worlds interpretation of quantum tachyon splitting to your manifold diagram. **In total, how many different timelines would a single tachyon particle end up on?**
+
+My puzzle answer was `357525737893560`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/2025) and try another puzzle.

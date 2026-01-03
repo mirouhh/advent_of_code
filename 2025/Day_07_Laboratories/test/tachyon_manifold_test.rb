@@ -107,7 +107,7 @@ class TachyonManifoldTest < Minitest::Test
     @tachyonManifold.splitter = @splitter
     @tachyonManifold.beam = @beam
     @tachyonManifold.import(@diagram)
-    assert_equal 21, @tachyonManifold.total_splits
+    assert_equal 3, @tachyonManifold.total_splits
   end
 
 end

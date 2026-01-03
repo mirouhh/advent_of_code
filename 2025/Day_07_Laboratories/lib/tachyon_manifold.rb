@@ -1,18 +1,15 @@
 class TachyonManifold
 
-  attr_reader :valid_symbols, :start, :space, :splitter, :beam, :diagram
+  attr_reader :diagram
+  attr_writer :start, :space, :splitter, :beam
 
   def initialize
-    @start = 'S'
-    @space = '.'
-    @beam = '|'
-    @splitter = '^'
-    @valid_symbols = [start, space, splitter, beam]
+    @symbols = []
     @diagram = []
   end
 
   def valid?(symbol)
-    @valid_symbols.include? symbol
+    symbols.include? symbol
   end
 
   def start?(symbol)
@@ -39,6 +36,10 @@ class TachyonManifold
     row_index = @diagram.find_index { |row| row.include?(@start) }
     col_index = @diagram[row_index].index(@start) if row_index
     [row_index, col_index]
+  end
+
+  def symbols
+    [@start, @space, @splitter, @beam]
   end
 
 end

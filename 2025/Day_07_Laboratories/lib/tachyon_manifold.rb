@@ -72,46 +72,40 @@ class TachyonManifold
   end
 
   def total_splits
-    require 'set'
 
     height = @diagram.length
     width = @diagram[0].length
-
-    # Startposition verwenden (nur die Spalte)
     start_row, start_col = start_position
 
-    # Splitter-Positionen als Hash für schnellen Lookup
-    splitters = {}
-    splitter_positions.each { |pos| splitters[pos] = true }
-
-    # Simulation: Set von aktiven Spalten
-    active_beams = Set.new([start_col])
-    total_splits = 0
-
-    # Zeile für Zeile ab der Zeile nach dem Start
-    (start_row + 1...height).each do |y|
-      next_beams = Set.new
-      splits_this_row = 0
-
-      active_beams.each do |x|
-        if splitters[[y, x]]
-          # Strahl trifft auf Splitter -> Split!
-          splits_this_row += 1
-          # Zwei neue Strahlen links und rechts
-          next_beams.add(x - 1) if x > 0
-          next_beams.add(x + 1) if x < width - 1
-        else
-          # Strahl geht weiter nach unten
-          next_beams.add(x)
-        end
-      end
-
-      total_splits += splits_this_row
-      active_beams = next_beams
-    end
-
-    total_splits
+    (start_row + 1...height).reduce([0, Set.new([start_col])]) do |(total, beams), row|
+      splits, next_beams = process_beam_row(beams, row, width)
+      [total + splits, next_beams]
+    end.first
   end
 
+  private
+
+  # Verarbeitet eine einzelne Zeile
+  def process_beam_row(beams, row, width)
+    next_beams = Set.new
+
+    beams.each do |col|
+      next_positions(col, row, width).each { |pos| next_beams.add(pos) }
+    end
+
+    splits = count_splits_in_row(beams, row)
+    [splits, next_beams]
+  end
+
+  # Berechnet wohin ein Strahl geht
+  def next_positions(col, row, width)
+    positions = splitter_positions.include?([row, col]) ? [col - 1, col + 1] : [col]
+    positions.select { |pos| pos.between?(0, width - 1) }
+  end
+
+  # Zählt Splits in einer Zeile
+  def count_splits_in_row(beams, row)
+    beams.count { |col| splitter_positions.include?([row, col]) }
+  end
 
 end

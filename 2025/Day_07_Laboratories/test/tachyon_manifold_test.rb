@@ -79,4 +79,16 @@ class TachyonManifoldTest < Minitest::Test
     assert @tachyonManifold.diagram.empty?
   end
 
+  def test_reset
+    assert @tachyonManifold.symbols.empty?
+    assert @tachyonManifold.diagram.empty?
+    @tachyonManifold.start = @start
+    @tachyonManifold.import(@diagram)
+    assert_equal false, @tachyonManifold.symbols.empty?
+    assert_equal false, @tachyonManifold.diagram.empty?
+    @tachyonManifold.reset
+    assert @tachyonManifold.symbols.empty?
+    assert @tachyonManifold.diagram.empty?
+  end
+
 end

@@ -110,4 +110,13 @@ class TachyonManifoldTest < Minitest::Test
     assert_equal 3, @tachyonManifold.total_splits
   end
 
+  def test_total_timelines
+    @tachyonManifold.start = @start
+    @tachyonManifold.space = @space
+    @tachyonManifold.splitter = @splitter
+    @tachyonManifold.beam = @beam
+    @tachyonManifold.import(@diagram)
+    assert_equal 3, @tachyonManifold.total_timelines
+  end
+
 end

@@ -116,7 +116,7 @@ class TachyonManifoldTest < Minitest::Test
     @tachyonManifold.splitter = @splitter
     @tachyonManifold.beam = @beam
     @tachyonManifold.import(@diagram)
-    assert_equal 3, @tachyonManifold.total_timelines
+    assert_equal 4, @tachyonManifold.total_timelines
   end
 
 end

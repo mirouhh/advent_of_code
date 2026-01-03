@@ -1,6 +1,6 @@
 class TachyonManifold
 
-  attr_reader :valid_symbols, :start, :space, :splitter, :beam
+  attr_reader :valid_symbols, :start, :space, :splitter, :beam, :diagram
 
   def initialize
     @start = 'S'
@@ -8,6 +8,7 @@ class TachyonManifold
     @beam = '|'
     @splitter = '^'
     @valid_symbols = [start, space, splitter, beam]
+    @diagram = []
   end
 
   def valid?(symbol)
@@ -28,6 +29,10 @@ class TachyonManifold
 
   def beam?(symbol)
     symbol == @beam
+  end
+
+  def add(diagram_data)
+    @diagram << diagram_data
   end
 
 end

@@ -83,6 +83,10 @@ class TachyonManifold
     end.first
   end
 
+  def to_s
+    @diagram.join("\n")
+  end
+
   private
 
   # Verarbeitet eine einzelne Zeile

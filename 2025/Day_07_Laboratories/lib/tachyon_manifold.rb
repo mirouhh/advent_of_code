@@ -71,4 +71,47 @@ class TachyonManifold
     splitter_positions
   end
 
+  def total_splits
+    require 'set'
+
+    height = @diagram.length
+    width = @diagram[0].length
+
+    # Startposition verwenden (nur die Spalte)
+    start_row, start_col = start_position
+
+    # Splitter-Positionen als Hash für schnellen Lookup
+    splitters = {}
+    splitter_positions.each { |pos| splitters[pos] = true }
+
+    # Simulation: Set von aktiven Spalten
+    active_beams = Set.new([start_col])
+    total_splits = 0
+
+    # Zeile für Zeile ab der Zeile nach dem Start
+    (start_row + 1...height).each do |y|
+      next_beams = Set.new
+      splits_this_row = 0
+
+      active_beams.each do |x|
+        if splitters[[y, x]]
+          # Strahl trifft auf Splitter -> Split!
+          splits_this_row += 1
+          # Zwei neue Strahlen links und rechts
+          next_beams.add(x - 1) if x > 0
+          next_beams.add(x + 1) if x < width - 1
+        else
+          # Strahl geht weiter nach unten
+          next_beams.add(x)
+        end
+      end
+
+      total_splits += splits_this_row
+      active_beams = next_beams
+    end
+
+    total_splits
+  end
+
+
 end

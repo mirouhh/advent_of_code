@@ -98,7 +98,7 @@ class TachyonManifoldTest < Minitest::Test
   def test_splitter_positions
     @tachyonManifold.splitter = @splitter
     @tachyonManifold.import(@diagram)
-    assert_equal [[2, 7], [4, 6], [4, 8]], @tachyonManifold.splitter_posistions
+    assert_equal [[2, 7], [4, 6], [4, 8]], @tachyonManifold.splitter_positions
   end
 
 end

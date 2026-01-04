@@ -1,0 +1,2 @@
+class CircuitCalculator
+end

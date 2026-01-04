@@ -33,9 +33,9 @@ class TachyonManifold
   end
 
   def start_position
-    row_index = @diagram.find_index { |row| row.include?(@start) }
-    col_index = @diagram[row_index].index(@start) if row_index
-    [row_index, col_index]
+    row = @diagram.find_index { |line | line.include?(@start) }
+    col = @diagram[row].index(@start) if row
+    [row, col]
   end
 
   def symbols
@@ -62,54 +62,71 @@ class TachyonManifold
   def splitter_positions
     splitter_positions = []
 
-    @diagram.each_with_index do |row, r|
-      row.chars.each_with_index do |char, c|
-        splitter_positions << [r, c] if splitter? char
-      end
+    @diagram.each_with_index.flat_map do |row, r|
+      row.chars.each_with_index.filter_map { |char, c| splitter_positions << [r, c] if splitter? char }
     end
 
     splitter_positions
   end
 
   def total_splits
-
-    height = @diagram.length
-    width = @diagram[0].length
-    start_row, start_col = start_position
-
-    (start_row + 1...height).reduce([0, Set.new([start_col])]) do |(total, beams), row|
+    search_range.reduce([0, Set.new([start_col])]) do |(total, beams), row|
       splits, next_beams = process_beam_row(beams, row, width)
       [total + splits, next_beams]
     end.first
   end
 
+  def total_timelines
+   final_beams = search_range.reduce({start_col => 1}) do |beams, row|
+      process_timeline_row(beams, row, width)
+    end
+
+    final_beams.values.sum
+  end
+
+
   def to_s
     @diagram.join("\n")
   end
 
-  def total_timelines
-    height = @diagram.length
-    width = @diagram[0].length
-    start_row, start_col = start_position
+  private
 
-    # Hash: Position -> Anzahl der Wege zu dieser Position
-    final_beams = (start_row + 1...height).reduce({start_col => 1}) do |beams, row|
-      next_beams = Hash.new(0)
+  def process_timeline_row(beams, row, width)
+    next_beams = Hash.new(0)
 
-      beams.each do |col, count|
-        next_positions(col, row, width).each do |pos|
-          next_beams[pos] += count  # ANZAHL der Wege addieren!
-        end
-      end
-
-      next_beams
+    beams.each do |col, path_count|
+      distribute_paths(col, path_count, row, width, next_beams)
     end
 
-    final_beams.values.sum  # Summe aller Wege
+    next_beams
+  end
+
+  def distribute_paths(col, path_count, row, width, next_beams)
+    next_positions(col, row, width).each do |pos|
+      next_beams[pos] += path_count
+    end
   end
 
 
-  private
+  def search_range
+    (start_row + 1)...height
+  end
+
+  def start_row
+    start_position.first
+  end
+
+  def start_col
+    start_position.last
+  end
+
+  def height
+    @diagram.length
+  end
+
+  def width
+    @diagram[0].length
+  end
 
   # Verarbeitet eine einzelne Zeile
   def process_beam_row(beams, row, width)

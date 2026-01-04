@@ -27,9 +27,9 @@ class JunctionBoxTest < Minitest::Test
   def test_new_position
     junction_box = JunctionBox.new
     junction_box.position(5, 6, 7)
-    assert_equal 5, new_position.x
-    assert_equal 7, new_position.y
-    assert_equal 9, new_position.z
+    assert_equal 5, junction_box.x
+    assert_equal 6, junction_box.y
+    assert_equal 7, junction_box.z
   end
 
 end

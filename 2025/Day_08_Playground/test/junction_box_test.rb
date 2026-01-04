@@ -10,4 +10,11 @@ class JunctionBoxTest < Minitest::Test
     refute_nil junction_box.z
   end
 
+  def test_default_values_are_zero
+    junction_box = JunctionBox.new
+    assert_equal 0, junction_box.x
+    assert_equal 0, junction_box.y
+    assert_equal 0, junction_box.z
+  end
+
 end

@@ -1,0 +1,2 @@
+class JunctionBox
+end

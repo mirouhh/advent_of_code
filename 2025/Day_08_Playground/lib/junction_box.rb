@@ -8,4 +8,9 @@ class JunctionBox
     @z = z
   end
 
+  def position(x, y, z)
+    @x = x
+    @y = y
+    @z = z
+  end
 end

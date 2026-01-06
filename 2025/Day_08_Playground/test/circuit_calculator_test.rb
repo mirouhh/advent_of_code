@@ -38,5 +38,6 @@ class CircuitCalculatorTest < Minitest::Test
     @circuit_calculator.add(junction_box_four)
     @circuit_calculator.add(junction_box_five)
     refute_empty @circuit_calculator.distances
+    assert_equal 10, @circuit_calculator.distances.size
   end
 end

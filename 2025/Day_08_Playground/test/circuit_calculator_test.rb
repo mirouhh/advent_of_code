@@ -20,4 +20,9 @@ class CircuitCalculatorTest < Minitest::Test
     assert_equal 2, @circuit_calculator.circuits.size
   end
 
+  def test_circuit_calculator_can_calculate_distance_between_junction_boxes
+    junction_box_one = JunctionBox.new
+    junction_box_two = JunctionBox.new(3,4,12)
+    assert_equal 13, @circuit_calculator.distance(junction_box_one, junction_box_two)
+  end
 end

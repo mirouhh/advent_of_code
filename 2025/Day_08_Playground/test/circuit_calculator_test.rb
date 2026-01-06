@@ -25,4 +25,18 @@ class CircuitCalculatorTest < Minitest::Test
     junction_box_two = JunctionBox.new(3,4,12)
     assert_equal 13, @circuit_calculator.distance(junction_box_one, junction_box_two)
   end
+
+  def test_circuit_calculator_calculates_all_distances
+    junction_box_one = JunctionBox.new
+    junction_box_two = JunctionBox.new(3,4,12)
+    junction_box_three = JunctionBox.new(6,8,0)
+    junction_box_four = JunctionBox.new(1,2,3)
+    junction_box_five = JunctionBox.new(3,5,9)
+    @circuit_calculator.add(junction_box_one)
+    @circuit_calculator.add(junction_box_two)
+    @circuit_calculator.add(junction_box_three)
+    @circuit_calculator.add(junction_box_four)
+    @circuit_calculator.add(junction_box_five)
+    refute_empty @circuit_calculator.distances
+  end
 end

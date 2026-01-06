@@ -12,7 +12,7 @@ class CircuitCalculatorTest < Minitest::Test
     assert @circuit_calculator.empty?
   end
 
-  def test_circuit_can_add_junction_boxes
+  def test_circuit_calculator_can_add_junction_boxes
     junction_box_one = JunctionBox.new(162,817,812)
     junction_box_two = JunctionBox.new(57,618,57)
     @circuit_calculator.add(junction_box_one)

@@ -10,4 +10,8 @@ class CircuitCalculator
     @circuits.empty?
   end
 
+  def add(junction_box)
+    @circuits << junction_box
+  end
+
 end

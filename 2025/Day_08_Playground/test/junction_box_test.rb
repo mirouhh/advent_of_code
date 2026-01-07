@@ -33,4 +33,9 @@ class JunctionBoxTest < Minitest::Test
     assert_equal 7, @junction_box.z
   end
 
+  def test_string_representation
+    @junction_box.position(5, 6, 7)
+    assert_equal "(X=5, Y=6, Z=7)", @junction_box.to_s
+  end
+
 end

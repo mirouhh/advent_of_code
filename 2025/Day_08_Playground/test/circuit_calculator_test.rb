@@ -21,13 +21,13 @@ class CircuitCalculatorTest < Minitest::Test
   end
 
   def test_circuit_calculator_calculates_distance_between_junction_boxes
-    junction_box_one = JunctionBox.new
+    junction_box_one = JunctionBox.new(0, 0, 0)
     junction_box_two = JunctionBox.new(3,4,12)
     assert_equal 13, @circuit_calculator.distance(junction_box_one, junction_box_two)
   end
 
   def test_circuit_calculator_calculates_all_distances
-    junction_box_one = JunctionBox.new
+    junction_box_one = JunctionBox.new(0, 0, 0)
     junction_box_two = JunctionBox.new(3,4,12)
     junction_box_three = JunctionBox.new(6,8,0)
     junction_box_four = JunctionBox.new(1,2,3)

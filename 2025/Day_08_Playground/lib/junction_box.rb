@@ -13,4 +13,8 @@ class JunctionBox
     @y = y
     @z = z
   end
+
+  def to_s
+    "(X=#{@x}, Y=#{@y}, Z=#{@z})"
+  end
 end

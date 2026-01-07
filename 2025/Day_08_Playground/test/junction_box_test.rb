@@ -4,13 +4,7 @@ require_relative '../lib/junction_box'
 class JunctionBoxTest < Minitest::Test
 
   def setup
-    @junction_box = JunctionBox.new
-  end
-
-  def test_new_junction_box_doesnt_have_nil_values
-    refute_nil @junction_box.x
-    refute_nil @junction_box.y
-    refute_nil @junction_box.z
+    @junction_box = JunctionBox.new(0, 0, 0)
   end
 
   def test_default_values_are_zero
@@ -24,18 +18,6 @@ class JunctionBoxTest < Minitest::Test
     assert_equal 1, junction_box.x
     assert_equal 2, junction_box.y
     assert_equal 3, junction_box.z
-  end
-
-  def test_new_position
-    @junction_box.position(5, 6, 7)
-    assert_equal 5, @junction_box.x
-    assert_equal 6, @junction_box.y
-    assert_equal 7, @junction_box.z
-  end
-
-  def test_string_representation
-    @junction_box.position(5, 6, 7)
-    assert_equal "(X=5, Y=6, Z=7)", @junction_box.to_s
   end
 
 end

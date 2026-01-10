@@ -17,7 +17,7 @@ class CircuitCalculatorTest < Minitest::Test
     junction_box_two = JunctionBox.new(57,618,57)
     @circuit_calculator.add(junction_box_one)
     @circuit_calculator.add(junction_box_two)
-    assert_equal 2, @circuit_calculator.circuits.size
+    assert_equal 2, @circuit_calculator.junction_boxes.size
   end
 
   def test_circuit_calculator_calculates_distance_between_junction_boxes
@@ -60,7 +60,9 @@ class CircuitCalculatorTest < Minitest::Test
 
   def test_connect_boxes
     assert @circuit_calculator.circuits.empty?
-    @circuit_calculator.connect_boxes
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @circuit_calculator.import(file)
+    @circuit_calculator.connect_boxes(10)
     refute @circuit_calculator.circuits.empty?
   end
 end

@@ -40,4 +40,14 @@ class CircuitCalculatorTest < Minitest::Test
     refute_empty @circuit_calculator.distances
     assert_equal 10, @circuit_calculator.distances.size
   end
+
+  def test_distances_have_end_junction_boxes
+    junction_box_one = JunctionBox.new(0, 0, 0)
+    junction_box_two = JunctionBox.new(3,4,12)
+    @circuit_calculator.add(junction_box_one)
+    @circuit_calculator.add(junction_box_two)
+    first_distance = @circuit_calculator.distances.first
+    assert_equal junction_box_one, first_distance.first
+    assert_equal junction_box_two, first_distance.last
+  end
 end

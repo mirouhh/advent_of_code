@@ -65,4 +65,12 @@ class CircuitCalculatorTest < Minitest::Test
     @circuit_calculator.connect_boxes(10)
     refute @circuit_calculator.circuits.empty?
   end
+
+  def test_connecting_boxes_finds_all_circuits
+    assert @circuit_calculator.circuits.empty?
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @circuit_calculator.import(file)
+    @circuit_calculator.connect_boxes(10)
+    assert_equal 11, @circuit_calculator.circuits.size
+  end
 end

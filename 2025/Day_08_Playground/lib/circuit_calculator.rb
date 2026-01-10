@@ -29,35 +29,11 @@ class CircuitCalculator
   end
 
   def connect_boxes(connection_amount)
-    @circuits = @junction_boxes.map { | box | [box] }
-
-    @distances.sort_by(&:value).first(connection_amount).each do |distance|
-      circuit_start = find_circuit(distance.start)
-      circuit_end = find_circuit(distance.end)
-
-      next if circuit_start == circuit_end
-
-      circuit_start.concat(circuit_end)
-      @circuits.delete(circuit_end)
-    end
+    connect_until { | iteration | iteration >= connection_amount }
   end
 
   def connect_all
-    @circuits = @junction_boxes.map { |box| [box] }
-    @last_connection = nil
-
-    @distances.sort_by(&:value).each do |distance|
-      break if @circuits.size == 1
-
-      circuit_start = find_circuit(distance.start)
-      circuit_end = find_circuit(distance.end)
-
-      next if circuit_start == circuit_end
-
-      circuit_start.concat(circuit_end)
-      @circuits.delete(circuit_end)
-      @last_connection = distance
-    end
+    connect_until { @circuits.size == 1 }
   end
 
   def circuits
@@ -85,4 +61,25 @@ class CircuitCalculator
   def find_circuit(junction_box)
     @circuits.find {|circuit| circuit.include?(junction_box)}
   end
+
+  def connect_until
+    @circuits = @junction_boxes.map { |box| [box] }
+    @last_connection = nil
+    iteration = 0
+
+    @distances.sort_by(&:value).each do |distance|
+      break if yield(iteration)
+      iteration += 1
+
+      circuit_start = find_circuit(distance.start)
+      circuit_end = find_circuit(distance.end)
+
+      next if circuit_start == circuit_end
+
+      circuit_start.concat(circuit_end)
+      @circuits.delete(circuit_end)
+      @last_connection = distance
+    end
+  end
+
 end

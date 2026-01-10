@@ -8,7 +8,6 @@ def calculation_info(circuit_calculator, connection_amount, top_circuit_size)
 
   <<~INFO
     #{circuit_calculator.junction_boxes.size} junction boxes imported.
-  
     #{circuit_calculator.circuits.size} circuits found after #{connection_amount} connections.
     
     The largest circuits have the sizes #{sizes} which leads to #{product} as a result.

@@ -46,6 +46,10 @@ class CircuitCalculator
     @circuits.sort_by(&:size).reverse
   end
 
+  def multiply(number_of_largest_circuits)
+    circuits.first(number_of_largest_circuits).map(&:size).reduce(:*)
+  end
+
   private
 
   def update_distances(new_junction_box)

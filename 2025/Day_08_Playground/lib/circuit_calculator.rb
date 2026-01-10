@@ -28,13 +28,10 @@ class CircuitCalculator
     end
   end
 
-  def connect_boxes(shortest_connection_amount)
-    connections = 0
+  def connect_boxes(connection_amount)
     @circuits = @junction_boxes.map { | box | [box] }
 
-    @distances.sort_by(&:value).each do |distance|
-      break if connections >= shortest_connection_amount
-
+    @distances.sort_by(&:value).first(connection_amount).each do |distance|
       circuit_start = find_circuit(distance.start)
       circuit_end = find_circuit(distance.end)
 
@@ -42,9 +39,11 @@ class CircuitCalculator
 
       circuit_start.concat(circuit_end)
       @circuits.delete(circuit_end)
-
-      connections += 1
     end
+  end
+
+  def circuits
+    @circuits.sort_by(&:size).reverse
   end
 
   private

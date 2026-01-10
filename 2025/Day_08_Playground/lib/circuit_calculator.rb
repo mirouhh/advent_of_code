@@ -1,6 +1,6 @@
 class CircuitCalculator
 
-  attr_reader :circuits, :distances, :junction_boxes
+  attr_reader :circuits, :distances, :junction_boxes, :last_connection
 
   def initialize
     @circuits = []

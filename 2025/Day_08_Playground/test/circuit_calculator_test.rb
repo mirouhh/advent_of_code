@@ -97,4 +97,9 @@ class CircuitCalculatorTest < Minitest::Test
     assert_equal 216, boxes.last.x
   end
 
+  def test_last_connection_product
+    @circuit_calculator_with_imorted_data.connect_all
+    assert_equal 25272, @circuit_calculator_with_imorted_data.last_connection_product
+  end
+
 end

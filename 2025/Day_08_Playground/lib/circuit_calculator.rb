@@ -50,6 +50,12 @@ class CircuitCalculator
     circuits.first(number_of_largest_circuits).map(&:size).reduce(:*)
   end
 
+  def clear
+    @circuits.clear
+    @distances.clear
+    @junction_boxes.clear
+  end
+
   private
 
   def update_distances(new_junction_box)

@@ -57,4 +57,10 @@ class CircuitCalculatorTest < Minitest::Test
     @circuit_calculator.import(file)
     refute @circuit_calculator.empty?
   end
+
+  def test_connect_boxes
+    assert @circuit_calculator.circuits.empty?
+    @circuit_calculator.connect_boxes
+    refute @circuit_calculator.circuits.empty?
+  end
 end

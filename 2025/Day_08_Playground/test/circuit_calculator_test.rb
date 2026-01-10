@@ -50,4 +50,10 @@ class CircuitCalculatorTest < Minitest::Test
     assert_equal junction_box_one, first_distance.start
     assert_equal junction_box_two, first_distance.end
   end
+
+  def test_calculator_imports_data_from_file
+    assert @circuit_calculator.empty?
+    @circuit_calculator.import('..sample_input.txt')
+    refute @circuit_calculator.empty?
+  end
 end

@@ -47,7 +47,7 @@ class CircuitCalculatorTest < Minitest::Test
     @circuit_calculator.add(junction_box_one)
     @circuit_calculator.add(junction_box_two)
     first_distance = @circuit_calculator.distances.first
-    assert_equal junction_box_one, first_distance.first
-    assert_equal junction_box_two, first_distance.last
+    assert_equal junction_box_one, first_distance.start
+    assert_equal junction_box_two, first_distance.end
   end
 end

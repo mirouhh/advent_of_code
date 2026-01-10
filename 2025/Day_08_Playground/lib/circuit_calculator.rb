@@ -25,6 +25,8 @@ class CircuitCalculator
   private
 
   def update_distances(new_junction_box)
-    @junction_boxes.each { |junction_box| @distances << distance(new_junction_box, junction_box) }
+    @junction_boxes.each do |junction_box|
+      @distances << Distance.new(value: distance(junction_box, new_junction_box), start: junction_box, end: new_junction_box)
+    end
   end
 end

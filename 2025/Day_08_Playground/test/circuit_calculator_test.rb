@@ -73,4 +73,16 @@ class CircuitCalculatorTest < Minitest::Test
     @circuit_calculator.connect_boxes(10)
     assert_equal 11, @circuit_calculator.circuits.size
   end
+
+  def test_connecting_boxes_finds_correct_circuits
+    assert @circuit_calculator.circuits.empty?
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @circuit_calculator.import(file)
+    @circuit_calculator.connect_boxes(10)
+    top_3_circuits = @circuit_calculator.circuits.first(3)
+    assert_equal 5, top_3_circuits.first.size
+    assert_equal 4, top_3_circuits[1].size
+    assert_equal 2, top_3_circuits.last.size
+  end
+
 end

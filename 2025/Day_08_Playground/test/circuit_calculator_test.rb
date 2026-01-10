@@ -6,6 +6,9 @@ class CircuitCalculatorTest < Minitest::Test
 
   def setup
     @circuit_calculator = CircuitCalculator.new
+    @circuit_calculator_with_imorted_data = CircuitCalculator.new
+    @file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @circuit_calculator_with_imorted_data.import(@file)
   end
 
   def test_circuit_calculator_is_empty
@@ -53,44 +56,31 @@ class CircuitCalculatorTest < Minitest::Test
 
   def test_calculator_imports_data_from_file
     assert @circuit_calculator.empty?
-    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
-    @circuit_calculator.import(file)
+    @circuit_calculator.import(@file)
     refute @circuit_calculator.empty?
   end
 
   def test_connect_boxes
-    assert @circuit_calculator.circuits.empty?
-    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
-    @circuit_calculator.import(file)
-    @circuit_calculator.connect_boxes(10)
-    refute @circuit_calculator.circuits.empty?
+    @circuit_calculator_with_imorted_data.connect_boxes(10)
+    refute @circuit_calculator_with_imorted_data.circuits.empty?
   end
 
   def test_connecting_boxes_finds_all_circuits
-    assert @circuit_calculator.circuits.empty?
-    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
-    @circuit_calculator.import(file)
-    @circuit_calculator.connect_boxes(10)
-    assert_equal 11, @circuit_calculator.circuits.size
+    @circuit_calculator_with_imorted_data.connect_boxes(10)
+    assert_equal 11, @circuit_calculator_with_imorted_data.circuits.size
   end
 
   def test_connecting_boxes_finds_correct_circuits
-    assert @circuit_calculator.circuits.empty?
-    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
-    @circuit_calculator.import(file)
-    @circuit_calculator.connect_boxes(10)
-    top_3_circuits = @circuit_calculator.circuits.first(3)
+    @circuit_calculator_with_imorted_data.connect_boxes(10)
+    top_3_circuits = @circuit_calculator_with_imorted_data.circuits.first(3)
     assert_equal 5, top_3_circuits.first.size
     assert_equal 4, top_3_circuits[1].size
     assert_equal 2, top_3_circuits.last.size
   end
 
   def test_circuit_calculator_multiplies_largest_circuits_correctly
-    assert @circuit_calculator.circuits.empty?
-    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
-    @circuit_calculator.import(file)
-    @circuit_calculator.connect_boxes(10)
-    assert_equal 40, @circuit_calculator.multiply(3)
+    @circuit_calculator_with_imorted_data.connect_boxes(10)
+    assert_equal 40, @circuit_calculator_with_imorted_data.multiply(3)
   end
 
 end

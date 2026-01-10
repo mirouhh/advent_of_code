@@ -83,4 +83,10 @@ class CircuitCalculatorTest < Minitest::Test
     assert_equal 40, @circuit_calculator_with_imorted_data.multiply(3)
   end
 
+  def test_connect_all_results_in_single_circuit
+    @circuit_calculator_with_imorted_data.connect_all
+    assert_equal 1, @circuit_calculator_with_imorted_data.circuits.size
+    assert_equal @circuit_calculator_with_imorted_data.junction_boxes.size, @circuit_calculator_with_imorted_data.circuits.first.size
+  end
+
 end

@@ -85,4 +85,12 @@ class CircuitCalculatorTest < Minitest::Test
     assert_equal 2, top_3_circuits.last.size
   end
 
+  def test_circuit_calculator_multiplies_largest_circuits_correctly
+    assert @circuit_calculator.circuits.empty?
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @circuit_calculator.import(file)
+    @circuit_calculator.connect_boxes(10)
+    assert_equal 40, @circuit_calculator.multiply(3)
+  end
+
 end

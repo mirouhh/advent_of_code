@@ -1,5 +1,5 @@
 require 'minitest/autorun'
-require_relative '../lib/junction_box'
+require_relative '../lib/helper'
 
 class JunctionBoxTest < Minitest::Test
 

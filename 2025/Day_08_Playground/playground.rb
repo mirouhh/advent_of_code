@@ -18,3 +18,5 @@ puts "\n"
 circuit_calculator.clear
 circuit_calculator.import(puzzle_data)
 puts calculation_info_part_one(circuit_calculator, 1000, 3)
+
+puts calculation_info_part_two(circuit_calculator)

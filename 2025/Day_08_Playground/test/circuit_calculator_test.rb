@@ -53,7 +53,8 @@ class CircuitCalculatorTest < Minitest::Test
 
   def test_calculator_imports_data_from_file
     assert @circuit_calculator.empty?
-    @circuit_calculator.import('..sample_input.txt')
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @circuit_calculator.import(file)
     refute @circuit_calculator.empty?
   end
 end

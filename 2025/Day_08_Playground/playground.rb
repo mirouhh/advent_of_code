@@ -5,14 +5,9 @@ sample_data = "#{File.dirname(__FILE__)}/sample_input.txt"
 puzzle_data = "#{File.dirname(__FILE__)}/input.txt"
 
 puts "####### PART ONE & TWO ###############################"
-puts "#### Importing sample diagram ########################"
-
-@circuitCalculator = CircuitCalculator.new
-@circuitCalculator.import(sample_data)
-
+puts "#### Importing sample data ########################"
 puts "\n"
-puts "#{@circuitCalculator.distances.size} distances found:"
-@circuitCalculator.distances.sort_by { | distance | distance.value }.each_with_index do |distance, index |
-  puts "Position #{index}: #{distance.value}, Start: #{distance.start} End: #{distance.end}"
-end
-puts "\n"
+circuit_calculator = CircuitCalculator.new
+circuit_calculator.import(sample_data)
+puts calculation_info(circuit_calculator, 10, 3)
+

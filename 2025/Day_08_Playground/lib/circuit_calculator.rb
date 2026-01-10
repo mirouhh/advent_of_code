@@ -50,6 +50,10 @@ class CircuitCalculator
     @junction_boxes.clear
   end
 
+  def last_connection_product
+    @last_connection.start.x * @last_connection.end.x
+  end
+
   private
 
   def update_distances(new_junction_box)

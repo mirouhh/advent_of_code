@@ -42,6 +42,24 @@ class CircuitCalculator
     end
   end
 
+  def connect_all
+    @circuits = @junction_boxes.map { |box| [box] }
+    @last_connection = nil
+
+    @distances.sort_by(&:value).each do |distance|
+      break if @circuits.size == 1
+
+      circuit_start = find_circuit(distance.start)
+      circuit_end = find_circuit(distance.end)
+
+      next if circuit_start == circuit_end
+
+      circuit_start.concat(circuit_end)
+      @circuits.delete(circuit_end)
+      @last_connection = distance
+    end
+  end
+
   def circuits
     @circuits.sort_by(&:size).reverse
   end

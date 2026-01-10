@@ -52,3 +52,7 @@ This process continues for a while, and the Elves are concerned that they don't 
 After making the ten shortest connections, there are 11 circuits: one circuit which contains **5** junction boxes, one circuit which contains **4** junction boxes, two circuits which contain **2** junction boxes each, and seven circuits which each contain a single junction box. Multiplying together the sizes of the three largest circuits (5, 4, and one of the circuits of size 2) produces **`40`**.
 
 Your list contains many junction boxes; connect together the **1000** pairs of junction boxes which are closest together. Afterward, **what do you get if you multiply together the sizes of the three largest circuits?**
+
+My puzzle answer was `97384`.
+
+**<code style="color : gold">The first half of this puzzle is complete! It provides one gold star: \*</code>**

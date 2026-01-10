@@ -90,8 +90,8 @@ class CircuitCalculatorTest < Minitest::Test
   end
 
   def test_last_connection_contains_correct_junction_boxes
-    @circuit_calculator.connect_all
-    last = @circuit_calculator.last_connection
+    @circuit_calculator_with_imorted_data.connect_all
+    last = @circuit_calculator_with_imorted_data.last_connection
     boxes = [last.start, last.end].sort_by(&:x)
     assert_equal 117, boxes.first.x
     assert_equal 216, boxes.last.x

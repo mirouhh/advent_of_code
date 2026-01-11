@@ -1,4 +1,5 @@
 require 'minitest/autorun'
+require_relative '../lib/tile_calculator'
 
 class TileCalculatorTest < Minitest::Test
 

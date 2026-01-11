@@ -35,4 +35,8 @@ class TileCalculator
     end
   end
 
+  def max
+    @rectangles.max
+  end
+
 end

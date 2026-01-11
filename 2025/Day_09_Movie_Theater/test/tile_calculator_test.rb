@@ -61,4 +61,11 @@ class TileCalculatorTest < Minitest::Test
     @tile_calculator.calculate_rectangles
     assert_equal 35, @tile_calculator.max
   end
+
+  def test_sample_data_is_calculated_correctly
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @tile_calculator.import(file)
+    @tile_calculator.calculate_rectangles
+    assert_equal 50, @tile_calculator.max
+  end
 end

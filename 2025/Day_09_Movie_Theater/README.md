@@ -90,3 +90,7 @@ Ultimately, the largest rectangle you can make in this example has area `50`. On
 </pre>
 
 Using two red tiles as opposite corners, **what is the largest area of any rectangle you can make?**
+
+My puzzle answer was `4748769124`.
+
+**<code style="color : gold">The first half of this puzzle is complete! It provides one gold star: \*</code>**

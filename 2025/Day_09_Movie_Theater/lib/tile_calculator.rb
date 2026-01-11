@@ -13,4 +13,8 @@ class TileCalculator
   def add_red_tile(row, col)
     @red_tiles << RedTile.new(row, col)
   end
+
+  def clean
+    @red_tiles.clear
+  end
 end

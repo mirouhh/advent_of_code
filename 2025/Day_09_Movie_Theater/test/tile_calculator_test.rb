@@ -22,4 +22,12 @@ class TileCalculatorTest < Minitest::Test
     tile_calculator.clean
     assert tile_calculator
   end
+
+  def test_calculator_can_import_data_from_file
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    tile_calculator = TileCalculator.new
+    assert_empty tile_calculator
+    tile_calculator.import(file)
+    refute_empty tile_calculator
+  end
 end

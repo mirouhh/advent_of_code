@@ -2,12 +2,15 @@ RedTile = Data.define(:row, :col)
 
 class TileCalculator
 
+  attr_reader :rectangles
+
   def initialize
     @red_tiles = []
+    @rectangles = []
   end
 
   def empty?
-    @red_tiles.empty?
+    @red_tiles.empty? && @rectangles.empty?
   end
 
   def add_red_tile(row, col)
@@ -16,6 +19,7 @@ class TileCalculator
 
   def clean
     @red_tiles.clear
+    @rectangles.clear
   end
 
   def import(file)
@@ -24,4 +28,11 @@ class TileCalculator
       add_red_tile(x, y)
     end
   end
+
+  def calculate_rectangles
+    @rectangles = @red_tiles.combination(2).map do | red_tile_1, red_tile_2 |
+      (red_tile_1.row - red_tile_2.row).abs * (red_tile_1.col - red_tile_2.col).abs
+    end
+  end
+
 end

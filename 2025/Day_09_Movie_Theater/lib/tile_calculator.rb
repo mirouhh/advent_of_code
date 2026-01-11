@@ -31,7 +31,7 @@ class TileCalculator
 
   def calculate_rectangles
     @rectangles = @red_tiles.combination(2).map do | red_tile_1, red_tile_2 |
-      (red_tile_1.row - red_tile_2.row).abs * (red_tile_1.col - red_tile_2.col).abs
+      ((red_tile_1.row - red_tile_2.row).abs + 1) * ((red_tile_1.col - red_tile_2.col).abs + 1)
     end
   end
 

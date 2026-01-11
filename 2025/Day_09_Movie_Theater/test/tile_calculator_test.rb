@@ -30,4 +30,12 @@ class TileCalculatorTest < Minitest::Test
     @tile_calculator.import(file)
     refute_empty @tile_calculator
   end
+
+  def test_calculator_can_calculate_rectangles
+    assert_empty @tile_calculator
+    @tile_calculator.add_red_tile(2,5)
+    @tile_calculator.add_red_tile(9,7)
+    @tile_calculator.calculate_rectangles
+    refute_empty @tile_calculator.rectangles
+  end
 end

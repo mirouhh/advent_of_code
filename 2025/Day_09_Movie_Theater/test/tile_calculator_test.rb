@@ -13,4 +13,13 @@ class TileCalculatorTest < Minitest::Test
     tile_calculator.add_red_tile(1,2)
     refute_empty tile_calculator
   end
+
+  def test_calculator_can_be_cleaned
+    tile_calculator = TileCalculator.new
+    assert_empty tile_calculator
+    tile_calculator.add_red_tile(1,2)
+    refute_empty tile_calculator
+    tile_calculator.clean
+    assert tile_calculator
+  end
 end

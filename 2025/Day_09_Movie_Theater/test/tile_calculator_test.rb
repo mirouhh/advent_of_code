@@ -52,4 +52,13 @@ class TileCalculatorTest < Minitest::Test
     @tile_calculator.calculate_rectangles
     assert_equal 24, @tile_calculator.rectangles.first
   end
+
+  def test_max_area
+    @tile_calculator.add_red_tile(2,5)
+    @tile_calculator.add_red_tile(9,7)
+    @tile_calculator.add_red_tile(7,1)
+    @tile_calculator.add_red_tile(11,7)
+    @tile_calculator.calculate_rectangles
+    assert_equal 35, @tile_calculator.max
+  end
 end

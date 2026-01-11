@@ -46,4 +46,10 @@ class TileCalculatorTest < Minitest::Test
     assert_equal 1, @tile_calculator.rectangles.size
   end
 
+  def test_calculation_is_correct
+    @tile_calculator.add_red_tile(2,5)
+    @tile_calculator.add_red_tile(9,7)
+    @tile_calculator.calculate_rectangles
+    assert_equal 24, @tile_calculator.rectangles.first
+  end
 end

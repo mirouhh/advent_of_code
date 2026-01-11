@@ -5,7 +5,7 @@ class TileCalculatorTest < Minitest::Test
 
   def test_new_calculator_is_empty
     tile_calculator = TileCalculator.new
-    assert_empty tile_calculator
+    assert tile_calculator.empty?
   end
 
   def test_calculator_can_add_red_tiles

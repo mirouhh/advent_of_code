@@ -2,7 +2,7 @@ RedTile = Data.define(:row, :col)
 
 class TileCalculator
 
-  attr_reader :rectangles
+  attr_reader :rectangles, :red_tiles
 
   def initialize
     @red_tiles = []

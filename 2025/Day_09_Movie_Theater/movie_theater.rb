@@ -21,3 +21,8 @@ puts "#### Importing sample data ###########################"
 tile_calculator.import(sample_data)
 puts calculation_info_part_one(tile_calculator)
 
+puts "#### Importing puzzle data ###########################"
+
+tile_calculator.clean
+tile_calculator.import(puzzle_data)
+puts calculation_info_part_one(tile_calculator)

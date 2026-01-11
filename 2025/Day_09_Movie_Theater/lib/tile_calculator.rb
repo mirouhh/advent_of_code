@@ -1,3 +1,5 @@
+RedTile = Data.define(:row, :col)
+
 class TileCalculator
 
   def initialize
@@ -9,6 +11,6 @@ class TileCalculator
   end
 
   def add_red_tile(row, col)
-    @red_tiles << [row, col]
+    @red_tiles << RedTile.new(row, col)
   end
 end

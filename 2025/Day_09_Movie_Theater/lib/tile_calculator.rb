@@ -57,7 +57,13 @@ class TileCalculator
   end
 
   def valid?(tile1, tile2)
-    true
+    min_col, max_col = [tile1.col, tile2.col].minmax
+    min_row, max_row = [tile1.row, tile2.row].minmax
+
+    @green_tiles.none? do |green|
+      green.col > min_col && green.col < max_col &&
+        green.row > min_row && green.row < max_row
+    end
   end
 
   private

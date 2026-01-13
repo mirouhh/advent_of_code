@@ -66,6 +66,16 @@ class TileCalculator
     end
   end
 
+  def calculate_valid_rectangles
+    @valid_areas = @red_tiles.combination(2)
+      .select { |tile1, tile2| valid?(tile1, tile2) }
+      .map { |tile1, tile2| ((tile1.col - tile2.col).abs + 1) * ((tile1.row - tile2.row).abs + 1) }
+  end
+
+  def max_valid_area
+    @valid_areas.max
+  end
+
   private
 
   def add_line_between(tile1, tile2)

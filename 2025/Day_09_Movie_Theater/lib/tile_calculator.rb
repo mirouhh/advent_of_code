@@ -3,16 +3,17 @@ GreenTile = Data.define(:col, :row)
 
 class TileCalculator
 
-  attr_reader :rectangles, :red_tiles, :green_tiles
+  attr_reader :rectangles, :red_tiles, :green_tiles, :valid_areas
 
   def initialize
     @red_tiles = []
     @rectangles = []
     @green_tiles = []
+    @valid_areas = []
   end
 
   def empty?
-    @red_tiles.empty? && @rectangles.empty? && @green_tiles.empty?
+    @red_tiles.empty? && @rectangles.empty? && @green_tiles.empty? && @valid_areas.empty?
   end
 
   def add_red_tile(col, row)
@@ -23,6 +24,7 @@ class TileCalculator
     @red_tiles.clear
     @rectangles.clear
     @green_tiles.clear
+    @valid_areas.clear
   end
 
   def import(file)
@@ -46,14 +48,16 @@ class TileCalculator
     @red_tiles.empty? ? return : calculate_green_tiles
   end
 
-  private
-
   def calculate_green_tiles
     @red_tiles.each_cons(2) do |tile1, tile2|
       add_line_between(tile1, tile2)
     end
 
     add_line_between(@red_tiles.last, @red_tiles.first) if @red_tiles.size > 2
+  end
+
+  def valid?(tile1, tile2)
+    true
   end
 
   private

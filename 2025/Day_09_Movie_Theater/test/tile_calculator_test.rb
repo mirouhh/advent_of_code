@@ -101,4 +101,12 @@ class TileCalculatorTest < Minitest::Test
     @tile_calculator.add_green_tiles
     assert_equal 5, @tile_calculator.green_tiles.size
   end
+
+  def test_green_tiles_are_calculated_across_rows_and_columns
+    @tile_calculator.add_red_tile(7,1)
+    @tile_calculator.add_red_tile(11,1)
+    @tile_calculator.add_red_tile(11, 7)
+    @tile_calculator.add_green_tiles
+    refute_empty @tile_calculator.green_tiles
+  end
 end

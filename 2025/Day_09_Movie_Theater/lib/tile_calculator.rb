@@ -49,25 +49,25 @@ class TileCalculator
   private
 
   def calculate_green_tiles
-    @red_tiles.first.col == @red_tiles.last.col ? calculate_green_tiles_in_same_column : calculate_green_tiles_in_same_row
+    @red_tiles.each_cons(2) do |tile1, tile2|
+      add_line_between(tile1, tile2)
+    end
+
+    add_line_between(@red_tiles.last, @red_tiles.first) if @red_tiles.size > 2
   end
 
-  def calculate_green_tiles_in_same_row
-    puts "Adding green tiles in same row"
-    row = @red_tiles.first.row
-    ((@red_tiles.first.col + 1)...@red_tiles.last.col).each do |col|
-      puts " adding green_tile in row: #{row} and col: #{col}"
-      @green_tiles << GreenTile.new(row, col)
+  private
+
+  def add_line_between(tile1, tile2)
+    if tile1.row == tile2.row
+      fill_between(tile1.col, tile2.col) { |col| GreenTile.new(col, tile1.row) }
+    elsif tile1.col == tile2.col
+      fill_between(tile1.row, tile2.row) { |row| GreenTile.new(tile1.col, row) }
     end
   end
 
-  def calculate_green_tiles_in_same_column
-    puts "Adding green tiles in same column"
-    col = @red_tiles.first.col
-    ((@red_tiles.first.row + 1)...@red_tiles.last.row).each do |row|
-      puts " adding green_tile in row: #{row} and col: #{col}"
-      @green_tiles << GreenTile.new(row, col)
-    end
+  def fill_between(a, b)
+    (([a, b].min + 1)...[a, b].max).each { |i| @green_tiles << yield(i) }
   end
 
 end

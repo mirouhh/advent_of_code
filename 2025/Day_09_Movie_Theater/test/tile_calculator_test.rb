@@ -69,7 +69,7 @@ class TileCalculatorTest < Minitest::Test
     assert_equal 50, @tile_calculator.max
   end
 
-  def test_green_tiles_not_available_without_red_tiles
+  def test_no_green_tiles_without_red_tiles
     @tile_calculator.add_green_tiles
     assert_empty @tile_calculator.green_tiles
   end

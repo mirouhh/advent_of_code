@@ -175,3 +175,9 @@ The largest rectangle you can make in this example using only red and green tile
 </pre>
 
 Using two red tiles as opposite corners, **what is the largest area of any rectangle you can make using only red and green tiles?**
+
+My puzzle answer was `1525991432`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/2025) and try another puzzle.

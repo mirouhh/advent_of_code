@@ -49,11 +49,20 @@ class TileCalculator
   private
 
   def calculate_green_tiles
+    @red_tiles.first.col == @red_tiles.last.col ? calculate_green_tiles_in_same_column : calculate_green_tiles_in_same_row
+  end
+
+  def calculate_green_tiles_in_same_row
     row = @red_tiles.first.row
-    puts "row: #{row}"
-    puts "start_col: #{@red_tiles.first.col}"
-    puts "end_col: #{@red_tiles.last.col}"
     ((@red_tiles.first.col + 1)...@red_tiles.last.col).each do |col|
+      puts " adding green_tile in row: #{row} and col: #{col}"
+      @green_tiles << GreenTile.new(row, col)
+    end
+  end
+
+  def calculate_green_tiles_in_same_column
+    col = @red_tiles.first.col
+    ((@red_tiles.first.row + 1)...@red_tiles.last.row).each do |row|
       puts " adding green_tile in row: #{row} and col: #{col}"
       @green_tiles << GreenTile.new(row, col)
     end

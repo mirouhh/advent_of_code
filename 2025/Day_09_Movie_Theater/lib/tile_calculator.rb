@@ -2,15 +2,16 @@ RedTile = Data.define(:row, :col)
 
 class TileCalculator
 
-  attr_reader :rectangles, :red_tiles
+  attr_reader :rectangles, :red_tiles, :green_tiles
 
   def initialize
     @red_tiles = []
     @rectangles = []
+    @green_tiles = []
   end
 
   def empty?
-    @red_tiles.empty? && @rectangles.empty?
+    @red_tiles.empty? && @rectangles.empty? && @green_tiles.empty?
   end
 
   def add_red_tile(row, col)
@@ -20,6 +21,7 @@ class TileCalculator
   def clean
     @red_tiles.clear
     @rectangles.clear
+    @green_tiles.clear
   end
 
   def import(file)
@@ -37,6 +39,10 @@ class TileCalculator
 
   def max
     @rectangles.max
+  end
+
+  def add_green_tiles
+    @red_tiles.empty? ? return : calculate_green_tiles
   end
 
 end

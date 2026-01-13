@@ -53,7 +53,10 @@ class TileCalculator
     puts "row: #{row}"
     puts "start_col: #{@red_tiles.first.col}"
     puts "end_col: #{@red_tiles.last.col}"
-    (@red_tiles.first.col...@red_tiles.last.col).each { |col| @green_tiles << GreenTile.new(row, col) }
+    ((@red_tiles.first.col + 1)...@red_tiles.last.col).each do |col|
+      puts " adding green_tile in row: #{row} and col: #{col}"
+      @green_tiles << GreenTile.new(row, col)
+    end
   end
 
 end

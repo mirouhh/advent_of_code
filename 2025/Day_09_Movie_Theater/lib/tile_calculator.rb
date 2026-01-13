@@ -1,4 +1,5 @@
-RedTile = Data.define(:row, :col)
+RedTile = Data.define(:col, :row)
+GreenTile = Data.define(:col, :row)
 
 class TileCalculator
 
@@ -14,8 +15,8 @@ class TileCalculator
     @red_tiles.empty? && @rectangles.empty? && @green_tiles.empty?
   end
 
-  def add_red_tile(row, col)
-    @red_tiles << RedTile.new(row, col)
+  def add_red_tile(col, row)
+    @red_tiles << RedTile.new(col, row)
   end
 
   def clean
@@ -33,7 +34,7 @@ class TileCalculator
 
   def calculate_rectangles
     @rectangles = @red_tiles.combination(2).map do | red_tile_1, red_tile_2 |
-      ((red_tile_1.row - red_tile_2.row).abs + 1) * ((red_tile_1.col - red_tile_2.col).abs + 1)
+      ((red_tile_1.col - red_tile_2.col).abs + 1) * ((red_tile_1.row - red_tile_2.row).abs + 1)
     end
   end
 
@@ -43,6 +44,16 @@ class TileCalculator
 
   def add_green_tiles
     @red_tiles.empty? ? return : calculate_green_tiles
+  end
+
+  private
+
+  def calculate_green_tiles
+    row = @red_tiles.first.row
+    puts "row: #{row}"
+    puts "start_col: #{@red_tiles.first.col}"
+    puts "end_col: #{@red_tiles.last.col}"
+    (@red_tiles.first.col...@red_tiles.last.col).each { |col| @green_tiles << GreenTile.new(row, col) }
   end
 
 end

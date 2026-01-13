@@ -137,4 +137,13 @@ class TileCalculatorTest < Minitest::Test
     second_red_tile = @tile_calculator.red_tiles[1]
     assert_equal false, @tile_calculator.valid?(first_red_tile, second_red_tile)
   end
+
+  def test_sample_data_is_calculated_correctly_for_part_two
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @tile_calculator.import(file)
+    @tile_calculator.add_green_tiles
+    @tile_calculator.calculate_valid_rectangles
+    assert_equal 24, @tile_calculator.max_valid_area
+  end
+
 end

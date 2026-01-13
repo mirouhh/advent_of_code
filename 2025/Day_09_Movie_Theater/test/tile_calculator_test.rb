@@ -117,4 +117,14 @@ class TileCalculatorTest < Minitest::Test
     @tile_calculator.add_green_tiles
     assert_equal 8, @tile_calculator.green_tiles.size
   end
+
+  def test_area_is_valid
+    assert_empty @tile_calculator.valid_areas
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @tile_calculator.import(file)
+    @tile_calculator.add_green_tiles
+    first_red_tile = @tile_calculator.red_tiles[7]
+    second_red_tile = @tile_calculator.red_tiles[1]
+    assert @tile_calculator.valid?(first_red_tile, second_red_tile)
+  end
 end

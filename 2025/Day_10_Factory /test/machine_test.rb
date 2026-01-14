@@ -21,4 +21,10 @@ class MachineTest < Minitest::Test
     @machine.indicator_lights = indicator_lights
     assert_equal indicator_lights, @machine.indicator_lights
   end
+
+  def test_machine_is_not_running
+    indicator_lights = '[.##.]'
+    @machine.indicator_lights = indicator_lights
+    refute @machine.running?
+  end
 end

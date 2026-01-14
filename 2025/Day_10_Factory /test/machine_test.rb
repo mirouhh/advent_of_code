@@ -7,4 +7,10 @@ class MachineTest < Minitest::Test
     machine = Machine.new
     assert_empty machine.indicator_lights
   end
+
+  def test_indicator_lights_can_be_set
+    machine = Machine.new()
+    machine.indicator_lights = '[.##.]'
+    refute_empty machine.indicator_lights
+  end
 end

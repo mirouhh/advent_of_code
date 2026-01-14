@@ -15,4 +15,10 @@ class MachineTest < Minitest::Test
     @machine.indicator_lights = '[.##.]'
     refute_empty @machine.indicator_lights
   end
+
+  def test_indicator_lights_are_set_correctly
+    indicator_lights = '[.##.]'
+    @machine.indicator_lights = indicator_lights
+    assert_equal indicator_lights, @machine.indicator_lights
+  end
 end

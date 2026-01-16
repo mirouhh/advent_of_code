@@ -1,8 +1,10 @@
 class Machine
 
+  attr_reader :button_wiring_schematics
   def initialize
     @indicator_lights = []
     @initial_state = []
+    @button_wiring_schematics = []
   end
 
   def indicator_lights=(definition)

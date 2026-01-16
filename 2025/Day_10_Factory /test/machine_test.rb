@@ -36,4 +36,9 @@ class MachineTest < Minitest::Test
   def test_a_new_machine_has_no_button_wiring_schematics
     assert_empty @machine.button_wiring_schematics
   end
+
+  def test_button_wiring_schematics_can_be_set
+    @machine.button_wiring_schematics = '(3) (1,3) (2) (2,3) (0,2) (0,1)'
+    refute_empty @machine.button_wiring_schematics
+  end
 end

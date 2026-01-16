@@ -32,4 +32,8 @@ class MachineTest < Minitest::Test
     @machine.indicator_lights = '....'
     assert @machine.running?
   end
+
+  def test_a_new_machine_has_no_button_wiring_schematics
+    refute_empty @machine.button_wiring_schematics
+  end
 end

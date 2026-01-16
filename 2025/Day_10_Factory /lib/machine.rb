@@ -19,4 +19,8 @@ class Machine
   def running?
     @initial_state == @indicator_lights
   end
+
+  def button_wiring_schematics=(schematics)
+    @button_wiring_schematics = schematics.scan(/\(([^)]+)\)/).flatten.map { |toggles| toggles.split(',').map(&:to_i) }
+  end
 end

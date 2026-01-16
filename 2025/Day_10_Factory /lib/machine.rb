@@ -1,6 +1,5 @@
 class Machine
 
-  attr_reader :button_wiring_schematics
   def initialize
     @indicator_lights = []
     @initial_state = []
@@ -22,5 +21,9 @@ class Machine
 
   def button_wiring_schematics=(schematics)
     @button_wiring_schematics = schematics.scan(/\(([^)]+)\)/).flatten.map { |toggles| toggles.split(',').map(&:to_i) }
+  end
+
+  def button_wiring_schematics
+    @button_wiring_schematics.map { |toggles| "(#{toggles.join(',')})" }.join(' ')
   end
 end

@@ -42,7 +42,7 @@ class Machine
   end
 
   def ready?
-    !indicator_lights.empty? && !button_wiring_schematics.empty? && !joltage_requirements.empty?
+    !@indicator_lights.empty? && !@button_wiring_schematics.empty? && !@joltage_requirements.empty?
   end
 
 end

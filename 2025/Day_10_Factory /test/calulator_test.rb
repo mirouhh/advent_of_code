@@ -1,7 +1,7 @@
 require 'minitest/autorun'
 require_relative '../lib/calculator'
 
-class CalulatorTest < Minitest::Test
+class CalculatorTest < Minitest::Test
 
   def test_calculator_is_empty
     calculator = Calculator.new

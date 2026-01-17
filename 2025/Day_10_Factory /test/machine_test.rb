@@ -77,4 +77,11 @@ class MachineTest < Minitest::Test
     @machine.joltage_requirements = @joltage_requirements
     assert_equal "#{@indicator_lights} #{@button_wiring_schematics} #{@joltage_requirements}", @machine.to_s
   end
+
+ def test_press_buttons_toggles_all_connected_lights
+    @machine.indicator_lights = @indicator_lights
+    @machine.button_wiring_schematics = @button_wiring_schematics
+    @machine.press_buttons(1)  # Button (1,3) toggelt Index 1 und 3
+    assert_equal '.#.#', @machine.current_state
+  end
 end

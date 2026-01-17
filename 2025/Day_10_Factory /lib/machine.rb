@@ -54,4 +54,8 @@ class Machine
     "{#{@joltage_requirements.join(',')}}"
   end
 
+  def to_s
+    "#{indicator_lights} #{button_wiring_schematics} #{joltage_requirements}"
+  end
+
 end

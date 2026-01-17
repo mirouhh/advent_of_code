@@ -57,4 +57,11 @@ class MachineTest < Minitest::Test
   def test_machine_is_not_ready
     refute @machine.ready?
   end
+
+  def test_machine_is_ready
+    @machine.indicator_lights = '[.##.]'
+    @machine.button_wiring_schematics = '(3) (1,3) (2) (2,3) (0,2) (0,1)'
+    @machine.joltage_requirements = '{3,5,4,7}'
+    assert @machine.ready?
+  end
 end

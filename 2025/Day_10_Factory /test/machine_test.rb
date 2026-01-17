@@ -53,4 +53,8 @@ class MachineTest < Minitest::Test
     @machine.toggle('2')
     assert_equal '..#.', @machine.current_state
   end
+
+  def test_machine_is_not_ready
+    refute @machine.ready?
+  end
 end

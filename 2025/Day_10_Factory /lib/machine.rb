@@ -45,8 +45,13 @@ class Machine
     !@indicator_lights.empty? && !@button_wiring_schematics.empty? && !@joltage_requirements.empty?
   end
 
-  def joltage_requirements=(jotage_requirements)
-    @joltage_requirements = jotage_requirements[1..-2].chars
+  def joltage_requirements=(joltage_requirements)
+    @joltage_requirements = joltage_requirements[1..-2].split(',').map(&:to_i)
+  end
+
+  def joltage_requirements
+    puts @joltage_requirements.inspect
+    "{#{@joltage_requirements.join(',')}}"
   end
 
 end

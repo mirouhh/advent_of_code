@@ -65,4 +65,9 @@ class MachineTest < Minitest::Test
     @machine.joltage_requirements = @joltage_requirements
     assert @machine.ready?
   end
+
+  def test_joltage_requirements_are_set_correctly
+    @machine.joltage_requirements = @joltage_requirements
+    assert_equal @joltage_requirements, @machine.joltage_requirements
+  end
 end

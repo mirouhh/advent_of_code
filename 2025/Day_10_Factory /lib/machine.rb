@@ -29,8 +29,7 @@ class Machine
   end
 
   def toggle(button)
-    index = button.to_i
-    @current_state[index] = @current_state[index] == '.' ? '#' : '.'
+    toggle_light(@current_state, button.to_i)
   end
 
   def current_state
@@ -55,6 +54,22 @@ class Machine
 
   def to_s
     "#{indicator_lights} #{button_wiring_schematics} #{joltage_requirements}"
+  end
+
+  def press_buttons(button_index)
+    apply_buttons_to_state(@current_state, button_index)
+  end
+
+  private
+
+  def apply_buttons_to_state(state, wiring_index)
+    @button_wiring_schematics[wiring_index].each do |light|
+      toggle_light(state, light)
+    end
+  end
+
+  def toggle_light(state, index)
+    state[index] = state[index] == '.' ? '#' : '.'
   end
 
 end

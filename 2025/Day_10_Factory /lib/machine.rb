@@ -4,6 +4,7 @@ class Machine
     @indicator_lights = []
     @current_state = []
     @button_wiring_schematics = []
+    @joltage_requirements = []
   end
 
   def indicator_lights=(definition)
@@ -38,6 +39,10 @@ class Machine
 
   def current_state=(state)
     @current_state = state.chars
+  end
+
+  def ready?
+    !indicator_lights.empty? && !button_wiring_schematics.empty? && !joltage_requirements.empty?
   end
 
 end

@@ -47,4 +47,10 @@ class MachineTest < Minitest::Test
     @machine.button_wiring_schematics = button_wiring_schematics
     assert_equal button_wiring_schematics, @machine.button_wiring_schematics
   end
+
+  def test_toggling_works
+    @machine.current_state = '....'
+    @machine.toggle('2')
+    assert_equal '..#.', @machine.current_state
+  end
 end

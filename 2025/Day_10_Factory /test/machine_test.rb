@@ -70,4 +70,11 @@ class MachineTest < Minitest::Test
     @machine.joltage_requirements = @joltage_requirements
     assert_equal @joltage_requirements, @machine.joltage_requirements
   end
+
+  def test_machine_string_representation
+    @machine.indicator_lights = @indicator_lights
+    @machine.button_wiring_schematics = @button_wiring_schematics
+    @machine.joltage_requirements = @joltage_requirements
+    assert_equal "#{@indicator_lights} #{@button_wiring_schematics} #{@joltage_requirements}", @machine.to_s
+  end
 end

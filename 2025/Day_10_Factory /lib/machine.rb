@@ -50,7 +50,6 @@ class Machine
   end
 
   def joltage_requirements
-    puts @joltage_requirements.inspect
     "{#{@joltage_requirements.join(',')}}"
   end
 

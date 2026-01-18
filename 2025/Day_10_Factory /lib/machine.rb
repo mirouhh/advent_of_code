@@ -5,6 +5,7 @@ class Machine
     @current_state = []
     @button_wiring_schematics = []
     @joltage_requirements = []
+    counters = []
   end
 
   def indicator_lights=(definition)
@@ -54,6 +55,7 @@ class Machine
 
   def joltage_requirements=(joltage_requirements)
     @joltage_requirements = joltage_requirements[1..-2].split(',').map(&:to_i)
+    @counters = [0] * @joltage_requirements.length
   end
 
   def joltage_requirements
@@ -80,6 +82,18 @@ class Machine
 
   def toggle_light(state, index)
     state[index] = state[index] == '.' ? '#' : '.'
+  end
+
+  def counters
+    @counters
+  end
+
+  def counters_data
+    "{#{counters.join(',')}}"
+  end
+
+  def push_button(index)
+    @counters[index] += 1
   end
 
 end

@@ -2,8 +2,16 @@
 
 class Calculator
 
+  def initialize
+    @machines = []
+  end
+
   def empty?
-    true
+    @machines.empty?
+  end
+
+  def add(machine)
+    @machines << machine
   end
 
 end

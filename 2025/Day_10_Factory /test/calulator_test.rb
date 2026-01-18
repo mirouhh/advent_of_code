@@ -32,17 +32,24 @@ class CalculatorTest < Minitest::Test
   def test_calculator_can_sum_up_all_fewest_button_presses
     @calculator.add(@machine_one)
     @calculator.add(@machine_two)
-    assert_equal 5, @calculator.sum
+    assert_equal 5, @calculator.sum.first
   end
 
   def test_calculator_should_be_able_to_import_data_from_file
     file = "#{File.dirname(__FILE__)}/../sample_input.txt"
     @calculator.import(file)
-    assert_equal 7, @calculator.sum
+    assert_equal 7, @calculator.sum.first
+    assert_equal 33, @calculator.sum.last
   end
 
   def test_calculator_can_calculate_fewest_button_presses_for_joltage_requirements
     assert_equal 10, @calculator.fewest_button_presses_for_joltage_requirements(@machine_one)
+  end
+
+  def test_calculator_can_sum_up_all_fewest_button_presses_for_joltage_requirements
+    @calculator.add(@machine_one)
+    @calculator.add(@machine_two)
+    assert_equal 22, @calculator.sum.last
   end
 
 end

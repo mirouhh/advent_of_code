@@ -11,3 +11,10 @@ puts "#### Importing sample data ###########################"
 
 calculator.import(sample_data)
 puts calculator
+
+calculator.clear
+
+puts "#### Importing puzzle data ###########################"
+
+calculator.import(puzzle_data)
+puts calculator

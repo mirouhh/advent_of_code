@@ -41,4 +41,8 @@ class CalculatorTest < Minitest::Test
     assert_equal 7, @calculator.sum
   end
 
+  def test_calculator_can_calculate_fewest_button_presses_for_joltage_requirements
+    assert_equal 10, @calculator.fewest_button_presses_for_joltage_requirements(@machine_one)
+  end
+
 end

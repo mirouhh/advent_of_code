@@ -27,7 +27,9 @@ class Calculator
   end
 
   def sum
-    @machines.reduce(0) { |sum, machine| sum + fewest_button_presses(machine) }
+    sum_1 = @machines.reduce(0) { |sum, machine| sum + fewest_button_presses(machine) }
+    sum_2 = @machines.reduce(0) { |sum, machine| sum + fewest_button_presses_for_joltage_requirements(machine) }
+    [sum_1, sum_2]
   end
 
   def import(file)

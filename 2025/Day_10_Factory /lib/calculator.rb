@@ -15,32 +15,15 @@ class Calculator
   end
 
   def fewest_button_presses(machine)
-    return 0 if machine.running?
-
-    start = machine.current_state
-    target = machine.indicator_lights.join
-
-    queue = [[start, 0]]
-    visited = { start => true }
-
-    while !queue.empty?
-      state, presses = queue.shift
-
-      machine.button_wiring_schematics.each_index do |button_index|
-        new_state = state.chars
-        machine.apply_buttons_to_state(new_state, button_index)
-        new_state = new_state.join
-
-        return presses + 1 if new_state == target
-
-        unless visited[new_state]
-          visited[new_state] = true
-          queue << [new_state, presses + 1]
-        end
-      end
+    fewest_presses(
+      start: machine.current_state,
+      target: machine.indicator_lights.join,
+      machine: machine
+    ) do |state, button_index|
+      new_state = state.chars
+      machine.apply_buttons_to_state(new_state, button_index)
+      new_state.join
     end
-
-    -1
   end
 
   def sum
@@ -76,10 +59,21 @@ class Calculator
   end
 
   def fewest_button_presses_for_joltage_requirements(machine)
-    return 0 if machine.counters == machine.joltage_requirements
+    fewest_presses(
+      start: machine.counters.dup,
+      target: machine.joltage_requirements,
+      machine: machine
+    ) do |state, button_index|
+      new_state = state.dup
+      machine.apply_buttons_to_counters(new_state, button_index)
+      new_state
+    end
+  end
 
-    start = machine.counters.dup
-    target = machine.joltage_requirements
+  private
+
+  def fewest_presses(start:, target:, machine:)
+    return 0 if start == target
 
     queue = [[start, 0]]
     visited = { start => true }
@@ -88,8 +82,7 @@ class Calculator
       state, presses = queue.shift
 
       machine.button_wiring_schematics.each_index do |button_index|
-        new_state = state.dup
-        machine.apply_buttons_to_counters(new_state, button_index)
+        new_state = yield(state, button_index)
 
         return presses + 1 if new_state == target
 

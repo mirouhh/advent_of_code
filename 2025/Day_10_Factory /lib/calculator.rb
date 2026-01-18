@@ -55,7 +55,8 @@ class Calculator
     Imported machines:
     #{@machines.join("\n")}.
 
-    The fewest button presses required to correctly configure the indicator lights on all of the machines is #{sum}.
+    The fewest button presses required to correctly configure the indicator lights on all of the machines is #{sum.first}.
+    The fewest button presses required to correctly configure the indicator lights on all of the machines using the joltage requirements is #{sum.last}.
 
     INFO
   end

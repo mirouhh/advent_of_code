@@ -72,6 +72,11 @@ class Machine
 
   def press_buttons(button_index)
     apply_buttons_to_state(@current_state, button_index)
+    return if @counters.empty?
+
+    @button_wiring_schematics[button_index].each do |light|
+      push_button(light)
+    end
   end
 
   def apply_buttons_to_state(state, wiring_index)
@@ -94,6 +99,16 @@ class Machine
 
   def push_button(index)
     @counters[index] += 1
+  end
+
+  def increment_counter(state, index)
+    state[index] += 1
+  end
+
+  def apply_buttons_to_counters(state, wiring_index)
+    @button_wiring_schematics[wiring_index].each do |index|
+      increment_counter(state, index)
+    end
   end
 
 end

@@ -75,4 +75,32 @@ class Calculator
     INFO
   end
 
+  def fewest_button_presses_for_joltage_requirements(machine)
+    return 0 if machine.counters == machine.joltage_requirements
+
+    start = machine.counters.dup
+    target = machine.joltage_requirements
+
+    queue = [[start, 0]]
+    visited = { start => true }
+
+    while !queue.empty?
+      state, presses = queue.shift
+
+      machine.button_wiring_schematics.each_index do |button_index|
+        new_state = state.dup
+        machine.apply_buttons_to_counters(new_state, button_index)
+
+        return presses + 1 if new_state == target
+
+        unless visited[new_state]
+          visited[new_state] = true
+          queue << [new_state, presses + 1]
+        end
+      end
+    end
+
+    -1
+  end
+
 end

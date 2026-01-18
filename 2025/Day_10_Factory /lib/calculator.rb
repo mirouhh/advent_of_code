@@ -23,12 +23,10 @@ class Calculator
     queue = [[start, 0]]
     visited = { start => true }
 
-    button_wiring_schematics = machine.button_wiring_schematics.scan(/\(([^)]+)\)/).flatten.map { |toggles| toggles.split(',').map(&:to_i) }
-
     while !queue.empty?
       state, presses = queue.shift
 
-      button_wiring_schematics.each_index do |button_index|
+      machine.button_wiring_schematics.each_index do |button_index|
         new_state = state.chars
         machine.apply_buttons_to_state(new_state, button_index)
         new_state = new_state.join

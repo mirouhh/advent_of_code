@@ -25,6 +25,10 @@ class Machine
   end
 
   def button_wiring_schematics
+    @button_wiring_schematics
+  end
+
+  def button_wiring_schematics_string
     @button_wiring_schematics.map { |toggles| "(#{toggles.join(',')})" }.join(' ')
   end
 
@@ -53,7 +57,7 @@ class Machine
   end
 
   def to_s
-    "#{indicator_lights} #{button_wiring_schematics} #{joltage_requirements}"
+    "#{indicator_lights} #{button_wiring_schematics_string} #{joltage_requirements}"
   end
 
   def press_buttons(button_index)

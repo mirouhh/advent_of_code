@@ -60,8 +60,6 @@ class Machine
     apply_buttons_to_state(@current_state, button_index)
   end
 
-  private
-
   def apply_buttons_to_state(state, wiring_index)
     @button_wiring_schematics[wiring_index].each do |light|
       toggle_light(state, light)

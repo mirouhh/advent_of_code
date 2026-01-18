@@ -35,4 +35,10 @@ class CalculatorTest < Minitest::Test
     assert_equal 5, @calculator.sum
   end
 
+  def test_calculator_should_be_able_to_import_data_from_file
+    file = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @calculator.import(file)
+    assert_equal 7, @calculator.sum
+  end
+
 end

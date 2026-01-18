@@ -56,9 +56,23 @@ class Calculator
       machine.indicator_lights = indicator_lights
       machine.button_wiring_schematics = button_wiring_schematics
       machine.joltage_requirements = joltage_requirements
-      puts "Importing #{machine}"
       add(machine)
     end
+  end
+
+  def clear
+    @machines.clear
+  end
+
+  def to_s
+    <<~INFO
+
+    Imported machines:
+    #{@machines.join("\n")}.
+
+    The fewest button presses required to correctly configure the indicator lights on all of the machines is #{sum}.
+
+    INFO
   end
 
 end

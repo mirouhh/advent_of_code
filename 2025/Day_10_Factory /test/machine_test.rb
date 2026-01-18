@@ -104,8 +104,9 @@ class MachineTest < Minitest::Test
   end
 
   def test_push_button_works
-    assert_equal '{0,0,0,0}', @machine.counters
+    @machine.joltage_requirements = @joltage_requirements
+    assert_equal '{0,0,0,0}', @machine.counters_data
     @machine.push_button(1)
-    assert_equal '{0,1,0,0}', @machine.counters
+    assert_equal '{0,1,0,0}', @machine.counters_data
   end
 end

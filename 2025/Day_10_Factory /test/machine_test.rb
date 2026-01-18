@@ -96,4 +96,10 @@ class MachineTest < Minitest::Test
     @machine.indicator_lights = @indicator_lights
     assert_equal indicator_lights, @machine.indicator_lights
   end
+
+  def test_joltage_requirements_are_correct
+    joltage_requirements = [3,5,4,7]
+    @machine.joltage_requirements = @joltage_requirements
+    assert_equal joltage_requirements, @machine.joltage_requirements
+  end
 end

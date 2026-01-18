@@ -90,4 +90,10 @@ class MachineTest < Minitest::Test
     @machine.button_wiring_schematics = @button_wiring_schematics
     assert_equal button_wiring_schematics, @machine.button_wiring_schematics
   end
+
+  def test_indicator_lights_are_correct
+    indicator_lights = '.##.'
+    @machine.indicator_lights = @indicator_lights
+    assert_equal indicator_lights, @machine.indicator_lights
+  end
 end

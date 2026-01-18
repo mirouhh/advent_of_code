@@ -5,7 +5,7 @@ class Machine
     @current_state = []
     @button_wiring_schematics = []
     @joltage_requirements = []
-    counters = []
+    @counters = []
   end
 
   def indicator_lights=(definition)

@@ -6,10 +6,14 @@ class CalculatorTest < Minitest::Test
 
   def after_setup
     @calculator = Calculator.new
-    @machine = Machine.new
-    @machine.indicator_lights = '[.##.]'
-    @machine.button_wiring_schematics = '(3) (1,3) (2) (2,3) (0,2) (0,1)'
-    @machine.joltage_requirements = '{3,5,4,7}'
+    @machine_one = Machine.new
+    @machine_one.indicator_lights = '[.##.]'
+    @machine_one.button_wiring_schematics = '(3) (1,3) (2) (2,3) (0,2) (0,1)'
+    @machine_one.joltage_requirements = '{3,5,4,7}'
+    @machine_two = Machine.new
+    @machine_two.indicator_lights = '[...#.]'
+    @machine_two.button_wiring_schematics = '(0,2,3,4) (2,3) (0,4) (0,1,2) (1,2,3,4)'
+    @machine_two.joltage_requirements = '{7,5,12,7,2}'
   end
 
   def test_calculator_is_empty
@@ -17,12 +21,18 @@ class CalculatorTest < Minitest::Test
   end
 
   def test_calculator_can_import_machines
-    @calculator.add(@machine)
+    @calculator.add(@machine_one)
     refute_empty @calculator
   end
 
   def test_calculator_can_calculate_fewest_button_presses
-    assert_equal 2, @calculator.fewest_button_presses(@machine)
+    assert_equal 2, @calculator.fewest_button_presses(@machine_one)
+  end
+
+  def test_calculator_can_sum_up_all_fewest_button_presses
+    @calculator.add(@machine_one)
+    @calculator.add(@machine_two)
+    assert_equal 5, @calculator.sum
   end
 
 end

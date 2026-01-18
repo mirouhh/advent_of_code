@@ -18,7 +18,7 @@ class Calculator
     return 0 if machine.running?
 
     start = machine.current_state
-    target = machine.indicator_lights[1..-2]
+    target = machine.indicator_lights.join
 
     queue = [[start, 0]]
     visited = { start => true }

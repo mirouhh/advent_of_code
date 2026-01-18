@@ -22,7 +22,7 @@ class MachineTest < Minitest::Test
 
   def test_indicator_lights_are_set_correctly
     @machine.indicator_lights = @indicator_lights
-    assert_equal @indicator_lights, @machine.indicator_lights
+    assert_equal @indicator_lights, @machine.indicator_lights_string
   end
 
   def test_machine_is_not_running
@@ -92,7 +92,7 @@ class MachineTest < Minitest::Test
   end
 
   def test_indicator_lights_are_correct
-    indicator_lights = '.##.'
+    indicator_lights = [".", "#", "#", "."]
     @machine.indicator_lights = @indicator_lights
     assert_equal indicator_lights, @machine.indicator_lights
   end

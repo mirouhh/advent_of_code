@@ -13,6 +13,10 @@ class Machine
   end
 
   def indicator_lights
+    @indicator_lights
+  end
+
+  def indicator_lights_string
     @indicator_lights.empty? ? '' : "[#{@indicator_lights.join}]"
   end
 
@@ -57,7 +61,7 @@ class Machine
   end
 
   def to_s
-    "#{indicator_lights} #{button_wiring_schematics_string} #{joltage_requirements}"
+    "#{indicator_lights_string} #{button_wiring_schematics_string} #{joltage_requirements}"
   end
 
   def press_buttons(button_index)

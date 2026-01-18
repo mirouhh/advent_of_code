@@ -43,4 +43,8 @@ class Calculator
     -1
   end
 
+  def sum
+    @machines.reduce(0) { |sum, machine| sum + fewest_button_presses(machine) }
+  end
+
 end

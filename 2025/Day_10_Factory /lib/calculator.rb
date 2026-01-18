@@ -47,4 +47,18 @@ class Calculator
     @machines.reduce(0) { |sum, machine| sum + fewest_button_presses(machine) }
   end
 
+  def import(file)
+    File.readlines("#{file}", chomp: true).reject(&:empty?).each do |line |
+      indicator_lights = line[/\[.*?\]/]
+      joltage_requirements = line[/\{.*?\}/]
+      button_wiring_schematics = line[(line.index(']') + 1)...(line.index('{'))].strip
+      machine = Machine.new
+      machine.indicator_lights = indicator_lights
+      machine.button_wiring_schematics = button_wiring_schematics
+      machine.joltage_requirements = joltage_requirements
+      puts "Importing #{machine}"
+      add(machine)
+    end
+  end
+
 end

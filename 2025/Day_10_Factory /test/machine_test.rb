@@ -46,7 +46,7 @@ class MachineTest < Minitest::Test
 
   def test_button_wiring_schematics_is_set_correctly
     @machine.button_wiring_schematics = @button_wiring_schematics
-    assert_equal @button_wiring_schematics, @machine.button_wiring_schematics
+    assert_equal @button_wiring_schematics, @machine.button_wiring_schematics_string
   end
 
   def test_toggling_works
@@ -83,5 +83,11 @@ class MachineTest < Minitest::Test
     @machine.button_wiring_schematics = @button_wiring_schematics
     @machine.press_buttons(1)  # Button (1,3) toggelt Index 1 und 3
     assert_equal '.#.#', @machine.current_state
+ end
+
+  def test_button_wiring_schematics_are_correct
+    button_wiring_schematics = [[3], [1,3], [2], [2,3], [0,2], [0,1]]
+    @machine.button_wiring_schematics = @button_wiring_schematics
+    assert_equal button_wiring_schematics, @machine.button_wiring_schematics
   end
 end

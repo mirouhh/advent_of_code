@@ -17,7 +17,7 @@ class Machine
   end
 
   def indicator_lights_string
-    @indicator_lights.empty? ? '' : "[#{@indicator_lights.join}]"
+    @indicator_lights.empty? ? '' : "[#{indicator_lights.join}]"
   end
 
   def running?
@@ -33,7 +33,7 @@ class Machine
   end
 
   def button_wiring_schematics_string
-    @button_wiring_schematics.map { |toggles| "(#{toggles.join(',')})" }.join(' ')
+    button_wiring_schematics.map { |toggles| "(#{toggles.join(',')})" }.join(' ')
   end
 
   def toggle(button)
@@ -57,11 +57,15 @@ class Machine
   end
 
   def joltage_requirements
-    "{#{@joltage_requirements.join(',')}}"
+    @joltage_requirements
+  end
+
+  def joltage_requirements_string
+    "{#{joltage_requirements.join(',')}}"
   end
 
   def to_s
-    "#{indicator_lights_string} #{button_wiring_schematics_string} #{joltage_requirements}"
+    "#{indicator_lights_string} #{button_wiring_schematics_string} #{joltage_requirements_string}"
   end
 
   def press_buttons(button_index)

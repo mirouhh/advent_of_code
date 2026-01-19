@@ -6,7 +6,7 @@ puzzle_data = "#{File.dirname(__FILE__)}/input.txt"
 
 calculator = Calculator.new
 
-puts "####### PART ONE #####################################"
+puts "####### PART ONE & TWO ###############################"
 puts "#### Importing sample data ###########################"
 
 calculator.import(sample_data)

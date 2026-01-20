@@ -94,3 +94,9 @@ Configuring the third machine's counters requires a minimum of **`11`** button p
 So, the fewest button presses required to correctly configure the joltage level counters on all of the machines is `10` + `12` + `11` = **`33`**.
 
 Analyze each machine's joltage requirements and button wiring schematics. **What is the fewest button presses required to correctly configure the joltage level counters on all of the machines?**
+
+My puzzle answer was `21111`.
+
+**<code style="color : gold">Both parts of this puzzle are complete! They provide two gold stars: \*\*</code>**
+
+At this point, you should [return to your Advent calendar](https://adventofcode.com/2025) and try another puzzle.

@@ -1,10 +1,9 @@
 class Graph
 
-  attr_reader :vertices, :edges
+  attr_reader :vertices
 
   def initialize
-    @vertices = []
-    @edges = []
+    @vertices = {}
   end
 
   def empty?
@@ -12,11 +11,15 @@ class Graph
   end
 
   def add_vertex(vertex)
-    @vertices << vertex
+    @vertices[vertex] = []
   end
 
   def add_edge(start_vertex, end_vertex)
-    @edges << "#{start_vertex} -> #{end_vertex}"
+    @vertices[start_vertex] << end_vertex
+  end
+
+  def edges
+    @vertices.values.collect { |adjecent_vertices| adjecent_vertices.size }.sum
   end
 
 end

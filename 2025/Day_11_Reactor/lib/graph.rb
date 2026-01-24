@@ -1,25 +1,29 @@
 class Graph
 
-  attr_reader :vertices
+  attr_reader :adjacency_list
 
   def initialize
-    @vertices = {}
+    @adjacency_list = {}
   end
 
   def empty?
-    @vertices.empty?
+    @adjacency_list.empty?
   end
 
   def add_vertex(vertex)
-    @vertices[vertex] = []
+    @adjacency_list[vertex] = []
   end
 
   def add_edge(start_vertex, end_vertex)
-    @vertices[start_vertex] << end_vertex
+    @adjacency_list[start_vertex] << end_vertex
   end
 
   def edges
-    @vertices.values.collect { |adjecent_vertices| adjecent_vertices.size }.sum
+    @adjacency_list.values.collect { |adjecent_vertices| adjecent_vertices.size }.sum
+  end
+
+  def vertices
+    @adjacency_list.keys
   end
 
 end

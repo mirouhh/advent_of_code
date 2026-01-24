@@ -17,4 +17,13 @@ class GraphTest < Minitest::Test
     assert_equal 1, @graph.vertices.size
   end
 
+  def test_adding_an_edge
+    vertex_1 = 'aaa'
+    vertex_2 = 'bbb'
+    @graph.add_vertex(vertex_1)
+    @graph.add_vertex(vertex_2)
+    @graph.add_edge(vertex_1, vertex_2)
+    assert_equal 1, @graph.edges.size
+  end
+
 end

@@ -8,4 +8,11 @@ class GraphTest < Minitest::Test
     assert graph.empty?
   end
 
+  def test_adding_a_vertice
+    graph = Graph.new
+    graph.add_vertex('abc')
+    refute graph.empty?
+    assert_equal 1, graph.vertices.size
+  end
+
 end

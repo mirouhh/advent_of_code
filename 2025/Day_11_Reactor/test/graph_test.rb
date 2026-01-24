@@ -16,7 +16,7 @@ class GraphTest < Minitest::Test
   def test_adding_a_vertice
     @graph.add_vertex(@vertex_1)
     refute @graph.empty?
-    assert_equal 1, @graph.vertices.size
+    assert_equal 1, @graph.vertices_count
   end
 
   def test_adding_an_edge

@@ -30,4 +30,8 @@ class Graph
     @adjacency_list.keys
   end
 
+  def vertices_count
+    vertices.size
+  end
+
 end

@@ -26,4 +26,11 @@ class GraphTest < Minitest::Test
     assert_equal 1, @graph.edges_count
   end
 
+  def test_adjecent_vertices
+    @graph.add_vertex(@vertex_1)
+    @graph.add_vertex(@vertex_2)
+    @graph.add_edge(@vertex_1, @vertex_2)
+    assert_equal [@vertex_2], @graph.adjacent_vertices(@vertex_1)
+  end
+
 end

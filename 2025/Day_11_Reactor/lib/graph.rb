@@ -19,7 +19,11 @@ class Graph
   end
 
   def edges
-    @adjacency_list.values.collect { |adjecent_vertices| adjecent_vertices.size }.sum
+    @adjacency_list.values
+  end
+
+  def edges_count
+    edges.collect{ |adjecent_vertices| adjecent_vertices.size }.sum
   end
 
   def vertices

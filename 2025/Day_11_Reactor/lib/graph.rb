@@ -34,4 +34,8 @@ class Graph
     vertices.size
   end
 
+  def adjacent_vertices(vertex)
+    @adjacency_list[vertex]
+  end
+
 end

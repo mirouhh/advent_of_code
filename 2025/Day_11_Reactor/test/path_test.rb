@@ -33,4 +33,8 @@ class PathTest < Minitest::Test
     assert_equal @vertex_3, @path.last
   end
 
+  def test_length
+    assert_equal 2  , @path.length
+  end
+
 end

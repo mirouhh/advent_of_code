@@ -7,6 +7,7 @@ class GraphTest < Minitest::Test
     @graph = Graph.new
     @vertex_1 = 'aaa'
     @vertex_2 = 'bbb'
+    @data = "#{File.dirname(__FILE__)}/../sample_input.txt"
   end
 
   def test_graph_is_empty
@@ -35,14 +36,12 @@ class GraphTest < Minitest::Test
 
   def test_import_data
     assert @graph.empty?
-    data = "#{File.dirname(__FILE__)}/../sample_input.txt"
-    @graph.import(data)
+    @graph.import(@data)
     refute @graph.empty?
   end
 
   def test_imported_data_is_correct
-    data = "#{File.dirname(__FILE__)}/../sample_input.txt"
-    @graph.import(data)
+    @graph.import(@data)
     assert_equal 10, @graph.vertices_count
     assert_equal 17, @graph.edges_count
   end

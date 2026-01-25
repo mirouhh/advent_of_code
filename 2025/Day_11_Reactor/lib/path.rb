@@ -28,4 +28,8 @@ class Path
     @vertices.last
   end
 
+  def length
+    @vertices.length - 1
+  end
+
 end

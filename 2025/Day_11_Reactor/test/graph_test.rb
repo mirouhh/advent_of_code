@@ -8,6 +8,9 @@ class GraphTest < Minitest::Test
     @vertex_1 = 'aaa'
     @vertex_2 = 'bbb'
     @data = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @prefilled_graph = Graph.new
+    @prefilled_graph.add_vertex(@vertex_1)
+    @prefilled_graph.add_vertex(@vertex_2)
   end
 
   def test_graph_is_empty
@@ -21,17 +24,13 @@ class GraphTest < Minitest::Test
   end
 
   def test_adding_an_edge
-    @graph.add_vertex(@vertex_1)
-    @graph.add_vertex(@vertex_2)
-    @graph.add_edge(@vertex_1, @vertex_2)
-    assert_equal 1, @graph.edges_count
+    @prefilled_graph.add_edge(@vertex_1, @vertex_2)
+    assert_equal 1, @prefilled_graph.edges_count
   end
 
   def test_adjecent_vertices
-    @graph.add_vertex(@vertex_1)
-    @graph.add_vertex(@vertex_2)
-    @graph.add_edge(@vertex_1, @vertex_2)
-    assert_equal [@vertex_2], @graph.adjacent_vertices(@vertex_1)
+    @prefilled_graph.add_edge(@vertex_1, @vertex_2)
+    assert_equal [@vertex_2], @prefilled_graph.adjacent_vertices(@vertex_1)
   end
 
   def test_import_data

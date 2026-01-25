@@ -12,4 +12,8 @@ class Path
     @vertices.empty?
   end
 
+  def add(vertex)
+    @vertices << vertex
+  end
+
 end

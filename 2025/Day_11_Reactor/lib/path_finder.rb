@@ -10,4 +10,8 @@ class PathFinder
   def empty?
     @graph.empty?
   end
+
+  def add(graph)
+    @graph = graph
+  end
 end

@@ -46,4 +46,9 @@ class PathTest < Minitest::Test
     refute @path.include?(@vertex_2)
   end
 
+  def test_remove_last_vertex
+    @path.remove
+    refute @path.include?(@vertex_3)
+  end
+
 end

@@ -69,12 +69,16 @@ class Graph
     end
   end
 
-  def include_vertex(vertex)
-    vertices.include?(vertex) && include_vertex(vertex)
+  def include_vertex?(vertex)
+    vertices.include?(vertex)
   end
 
-  def include_edges(vertex)
-    edges.collect { | neighbours | neighbours.include? vertex }.reduce(:&)
+  def include_edges?(vertex)
+    edges.any? { | neighbours | neighbours.include? vertex }
+  end
+
+  def include?(vertex)
+    include_vertex?(vertex) || include_edges?(vertex)
   end
 
 end

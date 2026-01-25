@@ -14,4 +14,11 @@ class PathTest < Minitest::Test
     refute path.empty?
   end
 
+  def test_string_representation
+    path = Path.new
+    path.add('aaa')
+    path.add('bbb')
+    assert_equal 'aaa -> bbb', path.to_s
+  end
+
 end

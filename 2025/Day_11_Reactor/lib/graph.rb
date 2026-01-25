@@ -51,4 +51,12 @@ class Graph
     "#{vertices_count} vertices, #{edges_count} edges"
   end
 
+  def remove_vertex(vertex)
+    @adjacency_list.delete(vertex)
+  end
+
+  def include_vertex(vertex)
+    vertices.include? vertex
+  end
+
 end

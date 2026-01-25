@@ -36,8 +36,8 @@ class Path
     @vertices.include?(vertex)
   end
 
-  def remove(vertex)
-    @vertices.delete(vertex)
+  def remove(vertex = nil)
+    vertex ? @vertices.delete(vertex) : @vertices.pop
   end
 
 end

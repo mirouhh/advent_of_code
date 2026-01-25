@@ -40,4 +40,11 @@ class GraphTest < Minitest::Test
     refute @graph.empty?
   end
 
+  def test_imported_data_is_correct
+    data = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @graph.import(data)
+    assert_equal 10, @graph.vertices_count
+    assert_equal 17, @graph.edges_count
+  end
+
 end

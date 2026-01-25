@@ -48,15 +48,29 @@ class Graph
   end
 
   def to_s
-    "#{vertices_count} vertices, #{edges_count} edges"
+    <<~INFO
+      #{vertices_count} vertices, #{edges_count} edges
+    INFO
+    
   end
 
   def remove_vertex(vertex)
     @adjacency_list.delete(vertex)
+    remove_edges(vertex)
+  end
+
+  def remove_edges(vertex)
+    @adjacency_list.values.each do |neighbours|
+      neighbours.delete(vertex) if neighbours.include?(vertex)
+    end
   end
 
   def include_vertex(vertex)
-    vertices.include? vertex
+    vertices.include?(vertex) && include_vertex(vertex)
+  end
+
+  def include_edges(vertex)
+    edges.collect { | neighbours | neighbours.include? vertex }.reduce(:&)
   end
 
 end

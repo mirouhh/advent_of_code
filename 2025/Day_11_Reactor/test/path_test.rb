@@ -37,4 +37,8 @@ class PathTest < Minitest::Test
     assert_equal 2  , @path.length
   end
 
+  def test_includes_vertex
+    assert @path.include?(@vertex_2)
+  end
+
 end

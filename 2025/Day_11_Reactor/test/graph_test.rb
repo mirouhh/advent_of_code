@@ -50,4 +50,10 @@ class GraphTest < Minitest::Test
     refute @prefilled_graph.include_vertex(@vertex_2)
   end
 
+  def test_remove_vertex_and_connected_edges
+    @prefilled_graph.add_edge(@vertex_1, @vertex_2)
+    @prefilled_graph.remove_vertex(@vertex_2)
+    refute @prefilled_graph.include_edges(@vertex_2)
+  end
+
 end

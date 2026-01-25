@@ -4,6 +4,7 @@ require_relative 'lib/graph'
 require_relative 'lib/path_finder'
 
 sample_data = "#{File.dirname(__FILE__)}/sample_input.txt"
+puzzle_data = "#{File.dirname(__FILE__)}/input.txt"
 
 def result(data, context)
   puts "#### Importing #{context} data ###########################"
@@ -25,3 +26,5 @@ end
 
 puts "####### PART ONE #####################################"
 result(sample_data, 'sample')
+puts "\n"
+result(puzzle_data, 'puzzle')

@@ -32,4 +32,8 @@ class Path
     @vertices.length - 1
   end
 
+  def include?(vertex)
+    @vertices.include?(vertex)
+  end
+
 end

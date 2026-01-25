@@ -48,10 +48,14 @@ class Graph
   end
 
   def to_s
+    adjacency = @adjacency_list.map { |vertex, neighbours| "#{vertex} : #{neighbours.join(' ')}" }.join("\n")
     <<~INFO
-      #{vertices_count} vertices, #{edges_count} edges
+                                                                                                                                                                                                          
+      #{vertices_count} vertices, #{edges_count} edges:                                                                                                                                                   
+                                                                                                                                                                                                          
+      #{adjacency}  
+                                                                                                                                                                                      
     INFO
-    
   end
 
   def remove_vertex(vertex)

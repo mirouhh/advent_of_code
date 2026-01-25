@@ -33,4 +33,11 @@ class GraphTest < Minitest::Test
     assert_equal [@vertex_2], @graph.adjacent_vertices(@vertex_1)
   end
 
+  def test_import_data
+    assert @graph.empty?
+    data = "#{File.dirname(__FILE__)}/../sample_input.txt"
+    @graph.import(data)
+    refute @graph.empty?
+  end
+
 end

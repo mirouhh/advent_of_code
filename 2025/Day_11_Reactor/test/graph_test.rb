@@ -45,4 +45,9 @@ class GraphTest < Minitest::Test
     assert_equal 17, @graph.edges_count
   end
 
+  def test_remove_vertex
+    @prefilled_graph.remove_vertex(@vertex_2)
+    refute @prefilled_graph.include_vertex(@vertex_2)
+  end
+
 end

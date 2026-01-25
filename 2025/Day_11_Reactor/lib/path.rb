@@ -4,8 +4,8 @@ class Path
 
   attr_reader :vertices
 
-  def initialize
-    @vertices = []
+  def initialize(vertices = [])
+    @vertices = vertices.dup
   end
 
   def empty?

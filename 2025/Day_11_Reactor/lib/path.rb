@@ -16,4 +16,8 @@ class Path
     @vertices << vertex
   end
 
+  def to_s
+    @vertices.join(" -> ")
+  end
+
 end

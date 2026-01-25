@@ -24,4 +24,8 @@ class Path
     @vertices.first
   end
 
+  def last
+    @vertices.last
+  end
+
 end

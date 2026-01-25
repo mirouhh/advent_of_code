@@ -7,29 +7,29 @@ sample_data = "#{File.dirname(__FILE__)}/sample_input.txt"
 puzzle_data = "#{File.dirname(__FILE__)}/input.txt"
 new_sample_data = "#{File.dirname(__FILE__)}/new_sample_input.txt"
 
-def result(data, context, start_vertex, end_vertex)
-  puts "#### Importing #{context} data ###########################"
-  puts "\n"
-
+def setup(data)
   graph = Graph.new
   graph.import(data)
-  path_finder = PathFinder.new()
+  path_finder = PathFinder.new
   path_finder.add(graph)
-  paths = path_finder.find_paths(start_vertex, end_vertex)
 
-  puts "Analysing " + graph.general_info
-
-  puts "Found #{paths.count} paths from '#{start_vertex}' to '#{end_vertex}':"
-  paths.each { |path| puts path }
+  [graph, path_finder]
 end
 
-def results_part_two(data, context, start_vertex, end_vertex)
-  paths = result(data, context, start_vertex, end_vertex)
-  puts "\n"
-  dac_fft_paths = paths.select { |path| path.vertices.include?('dac') && path.vertices.include?('fft') }
-  puts "\n"
-  puts "Found #{dac_fft_paths.count} paths from 'dac' to 'fft':"
-  dac_fft_paths.each { |path| puts path }
+def result(data, context, start_vertex, end_vertex, via_a = nil, via_b = nil)
+  puts "#### Importing #{context} data ###########################\n\n"
+
+  graph, path_finder = setup(data)
+  puts "Analysing " + graph.general_info
+
+  if via_a && via_b
+    puts "Counting paths through '#{via_a}' and '#{via_b}'...\n\n"
+    total = path_finder.count_paths_through(start_vertex, end_vertex, via_a, via_b)
+    puts "Total paths through '#{via_a}' and '#{via_b}': #{total}"
+  else
+    total = path_finder.count_paths(start_vertex, end_vertex)
+    puts "Total paths from '#{start_vertex}' to '#{end_vertex}': #{total}"
+  end
 end
 
 puts "####### PART ONE #####################################"
@@ -39,4 +39,6 @@ result(puzzle_data, 'puzzle', 'you', 'out')
 
 puts "\n\n"
 puts "####### PART TWO #####################################"
-results_part_two(new_sample_data, 'sample', 'svr', 'out')
+result(new_sample_data, 'sample', 'svr', 'out', 'dac', 'fft')
+puts "\n"
+result(puzzle_data, 'puzzle', 'svr', 'out', 'dac', 'fft')

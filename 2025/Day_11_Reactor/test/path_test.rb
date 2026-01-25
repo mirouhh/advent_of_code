@@ -25,4 +25,8 @@ class PathTest < Minitest::Test
     assert_equal 'aaa -> bbb -> ccc', @path.to_s
   end
 
+  def test_start
+    assert_equal @vertex_1, @path.start
+  end
+
 end

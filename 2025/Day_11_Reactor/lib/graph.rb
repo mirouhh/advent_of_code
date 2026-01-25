@@ -38,4 +38,17 @@ class Graph
     @adjacency_list[vertex]
   end
 
+  def import(data)
+    File.readlines("#{data}", chomp: true).reject(&:empty?).each do |line |
+      vertex, neighbours = line.split(":")
+      neighbours = neighbours.split(" ").map(&:strip)
+      add_vertex(vertex)
+      neighbours.each { |neighbour| add_edge(vertex, neighbour) }
+    end
+  end
+
+  def to_s
+    "#{vertices_count} vertices, #{edges_count} edges"
+  end
+
 end

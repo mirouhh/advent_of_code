@@ -5,21 +5,24 @@ class PathTest < Minitest::Test
 
   def setup
     @path = Path.new
+    @vertex_1 = 'aaa'
+    @vertex_2 = 'bbb'
+    @vertex_3 = 'ccc'
+    @path.add(@vertex_1)
+    @path.add(@vertex_2)
+    @path.add(@vertex_3)
   end
 
   def test_is_empty
-    assert @path.empty?
+    assert Path.new.empty?
   end
 
   def test_add_vertex
-    @path.add('aaa')
     refute @path.empty?
   end
 
   def test_string_representation
-    @path.add('aaa')
-    @path.add('bbb')
-    assert_equal 'aaa -> bbb', @path.to_s
+    assert_equal 'aaa -> bbb -> ccc', @path.to_s
   end
 
 end

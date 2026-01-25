@@ -20,4 +20,8 @@ class Path
     @vertices.join(" -> ")
   end
 
+  def start
+    @vertices.first
+  end
+
 end

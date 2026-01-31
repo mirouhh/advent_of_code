@@ -2,8 +2,10 @@
 
 class Shape
 
+  attr_accessor :index
+
   def empty?
-    true
+    index.nil?
   end
 
 end

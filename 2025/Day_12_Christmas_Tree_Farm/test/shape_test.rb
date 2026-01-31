@@ -9,4 +9,12 @@ class ShapeTest < Minitest::Test
     shape = Shape.new
     assert shape.empty?
   end
+
+  def test_index_can_be_set
+    shape = Shape.new
+    shape.index = 0
+    refute shape.empty?
+    assert_equal 0, shape.index
+  end
+
 end

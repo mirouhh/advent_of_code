@@ -2,4 +2,8 @@
 
 class Shape
 
+  def empty?
+    true
+  end
+
 end

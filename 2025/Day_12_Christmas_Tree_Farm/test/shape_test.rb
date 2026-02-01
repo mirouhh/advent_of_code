@@ -19,4 +19,15 @@ class ShapeTest < Minitest::Test
     assert_equal 0, @shape.index
   end
 
+  def test_has_region
+    grid = <<~GRID.chomp
+    ###
+    ##.
+    .##
+    GRID
+    @shape.grid = grid
+    refute @shape.empty?
+    assert_equal grid, @shape.grid
+  end
+
 end

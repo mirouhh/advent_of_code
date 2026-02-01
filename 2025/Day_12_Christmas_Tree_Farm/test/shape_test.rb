@@ -30,4 +30,16 @@ class ShapeTest < Minitest::Test
     assert_equal grid, @shape.grid
   end
 
+  def test_dimensions_are_correct
+    grid = <<~GRID.chomp
+    ###
+    ##.
+    .##
+    .#.
+    GRID
+    @shape.grid = grid
+    assert_equal 4, @shape.height
+    assert_equal 3, @shape.width
+  end
+
 end

@@ -2,10 +2,15 @@
 
 class Shape
 
-  attr_accessor :index
+  attr_accessor :index, :grid
+
+  def initialize(index = nil, grid = "")
+    @index = index
+    @grid = grid
+  end
 
   def empty?
-    index.nil?
+    index.nil? & grid.empty?
   end
 
 end

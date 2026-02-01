@@ -21,4 +21,9 @@ class Present
     @shape.lines.map { | line | line.strip.size }.max
   end
 
+  def rotate
+    rows = @shape.lines.map { |line| line.strip.chars }
+    @shape = rows.transpose.map(&:reverse).map(&:join).join("\n")
+  end
+
 end

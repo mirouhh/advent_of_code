@@ -13,4 +13,12 @@ class Shape
     index.nil? & grid.empty?
   end
 
+  def height
+    @grid.lines.size
+  end
+
+  def width
+    @grid.lines.map { | line | line.strip.size }.max
+  end
+
 end

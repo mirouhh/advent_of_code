@@ -7,6 +7,12 @@ class ShapeTest < Minitest::Test
 
   def setup
     @shape = Shape.new
+    @grid = <<~GRID.chomp
+    ###
+    ##.
+    .##
+    .#.
+    GRID
   end
 
   def test_shape_is_empty
@@ -20,24 +26,13 @@ class ShapeTest < Minitest::Test
   end
 
   def test_has_region
-    grid = <<~GRID.chomp
-    ###
-    ##.
-    .##
-    GRID
-    @shape.grid = grid
+    @shape.grid = @grid
     refute @shape.empty?
-    assert_equal grid, @shape.grid
+    assert_equal @grid, @shape.grid
   end
 
   def test_dimensions_are_correct
-    grid = <<~GRID.chomp
-    ###
-    ##.
-    .##
-    .#.
-    GRID
-    @shape.grid = grid
+    @shape.grid = @grid
     assert_equal 4, @shape.height
     assert_equal 3, @shape.width
   end

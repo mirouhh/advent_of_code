@@ -13,6 +13,11 @@ class PresentTest < Minitest::Test
     .##
     .#.
     SHAPE
+    @rotated_shape = <<~ROTATEDSHAPE.chomp
+    ..##
+    ####
+    .#.#
+    ROTATEDSHAPE
   end
 
   def test_is_empty
@@ -35,6 +40,12 @@ class PresentTest < Minitest::Test
     @present.shape = @shape
     assert_equal 4, @present.height
     assert_equal 3, @present.width
+  end
+
+  def test_can_rotate_clockwise
+    @present.shape = @shape
+    @present.rotate
+    assert_equal @rotated_shape, @present.shape
   end
 
 end

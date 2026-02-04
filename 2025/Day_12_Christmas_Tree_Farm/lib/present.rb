@@ -26,4 +26,8 @@ class Present
     @shape = rows.transpose.map(&:reverse).map(&:join).join("\n")
   end
 
+  def flip_horizontal
+    @shape = @shape.lines.map { |line| line.strip.reverse }.join("\n")
+  end
+
 end

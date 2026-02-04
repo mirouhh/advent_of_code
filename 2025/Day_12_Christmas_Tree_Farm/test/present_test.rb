@@ -60,4 +60,16 @@ class PresentTest < Minitest::Test
     assert_equal @horizontally_flipped_shape, @present.shape
   end
 
+  def test_can_flip_vertically
+    @vertically_flipped_shape = <<~VERTICALLYFLIPPEDSHAPE.chomp
+    ###
+    .##
+    ##.
+    .#.
+    VERTICALLYFLIPPEDSHAPE
+    @present.shape = @shape
+    @present.flip_vertical
+    assert_equal @vertically_flipped_shape, @present.shape
+  end
+
 end

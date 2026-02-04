@@ -30,4 +30,8 @@ class Present
     @shape = @shape.lines.map { |line| line.strip.reverse }.join("\n")
   end
 
+  def flip_vertical
+    @shape = @shape.lines.map(&:strip).reverse.join("\n")
+  end
+
 end

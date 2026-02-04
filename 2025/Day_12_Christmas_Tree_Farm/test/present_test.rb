@@ -62,10 +62,10 @@ class PresentTest < Minitest::Test
 
   def test_can_flip_vertically
     @vertically_flipped_shape = <<~VERTICALLYFLIPPEDSHAPE.chomp
-    ###
+    .#.
     .##
     ##.
-    .#.
+    ###
     VERTICALLYFLIPPEDSHAPE
     @present.shape = @shape
     @present.flip_vertical

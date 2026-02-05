@@ -34,4 +34,8 @@ class Present
     @shape = @shape.lines.map(&:strip).reverse.join("\n")
   end
 
+  def area
+    @shape.count("#")
+  end
+
 end

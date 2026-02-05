@@ -72,4 +72,9 @@ class PresentTest < Minitest::Test
     assert_equal @vertically_flipped_shape, @present.shape
   end
 
+  def test_calulate_area
+    @present.shape = @shape
+    assert_equal 8, @present.area
+  end
+
 end

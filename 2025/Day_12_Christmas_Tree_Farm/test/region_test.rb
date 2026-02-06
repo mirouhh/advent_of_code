@@ -23,4 +23,10 @@ class RegionTest < Minitest::Test
     assert_equal 10, region.width
   end
 
+  def test_length_can_be_set
+    region = Region.new
+    region.length = 12
+    assert_equal 12, region.length
+  end
+
 end

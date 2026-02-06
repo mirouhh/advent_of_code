@@ -10,7 +10,7 @@ class Region
   end
 
   def empty?
-    true
+    @width == 0 && @length == 0
   end
 
   def area

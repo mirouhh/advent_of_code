@@ -9,4 +9,8 @@ class RegionTest < Minitest::Test
     assert Region.new.empty?
   end
 
+  def test_width_is_zero_for_empty_region
+    assert_equal 0, Region.new.width
+  end
+
 end

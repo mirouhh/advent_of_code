@@ -48,4 +48,10 @@ class RegionTest < Minitest::Test
     assert_empty @region.quantities
   end
 
+  def test_quantities_can_be_set
+    @region.quantities[0] = 1
+    assert_equal 1, @region.quantities[0]
+    refute @region.empty?
+  end
+
 end

@@ -2,12 +2,14 @@
 
 class Region
 
-  def empty?
-    true
+  attr_accessor :width
+
+  def initialize(width = 0)
+    @width = width
   end
 
-  def width
-    0
+  def empty?
+    true
   end
 
   def length

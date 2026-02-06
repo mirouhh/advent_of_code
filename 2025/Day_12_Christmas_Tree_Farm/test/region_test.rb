@@ -5,28 +5,30 @@ require_relative '../lib/region'
 
 class RegionTest < Minitest::Test
 
+  def setup
+    @region = Region.new
+  end
+
   def test_new_region_is_empty
-    assert Region.new.empty?
+    assert @region.empty?
   end
 
   def test_width_is_zero_for_empty_region
-    assert_equal 0, Region.new.width
+    assert_equal 0, @region.width
   end
 
   def test_length_is_zero_for_empty_region
-    assert_equal 0, Region.new.length
+    assert_equal 0, @region.length
   end
 
   def test_width_can_be_set
-    region = Region.new
-    region.width = 10
-    assert_equal 10, region.width
+    @region.width = 10
+    assert_equal 10, @region.width
   end
 
   def test_length_can_be_set
-    region = Region.new
-    region.length = 12
-    assert_equal 12, region.length
+    @region.length = 12
+    assert_equal 12, @region.length
   end
 
 end

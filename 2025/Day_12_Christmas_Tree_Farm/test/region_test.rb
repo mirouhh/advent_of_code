@@ -44,4 +44,8 @@ class RegionTest < Minitest::Test
     refute @region.empty?
   end
 
+  def test_new_region_has_no_quantities
+    assert_empty @region.quantities
+  end
+
 end

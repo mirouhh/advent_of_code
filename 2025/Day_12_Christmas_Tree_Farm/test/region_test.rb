@@ -31,4 +31,11 @@ class RegionTest < Minitest::Test
     assert_equal 12, @region.length
   end
 
+  def test_area_is_calculated
+    assert_equal 0, @region.area
+    @region.width = 10
+    @region.length = 12
+    assert_equal 120, @region.area
+  end
+
 end

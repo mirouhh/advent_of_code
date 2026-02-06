@@ -13,4 +13,8 @@ class Region
     true
   end
 
+  def area
+    width * length
+  end
+
 end

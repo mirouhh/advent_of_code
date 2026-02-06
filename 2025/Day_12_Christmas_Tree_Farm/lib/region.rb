@@ -6,4 +6,8 @@ class Region
     true
   end
 
+  def width
+    0
+  end
+
 end

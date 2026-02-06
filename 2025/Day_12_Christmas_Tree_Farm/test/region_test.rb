@@ -38,4 +38,10 @@ class RegionTest < Minitest::Test
     assert_equal 120, @region.area
   end
 
+  def test_region_with_data_is_not_empty
+    @region.width = 10
+    @region.length = 12
+    refute @region.empty?
+  end
+
 end

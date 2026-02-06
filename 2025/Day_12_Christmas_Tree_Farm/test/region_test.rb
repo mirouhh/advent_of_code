@@ -13,4 +13,8 @@ class RegionTest < Minitest::Test
     assert_equal 0, Region.new.width
   end
 
+  def test_length_is_zero_for_empty_region
+    assert_equal 0, Region.new.length
+  end
+
 end

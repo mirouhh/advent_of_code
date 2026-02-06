@@ -10,4 +10,8 @@ class Region
     0
   end
 
+  def length
+    0
+  end
+
 end

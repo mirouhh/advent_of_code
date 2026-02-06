@@ -17,4 +17,8 @@ class Region
     width * length
   end
 
+  def quantities
+    []
+  end
+
 end

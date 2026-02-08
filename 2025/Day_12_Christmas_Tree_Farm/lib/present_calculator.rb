@@ -2,7 +2,15 @@
 
 class PresentCalculator
 
+  def initialize()
+    @presents = []
+  end
+
   def empty?
-    true
+    @presents.empty?
+  end
+
+  def add_present(present)
+    @presents << present
   end
 end

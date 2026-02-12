@@ -19,4 +19,11 @@ class PresentCalculatorTest < Minitest::Test
     refute present_calculator.empty?
   end
 
+  def test_can_import_data_from_file
+    present_calculator = PresentCalculator.new
+    asserrt present_calculator.empty?
+    present_calculator.import("#{File.dirname(__FILE__)}/../sample_input.txt")
+    refute present_calculator.empty?
+  end
+
 end
